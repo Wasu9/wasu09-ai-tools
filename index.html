@@ -279,7 +279,7 @@
       }
       if (currentEffect === 'trail') {
         trail.push({ x: mouseX, y: mouseY, life: 1 });
-        if (trail.length > 55) trail.shift();
+        if (trail.length > 40) trail.shift();
       }
     });
 
@@ -287,8 +287,8 @@
       ctx.clearRect(0, 0, width, height);
       if (currentEffect === 'none') { requestAnimationFrame(animate); return; }
 
-      glowX += (mouseX - glowX) * 0.07;
-      glowY += (mouseY - glowY) * 0.07;
+      glowX += (mouseX - glowX) * 0.12;
+      glowY += (mouseY - glowY) * 0.12;
 
       if (currentEffect === 'glow' || currentEffect === 'particles') {
         const g = ctx.createRadialGradient(glowX, glowY, 0, glowX, glowY, 150);
@@ -311,44 +311,60 @@
       }
       if (particles.length > 110) particles.splice(0, particles.length-110);
 
-      // ===== REACT BITS STYLE GLOW CURSOR =====
-      if (currentEffect === 'trail' && trail.length > 4) {
-        const headColor = [103, 232, 249]; // cyan
-        const tailColor = [167, 139, 250]; // purple
-        const maxWidth = 11;
+      // ===== REACT BITS GLOW CURSOR (tuned params) =====
+      // length=40, width=8, taper=0.6, intensity=1.9, spread=1.2
+      if (currentEffect === 'trail' && trail.length > 3) {
+        const headColor = [103, 232, 249]; // #67e8f9
+        const tailColor = [167, 139, 250]; // #a78bfa
+        const maxWidth = 8;
+        const taper = 0.6;
+        const intensity = 1.9;
+        const spread = 1.2;
 
         for (let i = 0; i < trail.length - 1; i++) {
           const t = i / (trail.length - 1);
           const curr = trail[i];
           const next = trail[i + 1];
+
           const r = Math.round(tailColor[0] + (headColor[0] - tailColor[0]) * t);
           const g = Math.round(tailColor[1] + (headColor[1] - tailColor[1]) * t);
           const b = Math.round(tailColor[2] + (headColor[2] - tailColor[2]) * t);
-          const alpha = (0.12 + t * 0.6) * curr.life;
-          const width = maxWidth * Math.pow(t + 0.05, 0.7) * (0.5 + 0.5 * curr.life);
+
+          const widthFactor = Math.pow(t, 1 - taper);
+          const width = maxWidth * widthFactor * (0.35 + 0.65 * curr.life);
+          const alpha = (0.12 + t * 0.7) * curr.life * intensity * 0.5;
 
           ctx.beginPath();
           ctx.moveTo(curr.x, curr.y);
           ctx.lineTo(next.x, next.y);
-          ctx.strokeStyle = 'rgba(' + r + ',' + g + ',' + b + ',' + alpha + ')';
-          ctx.lineWidth = Math.max(1.5, width);
+          ctx.strokeStyle = 'rgba(' + r + ',' + g + ',' + b + ',' + Math.min(1, alpha) + ')';
+          ctx.lineWidth = Math.max(1.2, width);
           ctx.lineCap = 'round';
           ctx.lineJoin = 'round';
           ctx.stroke();
         }
 
-        // Bright head glow
+        // Head glow + hotspot
         const head = trail[trail.length - 1];
-        const hg = ctx.createRadialGradient(head.x, head.y, 0, head.x, head.y, 22);
-        hg.addColorStop(0, 'rgba(103,232,249,0.6)');
-        hg.addColorStop(0.4, 'rgba(167,139,250,0.25)');
+        const glowR = 16 * spread;
+        const hg = ctx.createRadialGradient(head.x, head.y, 0, head.x, head.y, glowR);
+        hg.addColorStop(0, 'rgba(103,232,249,' + (0.5 * intensity * 0.45) + ')');
+        hg.addColorStop(0.4, 'rgba(167,139,250,' + (0.25 * intensity * 0.35) + ')');
         hg.addColorStop(1, 'transparent');
         ctx.beginPath();
-        ctx.arc(head.x, head.y, 22, 0, Math.PI * 2);
+        ctx.arc(head.x, head.y, glowR, 0, Math.PI * 2);
         ctx.fillStyle = hg;
         ctx.fill();
 
-        for (let i = 0; i < trail.length; i++) trail[i].life -= 0.016;
+        const core = ctx.createRadialGradient(head.x, head.y, 0, head.x, head.y, 5);
+        core.addColorStop(0, 'rgba(255,255,255,0.75)');
+        core.addColorStop(1, 'transparent');
+        ctx.beginPath();
+        ctx.arc(head.x, head.y, 5, 0, Math.PI * 2);
+        ctx.fillStyle = core;
+        ctx.fill();
+
+        for (let i = 0; i < trail.length; i++) trail[i].life -= 0.025;
         trail = trail.filter(t => t.life > 0);
       }
 
@@ -356,7 +372,6 @@
     }
     animate();
 
-    // Add New Tool
     const cardsGrid = document.getElementById('cardsGrid');
     function appendToolCard(tool) {
       const a = document.createElement('a');
