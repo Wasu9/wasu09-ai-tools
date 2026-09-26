@@ -67,6 +67,38 @@
       </div>
     </header>
 
+    <!-- AI Image Generator -->
+    <section class="w-full max-w-3xl mb-10 animate-fade">
+      <div class="ultra-glass rounded-2xl p-5 sm:p-6 border border-white/20">
+        <div class="flex items-center gap-2 mb-4">
+          <i class="fas fa-wand-magic-sparkles text-violet-400"></i>
+          <h2 class="text-white font-semibold text-sm uppercase tracking-widest">AI Image Generator</h2>
+          <span class="text-[10px] px-2 py-0.5 rounded-full bg-violet-500/30 text-violet-200 border border-violet-400/40">FREE</span>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-3 mb-4">
+          <input type="text" id="imgPrompt" placeholder="Describe the image... (e.g. cyberpunk city at night)" class="search-input flex-1" style="padding-left:1.25rem;border-radius:0.75rem;" />
+          <button id="generateImgBtn" class="ultra-glass px-5 py-3 rounded-xl text-sm font-semibold border border-white/30 hover:bg-white/15 transition-all flex items-center justify-center gap-2 whitespace-nowrap">
+            <i class="fas fa-sparkles"></i> Generate
+          </button>
+        </div>
+        <div id="imgLoading" class="hidden text-center py-8">
+          <i class="fas fa-circle-notch fa-spin text-2xl text-violet-400 mb-2"></i>
+          <p class="text-sm text-white/60">Generating your image...</p>
+        </div>
+        <div id="imgResult" class="hidden">
+          <div class="relative rounded-xl overflow-hidden border border-white/15 bg-black/40">
+            <img id="generatedImg" src="" alt="Generated" class="w-full max-h-80 object-contain mx-auto" />
+            <div class="absolute bottom-3 right-3">
+              <a id="downloadImgBtn" href="#" download="wasu09-ai-image.png" class="ultra-glass px-3 py-1.5 rounded-lg text-xs font-medium border border-white/25 hover:bg-white/15 flex items-center gap-1.5">
+                <i class="fas fa-download"></i> Download
+              </a>
+            </div>
+          </div>
+          <p id="imgStatus" class="text-xs text-white/50 mt-2 text-center"></p>
+        </div>
+      </div>
+    </section>
+
     <section class="w-full max-w-3xl">
       <div class="flex justify-between items-end mb-5 px-1">
         <h2 class="text-white/80 font-medium text-sm uppercase tracking-widest flex items-center gap-2 text-outline-minor">
@@ -175,12 +207,13 @@
   <canvas id="mouseCanvas" style="position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:9999;mix-blend-mode:screen;"></canvas>
 
   <script>
-    const searchInput = document.getElementById('searchInput');
-    searchInput.addEventListener('input', (e) => {
+    // Search
+    document.getElementById('searchInput').addEventListener('input', (e) => {
       const q = e.target.value.toLowerCase().trim();
       document.querySelectorAll('.glass-card').forEach(c => c.style.display = c.textContent.toLowerCase().includes(q) ? 'flex' : 'none');
     });
 
+    // Settings
     const settingsBtn = document.getElementById('settingsBtn');
     const settingsPanel = document.getElementById('settingsPanel');
     settingsBtn.addEventListener('click', () => settingsPanel.classList.toggle('hidden'));
@@ -188,6 +221,7 @@
       if (!settingsPanel.contains(e.target) && !settingsBtn.contains(e.target)) settingsPanel.classList.add('hidden');
     });
 
+    // Music
     const musicTracks = ['https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3','https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3','https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3','https://www.soundhelix.com/examples/mp3/SoundHelix-Song-16.mp3'];
     const bgMusic = document.getElementById('bgMusic');
     const musicBtn = document.getElementById('musicBtn');
@@ -203,6 +237,7 @@
       if (was) bgMusic.play().then(() => { musicIcon.className = 'fas fa-volume-up text-sm'; isPlaying = true; }).catch(()=>{});
     });
 
+    // Backgrounds
     const backgrounds = [
       { type: 'video', src: 'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260416_101255_3099d3e4-d0cf-4e59-9666-97fbf521ac71.mp4' },
       { type: 'image', src: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1600&auto=format&fit=crop' },
@@ -233,6 +268,7 @@
     }
     document.querySelectorAll('.bg-thumb').forEach(btn => btn.addEventListener('click', () => setBackground(parseInt(btn.dataset.bg))));
 
+    // Accent
     const accentColors = {
       violet: { main: 'rgba(139,92,246,0.75)', soft: 'rgba(139,92,246,0.28)' },
       blue: { main: 'rgba(59,130,246,0.75)', soft: 'rgba(59,130,246,0.28)' },
@@ -252,11 +288,11 @@
       });
     });
 
+    // Mouse effects + React Bits Glow Cursor
     const canvas = document.getElementById('mouseCanvas');
     const ctx = canvas.getContext('2d');
     let width, height, mouseX = -100, mouseY = -100, glowX = 0, glowY = 0;
     let particles = [], trail = [], currentEffect = 'glow';
-
     function resize() { width = canvas.width = window.innerWidth; height = canvas.height = window.innerHeight; }
     window.addEventListener('resize', resize); resize();
 
@@ -273,9 +309,7 @@
     window.addEventListener('mousemove', (e) => {
       mouseX = e.clientX; mouseY = e.clientY;
       if (currentEffect === 'particles' || currentEffect === 'glow') {
-        for (let i = 0; i < 3; i++) {
-          particles.push({ x: mouseX+(Math.random()-0.5)*24, y: mouseY+(Math.random()-0.5)*24, vx:(Math.random()-0.5)*2, vy:(Math.random()-0.5)*2, life:1, size:Math.random()*3.5+1.5 });
-        }
+        for (let i = 0; i < 3; i++) particles.push({ x: mouseX+(Math.random()-0.5)*24, y: mouseY+(Math.random()-0.5)*24, vx:(Math.random()-0.5)*2, vy:(Math.random()-0.5)*2, life:1, size:Math.random()*3.5+1.5 });
       }
       if (currentEffect === 'trail') {
         trail.push({ x: mouseX, y: mouseY, life: 1 });
@@ -286,7 +320,6 @@
     function animate() {
       ctx.clearRect(0, 0, width, height);
       if (currentEffect === 'none') { requestAnimationFrame(animate); return; }
-
       glowX += (mouseX - glowX) * 0.12;
       glowY += (mouseY - glowY) * 0.12;
 
@@ -306,72 +339,89 @@
         p.x += p.vx; p.y += p.vy; p.life -= 0.016; p.size *= 0.98;
         if (p.life <= 0) { particles.splice(i,1); continue; }
         ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI*2);
-        ctx.fillStyle = 'hsla(270,85%,72%,' + p.life + ')';
-        ctx.fill();
+        ctx.fillStyle = 'hsla(270,85%,72%,' + p.life + ')'; ctx.fill();
       }
       if (particles.length > 110) particles.splice(0, particles.length-110);
 
-      // ===== REACT BITS GLOW CURSOR (tuned params) =====
-      // length=40, width=8, taper=0.6, intensity=1.9, spread=1.2
+      // Glow Cursor (React Bits style)
       if (currentEffect === 'trail' && trail.length > 3) {
-        const headColor = [103, 232, 249]; // #67e8f9
-        const tailColor = [167, 139, 250]; // #a78bfa
-        const maxWidth = 8;
-        const taper = 0.6;
-        const intensity = 1.9;
-        const spread = 1.2;
-
+        const headColor = [103, 232, 249], tailColor = [167, 139, 250];
+        const maxWidth = 8, taper = 0.6, intensity = 1.9, spread = 1.2;
         for (let i = 0; i < trail.length - 1; i++) {
           const t = i / (trail.length - 1);
-          const curr = trail[i];
-          const next = trail[i + 1];
-
+          const curr = trail[i], next = trail[i + 1];
           const r = Math.round(tailColor[0] + (headColor[0] - tailColor[0]) * t);
           const g = Math.round(tailColor[1] + (headColor[1] - tailColor[1]) * t);
           const b = Math.round(tailColor[2] + (headColor[2] - tailColor[2]) * t);
-
-          const widthFactor = Math.pow(t, 1 - taper);
-          const width = maxWidth * widthFactor * (0.35 + 0.65 * curr.life);
+          const width = maxWidth * Math.pow(t, 1 - taper) * (0.35 + 0.65 * curr.life);
           const alpha = (0.12 + t * 0.7) * curr.life * intensity * 0.5;
-
-          ctx.beginPath();
-          ctx.moveTo(curr.x, curr.y);
-          ctx.lineTo(next.x, next.y);
+          ctx.beginPath(); ctx.moveTo(curr.x, curr.y); ctx.lineTo(next.x, next.y);
           ctx.strokeStyle = 'rgba(' + r + ',' + g + ',' + b + ',' + Math.min(1, alpha) + ')';
-          ctx.lineWidth = Math.max(1.2, width);
-          ctx.lineCap = 'round';
-          ctx.lineJoin = 'round';
-          ctx.stroke();
+          ctx.lineWidth = Math.max(1.2, width); ctx.lineCap = 'round'; ctx.stroke();
         }
-
-        // Head glow + hotspot
         const head = trail[trail.length - 1];
         const glowR = 16 * spread;
         const hg = ctx.createRadialGradient(head.x, head.y, 0, head.x, head.y, glowR);
-        hg.addColorStop(0, 'rgba(103,232,249,' + (0.5 * intensity * 0.45) + ')');
-        hg.addColorStop(0.4, 'rgba(167,139,250,' + (0.25 * intensity * 0.35) + ')');
+        hg.addColorStop(0, 'rgba(103,232,249,' + (0.5*intensity*0.45) + ')');
+        hg.addColorStop(0.4, 'rgba(167,139,250,' + (0.25*intensity*0.35) + ')');
         hg.addColorStop(1, 'transparent');
-        ctx.beginPath();
-        ctx.arc(head.x, head.y, glowR, 0, Math.PI * 2);
-        ctx.fillStyle = hg;
-        ctx.fill();
-
+        ctx.beginPath(); ctx.arc(head.x, head.y, glowR, 0, Math.PI*2); ctx.fillStyle = hg; ctx.fill();
         const core = ctx.createRadialGradient(head.x, head.y, 0, head.x, head.y, 5);
-        core.addColorStop(0, 'rgba(255,255,255,0.75)');
-        core.addColorStop(1, 'transparent');
-        ctx.beginPath();
-        ctx.arc(head.x, head.y, 5, 0, Math.PI * 2);
-        ctx.fillStyle = core;
-        ctx.fill();
-
+        core.addColorStop(0, 'rgba(255,255,255,0.75)'); core.addColorStop(1, 'transparent');
+        ctx.beginPath(); ctx.arc(head.x, head.y, 5, 0, Math.PI*2); ctx.fillStyle = core; ctx.fill();
         for (let i = 0; i < trail.length; i++) trail[i].life -= 0.025;
         trail = trail.filter(t => t.life > 0);
       }
-
       requestAnimationFrame(animate);
     }
     animate();
 
+    // AI Image Generator
+    const imgPrompt = document.getElementById('imgPrompt');
+    const generateImgBtn = document.getElementById('generateImgBtn');
+    const imgResult = document.getElementById('imgResult');
+    const generatedImg = document.getElementById('generatedImg');
+    const downloadImgBtn = document.getElementById('downloadImgBtn');
+    const imgLoading = document.getElementById('imgLoading');
+    const imgStatus = document.getElementById('imgStatus');
+
+    function generateImage() {
+      const prompt = (imgPrompt.value || '').trim();
+      if (!prompt) { alert('Please enter a prompt!'); return; }
+      imgResult.classList.add('hidden');
+      imgLoading.classList.remove('hidden');
+      generateImgBtn.disabled = true;
+      generateImgBtn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> Generating...';
+
+      const encoded = encodeURIComponent(prompt);
+      const seed = Math.floor(Math.random() * 100000);
+      const url = 'https://image.pollinations.ai/prompt/' + encoded + '?width=768&height=768&seed=' + seed + '&nologo=true';
+
+      const img = new Image();
+      img.crossOrigin = 'anonymous';
+      img.onload = function() {
+        generatedImg.src = url;
+        downloadImgBtn.href = url;
+        downloadImgBtn.download = 'wasu09-' + prompt.slice(0, 25).replace(/\s+/g, '-') + '.png';
+        imgLoading.classList.add('hidden');
+        imgResult.classList.remove('hidden');
+        imgStatus.textContent = 'Prompt: ' + prompt;
+        generateImgBtn.disabled = false;
+        generateImgBtn.innerHTML = '<i class="fas fa-sparkles"></i> Generate';
+      };
+      img.onerror = function() {
+        imgLoading.classList.add('hidden');
+        imgStatus.textContent = 'Failed to generate. Try again.';
+        imgResult.classList.remove('hidden');
+        generateImgBtn.disabled = false;
+        generateImgBtn.innerHTML = '<i class="fas fa-sparkles"></i> Generate';
+      };
+      img.src = url;
+    }
+    generateImgBtn.addEventListener('click', generateImage);
+    imgPrompt.addEventListener('keydown', (e) => { if (e.key === 'Enter') generateImage(); });
+
+    // Add New Tool
     const cardsGrid = document.getElementById('cardsGrid');
     function appendToolCard(tool) {
       const a = document.createElement('a');
