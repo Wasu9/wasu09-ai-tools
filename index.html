@@ -24,12 +24,12 @@
     .search-input { background: rgba(0,0,0,0.35); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2); border-radius: 9999px; color: #fff; padding: 0.9rem 1.5rem 0.9rem 3rem; width: 100%; font-size: 0.95rem; transition: all 0.3s; }
     .search-input::placeholder { color: rgba(255,255,255,0.6); }
     .search-input:focus { outline: none; background: rgba(0,0,0,0.5); border-color: rgba(255,255,255,0.55); box-shadow: 0 0 25px rgba(255,255,255,0.15); }
-    .tag { letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.7); background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.2); border-radius: 9999px; padding: 0.25rem 0.75rem; font-size: 0.65rem; font-weight: 500; transition: all 0.3s; }
-    .glass-card:hover .tag { color: #fff; background: rgba(255,255,255,0.15); border-color: rgba(255,255,255,0.4); }
+    .tag { letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.7); background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.2); border-radius: 9999px; padding: 0.25rem 0.75rem; font-size: 0.65rem; font-weight: 500; }
     .text-outline-minor { text-shadow: 0 1px 3px rgba(0,0,0,0.6); }
     @keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
     .animate-fade { animation: fadeIn 0.9s ease-out forwards; }
     .reveal-up { opacity: 0; transform: translateY(20px); animation: fadeIn 0.7s ease-out forwards; }
+    .mode-btn.active { background: rgba(255,255,255,0.2); border-color: rgba(255,255,255,0.5); }
     ::-webkit-scrollbar { width: 8px; } ::-webkit-scrollbar-track { background: #111; } ::-webkit-scrollbar-thumb { background: #444; border-radius: 4px; }
   </style>
 </head>
@@ -45,98 +45,79 @@
     <header class="text-center mb-8 sm:mb-10 w-full animate-fade">
       <p class="text-[10px] tracking-[0.3em] text-gray-300 mb-3 uppercase font-bold text-outline-minor">Premium Resources</p>
       <h1 class="heading-cinematic text-[2.1rem] leading-[1.15] sm:text-5xl md:text-6xl font-semibold text-white drop-shadow-lg mb-6 text-outline-minor">
-        <span class="block sm:inline">Wasu09 —</span>
-        <span class="block sm:inline"> Free AI Tools &</span>
-        <span class="block sm:inline"> Resources</span>
+        Wasu09 — Free AI Tools
       </h1>
       <div class="inline-flex items-center p-1.5 pr-5 rounded-full ultra-glass mb-7 border border-white/20 shadow-lg">
-        <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-gradient-to-br from-violet-500 to-fuchsia-500 flex items-center justify-center text-white font-bold text-sm mr-3 shadow-md">W</div>
-        <p class="text-xs sm:text-sm font-medium tracking-wide text-gray-100 text-outline-minor">Simplifying Tech & AI</p>
-      </div>
-      <div class="flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-4 max-w-2xl mx-auto w-full">
-        <div class="relative w-full max-w-xl">
-          <div class="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none"><i class="fas fa-search text-white/70"></i></div>
-          <input type="text" placeholder="Search resources..." class="search-input" id="searchInput" />
-        </div>
-        <button onclick="document.getElementById('cardsGrid').scrollIntoView({behavior:'smooth'})" class="ultra-glass px-6 py-3.5 rounded-full text-sm font-semibold tracking-wide hover:bg-white/15 transition-all flex items-center gap-2 border border-white/30 text-white h-[50px]">
-          <i class="fas fa-layer-group"></i> All Tools
-        </button>
+        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-violet-500 to-fuchsia-500 flex items-center justify-center text-white font-bold text-sm mr-3">W</div>
+        <p class="text-xs sm:text-sm font-medium text-gray-100">Simplifying Tech & AI</p>
       </div>
     </header>
 
-    <!-- AI Generators: Image + Video -->
-    <section class="w-full max-w-3xl mb-10 space-y-5 animate-fade">
+    <!-- AI STUDIO -->
+    <section class="w-full max-w-3xl mb-10 space-y-4 animate-fade">
 
-      <!-- Image Generator -->
-      <div class="ultra-glass rounded-2xl p-5 sm:p-6 border border-white/20">
-        <div class="flex items-center justify-between mb-4">
-          <div class="flex items-center gap-2">
-            <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-violet-500 to-fuchsia-500 flex items-center justify-center">
-              <i class="fas fa-image text-white text-sm"></i>
-            </div>
-            <div>
-              <h2 class="text-white font-semibold text-sm tracking-wide">AI Image Generator</h2>
-              <p class="text-[10px] text-white/50">Puter · FLUX · Free</p>
-            </div>
+      <!-- Fixed Influencer Identity -->
+      <div class="ultra-glass rounded-2xl p-5 border border-white/20">
+        <div class="flex items-center gap-2 mb-3">
+          <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-pink-500 to-rose-500 flex items-center justify-center"><i class="fas fa-user-astronaut text-white text-xs"></i></div>
+          <div>
+            <h2 class="text-white font-semibold text-sm">Fixed Influencer Identity</h2>
+            <p class="text-[10px] text-white/50">Upload face photos → same face in every image/video</p>
           </div>
-          <span class="text-[10px] px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 font-medium">IMAGE</span>
         </div>
-        <div class="flex flex-col gap-3 mb-3">
-          <textarea id="imgPrompt" rows="2" placeholder="Describe your image... e.g. cinematic cyberpunk city at night" class="w-full bg-black/40 border border-white/20 rounded-xl px-4 py-3 text-sm text-white placeholder-white/40 outline-none focus:border-violet-400/60 resize-none"></textarea>
-          <button id="generateImgBtn" class="w-full px-5 py-2.5 rounded-xl text-sm font-semibold bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-500 hover:to-fuchsia-500 transition-all flex items-center justify-center gap-2">
-            <i class="fas fa-sparkles"></i> Generate Image
-          </button>
+        <div class="flex flex-wrap gap-3 items-start">
+          <label class="cursor-pointer ultra-glass border border-dashed border-white/30 rounded-xl px-4 py-3 text-xs hover:bg-white/10 flex flex-col items-center gap-1 min-w-[100px]">
+            <i class="fas fa-upload text-lg text-pink-400"></i>
+            <span>Upload Face</span>
+            <input type="file" id="influencerUpload" accept="image/*" multiple class="hidden" />
+          </label>
+          <div id="influencerPreviews" class="flex flex-wrap gap-2"></div>
+          <button id="clearInfluencer" class="text-[11px] text-white/40 hover:text-white/70 underline self-center hidden">Clear</button>
         </div>
-        <div id="imgLoading" class="hidden text-center py-8">
+        <p id="influencerStatus" class="text-[10px] text-white/40 mt-2">No identity set. Upload 1–3 clear face photos for consistent character.</p>
+      </div>
+
+      <!-- Mode + Prompt Studio -->
+      <div class="ultra-glass rounded-2xl p-5 border border-white/20">
+        <div class="flex flex-wrap gap-1.5 mb-4">
+          <button data-mode="txt2img" class="mode-btn active px-3 py-1.5 rounded-full text-[11px] border border-white/20">Text → Image</button>
+          <button data-mode="img2img" class="mode-btn px-3 py-1.5 rounded-full text-[11px] border border-white/20">Image → Image</button>
+          <button data-mode="txt2vid" class="mode-btn px-3 py-1.5 rounded-full text-[11px] border border-white/20">Text → Video</button>
+          <button data-mode="img2vid" class="mode-btn px-3 py-1.5 rounded-full text-[11px] border border-white/20">Image → Video</button>
+        </div>
+
+        <textarea id="studioPrompt" rows="2" placeholder="Describe scene, dress, location... e.g. wearing red saree at beach sunset, cinematic" class="w-full bg-black/40 border border-white/20 rounded-xl px-4 py-3 text-sm text-white placeholder-white/40 outline-none focus:border-violet-400/60 resize-none mb-3"></textarea>
+
+        <!-- Source image for img2img / img2vid -->
+        <div id="sourceImageBox" class="hidden mb-3">
+          <label class="cursor-pointer ultra-glass border border-dashed border-white/25 rounded-xl px-4 py-3 text-xs hover:bg-white/10 inline-flex items-center gap-2">
+            <i class="fas fa-image text-violet-400"></i>
+            <span id="sourceLabel">Upload source image</span>
+            <input type="file" id="sourceUpload" accept="image/*" class="hidden" />
+          </label>
+          <div id="sourcePreview" class="mt-2"></div>
+        </div>
+
+        <button id="studioGenerate" class="w-full px-5 py-3 rounded-xl text-sm font-semibold bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-500 hover:to-fuchsia-500 transition-all flex items-center justify-center gap-2">
+          <i class="fas fa-magic"></i> Generate
+        </button>
+
+        <div id="studioLoading" class="hidden text-center py-8">
           <div class="w-10 h-10 mx-auto rounded-full border-2 border-violet-400/30 border-t-violet-400 animate-spin mb-2"></div>
-          <p class="text-sm text-white/60">Generating image...</p>
+          <p class="text-sm text-white/60" id="loadingText">Generating...</p>
+          <p class="text-[11px] text-white/40">First time may need free Puter login</p>
         </div>
-        <div id="imgResult" class="hidden">
-          <div id="imgContainer" class="rounded-xl overflow-hidden border border-white/15 bg-black/50 min-h-[180px] flex items-center justify-center"></div>
-          <div class="flex justify-between items-center mt-2">
-            <p id="imgStatus" class="text-xs text-white/50 truncate flex-1"></p>
-            <button id="regenImgBtn" class="ultra-glass px-3 py-1 rounded-lg text-xs border border-white/25 hover:bg-white/15"><i class="fas fa-redo"></i> Regen</button>
-          </div>
+
+        <div id="studioResult" class="hidden mt-4">
+          <div id="studioContainer" class="rounded-xl overflow-hidden border border-white/15 bg-black/50 min-h-[200px] flex items-center justify-center"></div>
+          <p id="studioStatus" class="text-xs text-white/50 mt-2 truncate"></p>
         </div>
       </div>
 
-      <!-- Video Generator -->
-      <div class="ultra-glass rounded-2xl p-5 sm:p-6 border border-white/20">
-        <div class="flex items-center justify-between mb-4">
-          <div class="flex items-center gap-2">
-            <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-orange-500 to-rose-500 flex items-center justify-center">
-              <i class="fas fa-video text-white text-sm"></i>
-            </div>
-            <div>
-              <h2 class="text-white font-semibold text-sm tracking-wide">AI Video Generator</h2>
-              <p class="text-[10px] text-white/50">Puter · Veo / Sora · Free</p>
-            </div>
-          </div>
-          <span class="text-[10px] px-2.5 py-1 rounded-full bg-orange-500/20 text-orange-300 border border-orange-400/30 font-medium">VIDEO</span>
-        </div>
-        <div class="flex flex-col gap-3 mb-3">
-          <textarea id="vidPrompt" rows="2" placeholder="Describe your video... e.g. drone flying over misty mountains at sunrise" class="w-full bg-black/40 border border-white/20 rounded-xl px-4 py-3 text-sm text-white placeholder-white/40 outline-none focus:border-orange-400/60 resize-none"></textarea>
-          <button id="generateVidBtn" class="w-full px-5 py-2.5 rounded-xl text-sm font-semibold bg-gradient-to-r from-orange-500 to-rose-500 hover:from-orange-400 hover:to-rose-400 transition-all flex items-center justify-center gap-2">
-            <i class="fas fa-film"></i> Generate Video
-          </button>
-        </div>
-        <div id="vidLoading" class="hidden text-center py-8">
-          <div class="w-10 h-10 mx-auto rounded-full border-2 border-orange-400/30 border-t-orange-400 animate-spin mb-2"></div>
-          <p class="text-sm text-white/60">Generating video... (30–90 sec)</p>
-          <p class="text-[11px] text-white/40 mt-1">First time may need free Puter login</p>
-        </div>
-        <div id="vidResult" class="hidden">
-          <div id="vidContainer" class="rounded-xl overflow-hidden border border-white/15 bg-black/50 min-h-[180px] flex items-center justify-center"></div>
-          <div class="flex justify-between items-center mt-2">
-            <p id="vidStatus" class="text-xs text-white/50 truncate flex-1"></p>
-            <button id="regenVidBtn" class="ultra-glass px-3 py-1 rounded-lg text-xs border border-white/25 hover:bg-white/15"><i class="fas fa-redo"></i> Regen</button>
-          </div>
-        </div>
-      </div>
-
-      <p class="text-[10px] text-white/30 text-center">Powered by Puter.js — free for developer. Users cover their own usage via free Puter account.</p>
+      <p class="text-[10px] text-white/30 text-center">Puter.js · Free for developer · User covers usage via free Puter account</p>
     </section>
 
+    <!-- Tools Grid -->
     <section class="w-full max-w-3xl">
       <div class="flex justify-between items-end mb-5 px-1">
         <h2 class="text-white/80 font-medium text-sm uppercase tracking-widest flex items-center gap-2 text-outline-minor">
@@ -144,57 +125,56 @@
         </h2>
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 pb-16" id="cardsGrid">
-        <a href="https://docs.google.com/document/d/1lXIw7md7JiQOCnrlyBPBPIOQIL1uev_OEyOAm52qw9s/edit?usp=sharing" target="_blank" rel="noopener" class="glass-card group reveal-up" style="animation-delay:0.05s">
-          <div class="flex justify-between items-start"><div class="icon-circle"><i class="fas fa-photo-film"></i></div><div class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center"><i class="fas fa-download text-white/80"></i></div></div>
-          <h3 class="font-semibold text-lg mb-1.5 text-white text-outline-minor">3 Website For Seedance & other Video Creation</h3>
-          <p class="text-sm text-gray-200 mb-4 line-clamp-2 text-outline-minor">Use These 3 Website & create videos with Seedance 2.0 model</p>
-          <div class="flex flex-wrap gap-2 mt-auto"><span class="tag">3 VIDEO MODELS</span><span class="tag">26 SEPTEMBER 26</span></div>
+        <a href="https://docs.google.com/document/d/1lXIw7md7JiQOCnrlyBPBPIOQIL1uev_OEyOAm52qw9s/edit?usp=sharing" target="_blank" rel="noopener" class="glass-card group reveal-up">
+          <div class="flex justify-between items-start"><div class="icon-circle"><i class="fas fa-photo-film"></i></div></div>
+          <h3 class="font-semibold text-lg mb-1.5 text-white">3 Website For Seedance & Video Creation</h3>
+          <p class="text-sm text-gray-200 mb-4 line-clamp-2">Create videos with Seedance 2.0 model</p>
+          <div class="flex flex-wrap gap-2 mt-auto"><span class="tag">VIDEO</span></div>
         </a>
-        <a href="https://docs.google.com/document/d/1qBfGzXfC3W3iDh95XOT_36izL9a6eFiRLX2QsvmVJ1A/edit?usp=sharing" target="_blank" rel="noopener" class="glass-card group reveal-up" style="animation-delay:0.1s">
-          <div class="flex justify-between items-start"><div class="icon-circle"><i class="fas fa-robot"></i></div><div class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center"><i class="fas fa-download text-white/80"></i></div></div>
-          <h3 class="font-semibold text-lg mb-1.5 text-white text-outline-minor">Create Seedance 2.5 Video (FREE)</h3>
-          <p class="text-sm text-gray-200 mb-4 line-clamp-2 text-outline-minor">Create Seedance 2.5, 30s Long video FREE + 1000 Free Trial Credits</p>
-          <div class="flex flex-wrap gap-2 mt-auto"><span class="tag">SEEDANCE</span><span class="tag">25 SEPTEMBER 26</span></div>
+        <a href="https://docs.google.com/document/d/1qBfGzXfC3W3iDh95XOT_36izL9a6eFiRLX2QsvmVJ1A/edit?usp=sharing" target="_blank" rel="noopener" class="glass-card group reveal-up">
+          <div class="flex justify-between items-start"><div class="icon-circle"><i class="fas fa-robot"></i></div></div>
+          <h3 class="font-semibold text-lg mb-1.5 text-white">Create Seedance 2.5 Video (FREE)</h3>
+          <p class="text-sm text-gray-200 mb-4 line-clamp-2">30s Long video FREE + credits</p>
+          <div class="flex flex-wrap gap-2 mt-auto"><span class="tag">SEEDANCE</span></div>
         </a>
-        <a href="https://docs.google.com/document/d/1wqSdvIotsgG9FxFkgwNQNvINOtrMhcKFOj_-21F9ZXo/edit?usp=sharing" target="_blank" rel="noopener" class="glass-card group reveal-up" style="animation-delay:0.15s">
-          <div class="flex justify-between items-start"><div class="icon-circle"><i class="fas fa-video"></i></div><div class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center"><i class="fas fa-download text-white/80"></i></div></div>
-          <h3 class="font-semibold text-lg mb-1.5 text-white text-outline-minor">Create Video In ChatGPT Using Paid Models (FREE)</h3>
-          <p class="text-sm text-gray-200 mb-4 line-clamp-2 text-outline-minor">Now You can create Videos Using ChatGPT totally FREE</p>
-          <div class="flex flex-wrap gap-2 mt-auto"><span class="tag">CHATGPT VIDEO</span><span class="tag">24 SEPTEMBER 26</span></div>
+        <a href="https://docs.google.com/document/d/1wqSdvIotsgG9FxFkgwNQNvINOtrMhcKFOj_-21F9ZXo/edit?usp=sharing" target="_blank" rel="noopener" class="glass-card group reveal-up">
+          <div class="flex justify-between items-start"><div class="icon-circle"><i class="fas fa-video"></i></div></div>
+          <h3 class="font-semibold text-lg mb-1.5 text-white">ChatGPT Video (FREE)</h3>
+          <p class="text-sm text-gray-200 mb-4 line-clamp-2">Create Videos Using ChatGPT FREE</p>
+          <div class="flex flex-wrap gap-2 mt-auto"><span class="tag">CHATGPT</span></div>
         </a>
-        <a href="https://docs.google.com/document/d/1OgR6d5aAMEh5kns-Yk7FvLhgvb5ydc1njtWt5Q7ttjk/edit?usp=sharing" target="_blank" rel="noopener" class="glass-card group reveal-up" style="animation-delay:0.2s">
-          <div class="flex justify-between items-start"><div class="icon-circle"><i class="fas fa-arrow-trend-up"></i></div><div class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center"><i class="fas fa-download text-white/80"></i></div></div>
-          <h3 class="font-semibold text-lg mb-1.5 text-white text-outline-minor">Create Trending AI Car Video Free</h3>
-          <p class="text-sm text-gray-200 mb-4 line-clamp-2 text-outline-minor">You can create This Trend Using This Website totally FREE</p>
-          <div class="flex flex-wrap gap-2 mt-auto"><span class="tag">AI CAR TREND</span><span class="tag">23 SEPTEMBER 26</span></div>
+        <a href="https://docs.google.com/document/d/1OgR6d5aAMEh5kns-Yk7FvLhgvb5ydc1njtWt5Q7ttjk/edit?usp=sharing" target="_blank" rel="noopener" class="glass-card group reveal-up">
+          <div class="flex justify-between items-start"><div class="icon-circle"><i class="fas fa-arrow-trend-up"></i></div></div>
+          <h3 class="font-semibold text-lg mb-1.5 text-white">Trending AI Car Video Free</h3>
+          <p class="text-sm text-gray-200 mb-4 line-clamp-2">Create This Trend FREE</p>
+          <div class="flex flex-wrap gap-2 mt-auto"><span class="tag">TREND</span></div>
         </a>
-        <a href="https://docs.google.com/document/d/18NGNmy0CYm_V_47TeZ03K7aiNh_bRYU6hKAXeFjqMa8/edit?usp=sharing" target="_blank" rel="noopener" class="glass-card group reveal-up" style="animation-delay:0.25s">
-          <div class="flex justify-between items-start"><div class="icon-circle"><i class="fas fa-user-astronaut"></i></div><div class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center"><i class="fas fa-download text-white/80"></i></div></div>
-          <h3 class="font-semibold text-lg mb-1.5 text-white text-outline-minor">Create Unlimited AI Influencer Videos (FREE)</h3>
-          <p class="text-sm text-gray-200 mb-4 line-clamp-2 text-outline-minor">Using This website you can create Unlimited AI influencer Videos FREE</p>
-          <div class="flex flex-wrap gap-2 mt-auto"><span class="tag">AI INFLUENCER</span><span class="tag">5 AUGUST 26</span></div>
+        <a href="https://docs.google.com/document/d/18NGNmy0CYm_V_47TeZ03K7aiNh_bRYU6hKAXeFjqMa8/edit?usp=sharing" target="_blank" rel="noopener" class="glass-card group reveal-up">
+          <div class="flex justify-between items-start"><div class="icon-circle"><i class="fas fa-user-astronaut"></i></div></div>
+          <h3 class="font-semibold text-lg mb-1.5 text-white">Unlimited AI Influencer Videos</h3>
+          <p class="text-sm text-gray-200 mb-4 line-clamp-2">Unlimited AI influencer Videos FREE</p>
+          <div class="flex flex-wrap gap-2 mt-auto"><span class="tag">INFLUENCER</span></div>
         </a>
-        <a href="https://docs.google.com/document/d/1y-r2ajkvNpuH4twVcX8u0KHBBOPAE0mtS5Za8ZDulSw/edit?usp=sharing" target="_blank" rel="noopener" class="glass-card group reveal-up" style="animation-delay:0.3s">
-          <div class="flex justify-between items-start"><div class="icon-circle"><i class="fas fa-gift"></i></div><div class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center"><i class="fas fa-download text-white/80"></i></div></div>
-          <h3 class="font-semibold text-lg mb-1.5 text-white text-outline-minor">20 Free Videos Website</h3>
-          <p class="text-sm text-gray-200 mb-4 line-clamp-2 text-outline-minor">Use This Website & create 20+ videos with totally FREE models</p>
-          <div class="flex flex-wrap gap-2 mt-auto"><span class="tag">FREE VIDEO MODELS</span><span class="tag">21 SEPTEMBER 26</span></div>
+        <a href="https://docs.google.com/document/d/1y-r2ajkvNpuH4twVcX8u0KHBBOPAE0mtS5Za8ZDulSw/edit?usp=sharing" target="_blank" rel="noopener" class="glass-card group reveal-up">
+          <div class="flex justify-between items-start"><div class="icon-circle"><i class="fas fa-gift"></i></div></div>
+          <h3 class="font-semibold text-lg mb-1.5 text-white">20 Free Videos Website</h3>
+          <p class="text-sm text-gray-200 mb-4 line-clamp-2">20+ videos with FREE models</p>
+          <div class="flex flex-wrap gap-2 mt-auto"><span class="tag">FREE</span></div>
         </a>
       </div>
     </section>
   </main>
 
   <div class="fixed bottom-5 left-5 text-[10px] text-white/40 z-20 hidden sm:block">Made with ❤️ by Wasu09</div>
-
   <div class="fixed bottom-5 right-5 z-20 flex items-center gap-2">
-    <button id="musicBtn" class="ultra-glass w-11 h-11 rounded-full flex items-center justify-center border border-white/25 text-white/90 hover:bg-white/15 cursor-pointer"><i id="musicIcon" class="fas fa-volume-mute text-sm"></i></button>
-    <button id="settingsBtn" class="ultra-glass w-11 h-11 rounded-full flex items-center justify-center border border-white/25 text-white/90 hover:bg-white/15 cursor-pointer"><i class="fas fa-sliders text-sm"></i></button>
+    <button id="musicBtn" class="ultra-glass w-11 h-11 rounded-full flex items-center justify-center border border-white/25 text-white/90 hover:bg-white/15"><i id="musicIcon" class="fas fa-volume-mute text-sm"></i></button>
+    <button id="settingsBtn" class="ultra-glass w-11 h-11 rounded-full flex items-center justify-center border border-white/25 text-white/90 hover:bg-white/15"><i class="fas fa-sliders text-sm"></i></button>
   </div>
 
   <div id="settingsPanel" class="fixed bottom-20 right-5 z-30 ultra-glass rounded-2xl p-4 w-72 border border-white/20 hidden">
-    <h3 class="text-sm font-semibold mb-3 text-white/90 flex items-center gap-2"><i class="fas fa-sliders"></i> Customize</h3>
-    <div class="mb-4">
-      <p class="text-[11px] uppercase tracking-wider text-white/50 mb-2">Mouse Effect</p>
+    <h3 class="text-sm font-semibold mb-3 text-white/90"><i class="fas fa-sliders"></i> Customize</h3>
+    <div class="mb-3">
+      <p class="text-[11px] uppercase text-white/50 mb-2">Mouse Effect</p>
       <div class="flex flex-wrap gap-1.5">
         <button data-effect="glow" class="effect-btn active px-2.5 py-1 rounded-full text-[11px] border border-white/20 bg-white/10">Glow</button>
         <button data-effect="particles" class="effect-btn px-2.5 py-1 rounded-full text-[11px] border border-white/20">Particles</button>
@@ -202,50 +182,167 @@
         <button data-effect="none" class="effect-btn px-2.5 py-1 rounded-full text-[11px] border border-white/20">Off</button>
       </div>
     </div>
-    <div class="mb-4">
-      <p class="text-[11px] uppercase tracking-wider text-white/50 mb-2">Music</p>
+    <div class="mb-3">
+      <p class="text-[11px] uppercase text-white/50 mb-2">Music</p>
       <select id="musicSelect" class="w-full bg-black/40 border border-white/20 rounded-lg px-3 py-2 text-xs text-white outline-none">
-        <option value="0">Ambient Soft</option>
-        <option value="1">Chill Lofi</option>
-        <option value="2">Cinematic</option>
-        <option value="3">Space Ambient</option>
+        <option value="0">Ambient Soft</option><option value="1">Chill Lofi</option><option value="2">Cinematic</option><option value="3">Space Ambient</option>
       </select>
     </div>
-    <div class="mb-4">
-      <p class="text-[11px] uppercase tracking-wider text-white/50 mb-2">Background</p>
-      <div class="grid grid-cols-3 gap-2">
-        <button data-bg="0" class="bg-thumb h-12 rounded-lg border-2 border-violet-400" style="background:linear-gradient(135deg,#6b21a8,#c026d3)"></button>
-        <button data-bg="1" class="bg-thumb h-12 rounded-lg border-2 border-transparent" style="background:url(https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=200) center/cover"></button>
-        <button data-bg="2" class="bg-thumb h-12 rounded-lg border-2 border-transparent" style="background:url(https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=200) center/cover"></button>
-        <button data-bg="3" class="bg-thumb h-12 rounded-lg border-2 border-transparent" style="background:url(https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=200) center/cover"></button>
-        <button data-bg="4" class="bg-thumb h-12 rounded-lg border-2 border-transparent" style="background:url(https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=200) center/cover"></button>
-        <button data-bg="5" class="bg-thumb h-12 rounded-lg border-2 border-transparent" style="background:url(https://images.unsplash.com/photo-1519681393784-d120267933ba?w=200) center/cover"></button>
-      </div>
-    </div>
-    <div class="mb-4">
-      <p class="text-[11px] uppercase tracking-wider text-white/50 mb-2">UI Accent</p>
-      <div class="flex gap-2">
-        <button data-accent="violet" class="accent-btn w-7 h-7 rounded-full bg-violet-500 border-2 border-white"></button>
-        <button data-accent="blue" class="accent-btn w-7 h-7 rounded-full bg-blue-500 border-2 border-transparent"></button>
-        <button data-accent="pink" class="accent-btn w-7 h-7 rounded-full bg-pink-500 border-2 border-transparent"></button>
-        <button data-accent="cyan" class="accent-btn w-7 h-7 rounded-full bg-cyan-400 border-2 border-transparent"></button>
-        <button data-accent="orange" class="accent-btn w-7 h-7 rounded-full bg-orange-500 border-2 border-transparent"></button>
-      </div>
-    </div>
-    <button id="addToolBtn" class="w-full mt-1 py-2.5 rounded-lg text-xs font-medium border border-white/25 bg-white/10 hover:bg-white/20 flex items-center justify-center gap-2">
-      <i class="fas fa-plus"></i> Add New Tool
-    </button>
+    <button id="addToolBtn" class="w-full py-2.5 rounded-lg text-xs font-medium border border-white/25 bg-white/10 hover:bg-white/20"><i class="fas fa-plus"></i> Add New Tool</button>
   </div>
 
   <audio id="bgMusic" loop preload="auto"><source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3" type="audio/mpeg"></audio>
   <canvas id="mouseCanvas" style="position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:9999;mix-blend-mode:screen;"></canvas>
 
   <script>
-    document.getElementById('searchInput').addEventListener('input', (e) => {
-      const q = e.target.value.toLowerCase().trim();
-      document.querySelectorAll('.glass-card').forEach(c => c.style.display = c.textContent.toLowerCase().includes(q) ? 'flex' : 'none');
+    // ===== STATE =====
+    let currentMode = 'txt2img';
+    let influencerRefs = JSON.parse(localStorage.getItem('wasu09_influencer') || '[]');
+    let sourceImageData = null;
+
+    // ===== INFLUENCER =====
+    function renderInfluencer() {
+      const box = document.getElementById('influencerPreviews');
+      const status = document.getElementById('influencerStatus');
+      const clearBtn = document.getElementById('clearInfluencer');
+      box.innerHTML = '';
+      influencerRefs.forEach((src, i) => {
+        const img = document.createElement('img');
+        img.src = src;
+        img.className = 'w-14 h-14 rounded-lg object-cover border border-white/30';
+        box.appendChild(img);
+      });
+      if (influencerRefs.length) {
+        status.textContent = influencerRefs.length + ' face photo(s) saved. Same identity used in all generations.';
+        status.className = 'text-[10px] text-emerald-400/80 mt-2';
+        clearBtn.classList.remove('hidden');
+      } else {
+        status.textContent = 'No identity set. Upload 1–3 clear face photos for consistent character.';
+        status.className = 'text-[10px] text-white/40 mt-2';
+        clearBtn.classList.add('hidden');
+      }
+    }
+    renderInfluencer();
+
+    document.getElementById('influencerUpload').addEventListener('change', async (e) => {
+      const files = Array.from(e.target.files || []).slice(0, 3);
+      for (const f of files) {
+        if (influencerRefs.length >= 3) break;
+        const dataUrl = await fileToDataURL(f);
+        influencerRefs.push(dataUrl);
+      }
+      localStorage.setItem('wasu09_influencer', JSON.stringify(influencerRefs));
+      renderInfluencer();
+      e.target.value = '';
+    });
+    document.getElementById('clearInfluencer').addEventListener('click', () => {
+      influencerRefs = [];
+      localStorage.removeItem('wasu09_influencer');
+      renderInfluencer();
     });
 
+    function fileToDataURL(file) {
+      return new Promise((res, rej) => {
+        const r = new FileReader();
+        r.onload = () => res(r.result);
+        r.onerror = rej;
+        r.readAsDataURL(file);
+      });
+    }
+
+    // ===== MODE SWITCH =====
+    document.querySelectorAll('.mode-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        currentMode = btn.dataset.mode;
+        document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const needSource = currentMode === 'img2img' || currentMode === 'img2vid';
+        document.getElementById('sourceImageBox').classList.toggle('hidden', !needSource);
+      });
+    });
+
+    document.getElementById('sourceUpload').addEventListener('change', async (e) => {
+      const f = e.target.files[0];
+      if (!f) return;
+      sourceImageData = await fileToDataURL(f);
+      document.getElementById('sourcePreview').innerHTML = '<img src="' + sourceImageData + '" class="w-20 h-20 rounded-lg object-cover border border-white/30" />';
+      document.getElementById('sourceLabel').textContent = 'Change source image';
+    });
+
+    // ===== GENERATE =====
+    document.getElementById('studioGenerate').addEventListener('click', async () => {
+      const prompt = (document.getElementById('studioPrompt').value || '').trim();
+      if (!prompt) { alert('Please enter a prompt!'); return; }
+
+      if ((currentMode === 'img2img' || currentMode === 'img2vid') && !sourceImageData) {
+        alert('Please upload a source image for this mode!');
+        return;
+      }
+
+      const btn = document.getElementById('studioGenerate');
+      const loading = document.getElementById('studioLoading');
+      const result = document.getElementById('studioResult');
+      const container = document.getElementById('studioContainer');
+      const status = document.getElementById('studioStatus');
+      const loadingText = document.getElementById('loadingText');
+
+      result.classList.add('hidden');
+      loading.classList.remove('hidden');
+      btn.disabled = true;
+      container.innerHTML = '';
+
+      const isVideo = currentMode === 'txt2vid' || currentMode === 'img2vid';
+      loadingText.textContent = isVideo ? 'Generating video... (30–90 sec)' : 'Generating image...';
+
+      try {
+        if (isVideo) {
+          const opts = { prompt };
+          if (currentMode === 'img2vid' && sourceImageData) {
+            opts.input_reference = sourceImageData;
+          }
+          // Fixed influencer identity
+          if (influencerRefs.length) {
+            opts.reference_images = influencerRefs.slice(0, 3);
+          }
+          const videoEl = await puter.ai.txt2vid(opts);
+          videoEl.className = 'w-full max-h-[400px] mx-auto';
+          videoEl.controls = true;
+          videoEl.autoplay = true;
+          videoEl.loop = true;
+          container.appendChild(videoEl);
+          try { videoEl.play(); } catch(e) {}
+        } else {
+          const opts = {};
+          if (currentMode === 'img2img' && sourceImageData) {
+            opts.input_image = sourceImageData;
+          }
+          // For consistency with influencer face on images
+          if (influencerRefs.length) {
+            opts.input_images = influencerRefs.slice(0, 3);
+            if (currentMode === 'img2img' && sourceImageData) {
+              opts.input_images = [sourceImageData, ...influencerRefs.slice(0, 2)];
+            }
+          }
+          const imgEl = await puter.ai.txt2img(prompt, opts);
+          imgEl.className = 'w-full max-h-[400px] object-contain mx-auto';
+          container.appendChild(imgEl);
+        }
+
+        loading.classList.add('hidden');
+        result.classList.remove('hidden');
+        status.textContent = (influencerRefs.length ? '🎭 Identity locked · ' : '') + prompt.slice(0, 50);
+      } catch (err) {
+        console.error(err);
+        loading.classList.add('hidden');
+        result.classList.remove('hidden');
+        status.textContent = 'Error: ' + (err.message || 'Try again / Puter login');
+        container.innerHTML = '<p class="text-sm text-white/40 p-6 text-center">Failed. First use needs free Puter login.<br>Check prompt / try again.</p>';
+      }
+
+      btn.disabled = false;
+    });
+
+    // ===== MUSIC / SETTINGS / MOUSE (compact) =====
     const settingsBtn = document.getElementById('settingsBtn');
     const settingsPanel = document.getElementById('settingsPanel');
     settingsBtn.addEventListener('click', () => settingsPanel.classList.toggle('hidden'));
@@ -268,55 +365,6 @@
       if (was) bgMusic.play().then(() => { musicIcon.className = 'fas fa-volume-up text-sm'; isPlaying = true; }).catch(()=>{});
     });
 
-    const backgrounds = [
-      { type: 'video', src: 'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260416_101255_3099d3e4-d0cf-4e59-9666-97fbf521ac71.mp4' },
-      { type: 'image', src: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1600&auto=format&fit=crop' },
-      { type: 'image', src: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?q=80&w=1600&auto=format&fit=crop' },
-      { type: 'image', src: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1600&auto=format&fit=crop' },
-      { type: 'image', src: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=1600&auto=format&fit=crop' },
-      { type: 'image', src: 'https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=1600&auto=format&fit=crop' }
-    ];
-    const bgContainer = document.querySelector('.bg-container');
-    const bgVideo = document.querySelector('.bg-video');
-    const bgSource = bgVideo.querySelector('source');
-    function setBackground(idx) {
-      const bg = backgrounds[idx];
-      bgContainer.style.transition = 'opacity 0.4s ease'; bgContainer.style.opacity = '0';
-      setTimeout(() => {
-        if (bg.type === 'video') {
-          let img = bgContainer.querySelector('.bg-image'); if (img) img.remove();
-          bgVideo.style.display = 'block'; bgSource.src = bg.src; bgVideo.load(); bgVideo.play().catch(()=>{});
-        } else {
-          bgVideo.style.display = 'none';
-          let img = bgContainer.querySelector('.bg-image');
-          if (!img) { img = document.createElement('img'); img.className = 'bg-image'; img.style.cssText = 'width:100%;height:100%;object-fit:cover;filter:brightness(0.52) contrast(1.1);'; bgContainer.insertBefore(img, bgContainer.querySelector('.bg-overlay')); }
-          img.src = bg.src;
-        }
-        bgContainer.style.opacity = '1';
-        document.querySelectorAll('.bg-thumb').forEach((b,i) => b.style.borderColor = i===idx ? 'rgb(167 139 250)' : 'transparent');
-      }, 400);
-    }
-    document.querySelectorAll('.bg-thumb').forEach(btn => btn.addEventListener('click', () => setBackground(parseInt(btn.dataset.bg))));
-
-    const accentColors = {
-      violet: { main: 'rgba(139,92,246,0.75)', soft: 'rgba(139,92,246,0.28)' },
-      blue: { main: 'rgba(59,130,246,0.75)', soft: 'rgba(59,130,246,0.28)' },
-      pink: { main: 'rgba(236,72,153,0.75)', soft: 'rgba(236,72,153,0.28)' },
-      cyan: { main: 'rgba(34,211,238,0.75)', soft: 'rgba(34,211,238,0.28)' },
-      orange: { main: 'rgba(249,115,22,0.75)', soft: 'rgba(249,115,22,0.28)' }
-    };
-    window.accentSoft = accentColors.violet.soft;
-    window.accentMain = accentColors.violet.main;
-    document.querySelectorAll('.accent-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const k = btn.dataset.accent;
-        window.accentSoft = accentColors[k].soft;
-        window.accentMain = accentColors[k].main;
-        document.querySelectorAll('.accent-btn').forEach(b => b.style.borderColor = 'transparent');
-        btn.style.borderColor = 'white';
-      });
-    });
-
     const canvas = document.getElementById('mouseCanvas');
     const ctx = canvas.getContext('2d');
     let width, height, mouseX = -100, mouseY = -100, glowX = 0, glowY = 0;
@@ -337,7 +385,7 @@
     window.addEventListener('mousemove', (e) => {
       mouseX = e.clientX; mouseY = e.clientY;
       if (currentEffect === 'particles' || currentEffect === 'glow') {
-        for (let i = 0; i < 3; i++) particles.push({ x: mouseX+(Math.random()-0.5)*24, y: mouseY+(Math.random()-0.5)*24, vx:(Math.random()-0.5)*2, vy:(Math.random()-0.5)*2, life:1, size:Math.random()*3.5+1.5 });
+        for (let i = 0; i < 2; i++) particles.push({ x: mouseX+(Math.random()-0.5)*20, y: mouseY+(Math.random()-0.5)*20, vx:(Math.random()-0.5)*2, vy:(Math.random()-0.5)*2, life:1, size:Math.random()*3+1 });
       }
       if (currentEffect === 'trail') {
         trail.push({ x: mouseX, y: mouseY, life: 1 });
@@ -350,52 +398,29 @@
       if (currentEffect === 'none') { requestAnimationFrame(animate); return; }
       glowX += (mouseX - glowX) * 0.12;
       glowY += (mouseY - glowY) * 0.12;
-
       if (currentEffect === 'glow' || currentEffect === 'particles') {
-        const g = ctx.createRadialGradient(glowX, glowY, 0, glowX, glowY, 150);
-        g.addColorStop(0, window.accentSoft || 'rgba(180,120,255,0.3)');
-        g.addColorStop(0.45, 'rgba(140,80,255,0.1)');
+        const g = ctx.createRadialGradient(glowX, glowY, 0, glowX, glowY, 140);
+        g.addColorStop(0, 'rgba(180,120,255,0.28)');
         g.addColorStop(1, 'transparent');
-        ctx.beginPath(); ctx.arc(glowX, glowY, 150, 0, Math.PI*2); ctx.fillStyle = g; ctx.fill();
-        const c = ctx.createRadialGradient(glowX, glowY, 0, glowX, glowY, 35);
-        c.addColorStop(0, 'rgba(255,255,255,0.45)'); c.addColorStop(1, 'transparent');
-        ctx.beginPath(); ctx.arc(glowX, glowY, 35, 0, Math.PI*2); ctx.fillStyle = c; ctx.fill();
+        ctx.beginPath(); ctx.arc(glowX, glowY, 140, 0, Math.PI*2); ctx.fillStyle = g; ctx.fill();
       }
-
       for (let i = particles.length-1; i >= 0; i--) {
         const p = particles[i];
-        p.x += p.vx; p.y += p.vy; p.life -= 0.016; p.size *= 0.98;
+        p.x += p.vx; p.y += p.vy; p.life -= 0.018;
         if (p.life <= 0) { particles.splice(i,1); continue; }
         ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI*2);
         ctx.fillStyle = 'hsla(270,85%,72%,' + p.life + ')'; ctx.fill();
       }
-      if (particles.length > 110) particles.splice(0, particles.length-110);
-
       if (currentEffect === 'trail' && trail.length > 3) {
-        const headColor = [103, 232, 249], tailColor = [167, 139, 250];
-        const maxWidth = 8, taper = 0.6, intensity = 1.9, spread = 1.2;
         for (let i = 0; i < trail.length - 1; i++) {
           const t = i / (trail.length - 1);
-          const curr = trail[i], next = trail[i + 1];
-          const r = Math.round(tailColor[0] + (headColor[0] - tailColor[0]) * t);
-          const g = Math.round(tailColor[1] + (headColor[1] - tailColor[1]) * t);
-          const b = Math.round(tailColor[2] + (headColor[2] - tailColor[2]) * t);
-          const w = maxWidth * Math.pow(t, 1 - taper) * (0.35 + 0.65 * curr.life);
-          const a = (0.12 + t * 0.7) * curr.life * intensity * 0.5;
+          const curr = trail[i], next = trail[i+1];
+          const r = Math.round(167 + (103-167)*t), g = Math.round(139 + (232-139)*t), b = Math.round(250 + (249-250)*t);
+          const w = 8 * Math.pow(t, 0.4) * curr.life;
           ctx.beginPath(); ctx.moveTo(curr.x, curr.y); ctx.lineTo(next.x, next.y);
-          ctx.strokeStyle = 'rgba(' + r + ',' + g + ',' + b + ',' + Math.min(1, a) + ')';
-          ctx.lineWidth = Math.max(1.2, w); ctx.lineCap = 'round'; ctx.stroke();
+          ctx.strokeStyle = 'rgba('+r+','+g+','+b+','+(0.5*t*curr.life)+')';
+          ctx.lineWidth = Math.max(1, w); ctx.lineCap = 'round'; ctx.stroke();
         }
-        const head = trail[trail.length - 1];
-        const glowR = 16 * spread;
-        const hg = ctx.createRadialGradient(head.x, head.y, 0, head.x, head.y, glowR);
-        hg.addColorStop(0, 'rgba(103,232,249,' + (0.5*intensity*0.45) + ')');
-        hg.addColorStop(0.4, 'rgba(167,139,250,' + (0.25*intensity*0.35) + ')');
-        hg.addColorStop(1, 'transparent');
-        ctx.beginPath(); ctx.arc(head.x, head.y, glowR, 0, Math.PI*2); ctx.fillStyle = hg; ctx.fill();
-        const core = ctx.createRadialGradient(head.x, head.y, 0, head.x, head.y, 5);
-        core.addColorStop(0, 'rgba(255,255,255,0.75)'); core.addColorStop(1, 'transparent');
-        ctx.beginPath(); ctx.arc(head.x, head.y, 5, 0, Math.PI*2); ctx.fillStyle = core; ctx.fill();
         for (let i = 0; i < trail.length; i++) trail[i].life -= 0.025;
         trail = trail.filter(t => t.life > 0);
       }
@@ -403,110 +428,16 @@
     }
     animate();
 
-    // ===== IMAGE GENERATOR (Puter) =====
-    async function generateImage() {
-      const prompt = (document.getElementById('imgPrompt').value || '').trim();
-      if (!prompt) { alert('Please describe the image!'); return; }
-      const btn = document.getElementById('generateImgBtn');
-      const loading = document.getElementById('imgLoading');
-      const result = document.getElementById('imgResult');
-      const container = document.getElementById('imgContainer');
-      const status = document.getElementById('imgStatus');
-
-      result.classList.add('hidden');
-      loading.classList.remove('hidden');
-      btn.disabled = true;
-      btn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> Generating...';
-      container.innerHTML = '';
-
-      try {
-        const imgEl = await puter.ai.txt2img(prompt);
-        imgEl.className = 'w-full max-h-[380px] object-contain mx-auto';
-        imgEl.alt = prompt;
-        container.appendChild(imgEl);
-        loading.classList.add('hidden');
-        result.classList.remove('hidden');
-        status.textContent = prompt.slice(0, 55) + (prompt.length > 55 ? '...' : '');
-      } catch (err) {
-        console.error(err);
-        loading.classList.add('hidden');
-        result.classList.remove('hidden');
-        status.textContent = 'Failed. Try again / login to Puter.';
-        container.innerHTML = '<p class="text-sm text-white/40 p-6 text-center">Error. First time needs free Puter login.</p>';
-      }
-      btn.disabled = false;
-      btn.innerHTML = '<i class="fas fa-sparkles"></i> Generate Image';
-    }
-    document.getElementById('generateImgBtn').addEventListener('click', generateImage);
-    document.getElementById('regenImgBtn').addEventListener('click', generateImage);
-
-    // ===== VIDEO GENERATOR (Puter txt2vid) =====
-    async function generateVideo() {
-      const prompt = (document.getElementById('vidPrompt').value || '').trim();
-      if (!prompt) { alert('Please describe the video!'); return; }
-      const btn = document.getElementById('generateVidBtn');
-      const loading = document.getElementById('vidLoading');
-      const result = document.getElementById('vidResult');
-      const container = document.getElementById('vidContainer');
-      const status = document.getElementById('vidStatus');
-
-      result.classList.add('hidden');
-      loading.classList.remove('hidden');
-      btn.disabled = true;
-      btn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> Generating...';
-      container.innerHTML = '';
-
-      try {
-        // puter.ai.txt2vid — returns video element (Veo lite by default)
-        const videoEl = await puter.ai.txt2vid(prompt);
-        videoEl.className = 'w-full max-h-[380px] mx-auto';
-        videoEl.controls = true;
-        videoEl.autoplay = true;
-        videoEl.loop = true;
-        videoEl.muted = false;
-        container.appendChild(videoEl);
-        try { videoEl.play(); } catch(e) {}
-
-        loading.classList.add('hidden');
-        result.classList.remove('hidden');
-        status.textContent = prompt.slice(0, 55) + (prompt.length > 55 ? '...' : '');
-      } catch (err) {
-        console.error(err);
-        loading.classList.add('hidden');
-        result.classList.remove('hidden');
-        status.textContent = 'Failed. Try again / login to Puter.';
-        container.innerHTML = '<p class="text-sm text-white/40 p-6 text-center">Error. First time needs free Puter login.<br>Video takes longer (30-90s).</p>';
-      }
-      btn.disabled = false;
-      btn.innerHTML = '<i class="fas fa-film"></i> Generate Video';
-    }
-    document.getElementById('generateVidBtn').addEventListener('click', generateVideo);
-    document.getElementById('regenVidBtn').addEventListener('click', generateVideo);
-
-    // Add New Tool
-    const cardsGrid = document.getElementById('cardsGrid');
-    function appendToolCard(tool) {
-      const a = document.createElement('a');
-      a.href = tool.link || '#'; a.target = '_blank'; a.rel = 'noopener'; a.className = 'glass-card group reveal-up';
-      a.innerHTML = '<div class="flex justify-between items-start"><div class="icon-circle"><i class="fas fa-' + (tool.icon||'magic') + '"></i></div><div class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center"><i class="fas fa-download text-white/80"></i></div></div><h3 class="font-semibold text-lg mb-1.5 text-white text-outline-minor">' + tool.title + '</h3><p class="text-sm text-gray-200 mb-4 line-clamp-2 text-outline-minor">' + (tool.desc||'') + '</p><div class="flex flex-wrap gap-2 mt-auto"><span class="tag">' + (tool.tag||'CUSTOM') + '</span><span class="tag">' + (tool.date||'NEW') + '</span></div>';
-      cardsGrid.appendChild(a);
-    }
-    JSON.parse(localStorage.getItem('wasu09_tools')||'[]').forEach(appendToolCard);
-
     document.getElementById('addToolBtn').addEventListener('click', () => {
       const title = prompt('Tool Title:');
       if (!title) return;
-      const desc = prompt('Short Description:') || '';
-      const link = prompt('Link (URL):') || '#';
-      const tag = prompt('Tag:') || 'CUSTOM';
-      const icon = prompt('Icon (robot, video, gift...):') || 'magic';
-      const tool = { title, desc, link, tag, icon, date: new Date().toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'2-digit'}).toUpperCase() };
+      const desc = prompt('Description:') || '';
+      const link = prompt('Link:') || '#';
+      const tool = { title, desc, link, tag: 'CUSTOM', icon: 'magic', date: 'NEW' };
       const custom = JSON.parse(localStorage.getItem('wasu09_tools')||'[]');
       custom.push(tool);
       localStorage.setItem('wasu09_tools', JSON.stringify(custom));
-      appendToolCard(tool);
-      settingsPanel.classList.add('hidden');
-      alert('Tool added!');
+      location.reload();
     });
   </script>
 </body>
