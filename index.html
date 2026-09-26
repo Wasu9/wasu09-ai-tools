@@ -441,6 +441,9 @@
     <i class="fas fa-wand-magic-sparkles"></i> Change BG
   </button>
 
+  <!-- Mouse Glow Canvas -->
+  <canvas id="mouseCanvas" style="position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:9999;mix-blend-mode:screen;"></canvas>
+
   <script>
     // Search filter
     const searchInput = document.getElementById('searchInput');
@@ -453,6 +456,93 @@
         card.style.display = text.includes(query) ? 'flex' : 'none';
       });
     });
+
+    // ===== Mouse Glow + Particle Trail Effect =====
+    const canvas = document.getElementById('mouseCanvas');
+    const ctx = canvas.getContext('2d');
+    let width, height;
+    let mouseX = -100, mouseY = -100;
+    let particles = [];
+
+    function resize() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    // Soft glowing orb that follows mouse with lag
+    let glowX = 0, glowY = 0;
+
+    window.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+
+      // Spawn a few particles on move
+      for (let i = 0; i < 2; i++) {
+        particles.push({
+          x: mouseX + (Math.random() - 0.5) * 20,
+          y: mouseY + (Math.random() - 0.5) * 20,
+          vx: (Math.random() - 0.5) * 1.5,
+          vy: (Math.random() - 0.5) * 1.5,
+          life: 1,
+          size: Math.random() * 3 + 1.5,
+          color: `hsla(${Math.random() * 40 + 260}, 80%, 70%, `
+        });
+      }
+    });
+
+    function animate() {
+      ctx.clearRect(0, 0, width, height);
+
+      // Smooth lag for the main glow
+      glowX += (mouseX - glowX) * 0.12;
+      glowY += (mouseY - glowY) * 0.12;
+
+      // Main soft glow
+      const gradient = ctx.createRadialGradient(glowX, glowY, 0, glowX, glowY, 140);
+      gradient.addColorStop(0, 'rgba(180, 120, 255, 0.25)');
+      gradient.addColorStop(0.4, 'rgba(140, 80, 255, 0.12)');
+      gradient.addColorStop(1, 'rgba(100, 50, 255, 0)');
+      ctx.beginPath();
+      ctx.arc(glowX, glowY, 140, 0, Math.PI * 2);
+      ctx.fillStyle = gradient;
+      ctx.fill();
+
+      // Inner bright core
+      const core = ctx.createRadialGradient(glowX, glowY, 0, glowX, glowY, 30);
+      core.addColorStop(0, 'rgba(255, 255, 255, 0.35)');
+      core.addColorStop(1, 'rgba(200, 150, 255, 0)');
+      ctx.beginPath();
+      ctx.arc(glowX, glowY, 30, 0, Math.PI * 2);
+      ctx.fillStyle = core;
+      ctx.fill();
+
+      // Update & draw particles
+      for (let i = particles.length - 1; i >= 0; i--) {
+        const p = particles[i];
+        p.x += p.vx;
+        p.y += p.vy;
+        p.life -= 0.018;
+        p.size *= 0.97;
+
+        if (p.life <= 0) {
+          particles.splice(i, 1);
+          continue;
+        }
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = p.color + p.life + ')';
+        ctx.fill();
+      }
+
+      // Limit particles
+      if (particles.length > 80) particles.splice(0, particles.length - 80);
+
+      requestAnimationFrame(animate);
+    }
+    animate();
   </script>
 </body>
 </html>
