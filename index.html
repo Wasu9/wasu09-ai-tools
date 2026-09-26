@@ -3,32 +3,29 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Wasu09 — Free AI Tools & Resources</title>
+  <title>Wasu09 — AI Influencer Studio</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://js.puter.com/v2/"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,600;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
-    :root { --glass-bg: #00000026; --glass-border: #ffffff26; --glass-hover-bg: #00000059; --glass-shadow: 0 8px 32px rgba(0,0,0,0.3); }
+    :root { --glass-bg: #00000026; --glass-border: #ffffff26; }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: 'Plus Jakarta Sans', sans-serif; background: #000; color: #fff; min-height: 100vh; overflow-x: hidden; }
     .bg-container { position: fixed; inset: 0; z-index: 0; overflow: hidden; }
-    .bg-video { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.52) contrast(1.1); }
-    .bg-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.75) 100%); }
-    .ultra-glass { background: var(--glass-bg); backdrop-filter: blur(8px) saturate(120%); -webkit-backdrop-filter: blur(8px) saturate(120%); border: 1px solid var(--glass-border); box-shadow: var(--glass-shadow); }
-    .glass-card { background: var(--glass-bg); backdrop-filter: blur(8px) saturate(120%); -webkit-backdrop-filter: blur(8px) saturate(120%); border: 1px solid var(--glass-border); box-shadow: var(--glass-shadow); border-radius: 1.25rem; padding: 1.5rem; display: flex; flex-direction: column; text-decoration: none; transition: all 0.5s cubic-bezier(0.16,1,0.3,1); position: relative; overflow: hidden; }
-    .glass-card:hover { background: var(--glass-hover-bg); backdrop-filter: blur(16px) saturate(140%); border-color: rgba(255,255,255,0.4); transform: translateY(-6px); box-shadow: 0 25px 50px rgba(0,0,0,0.5); }
-    .icon-circle { width: 48px; height: 48px; border-radius: 50%; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; font-size: 1.25rem; color: #fff; margin-bottom: 1rem; transition: all 0.4s ease; }
-    .glass-card:hover .icon-circle { background: #fff; color: #000; transform: scale(1.1); }
+    .bg-video { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.5) contrast(1.1); }
+    .bg-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.8) 100%); }
+    .ultra-glass { background: var(--glass-bg); backdrop-filter: blur(10px) saturate(120%); -webkit-backdrop-filter: blur(10px) saturate(120%); border: 1px solid var(--glass-border); }
     .heading-cinematic { font-family: 'Playfair Display', serif; font-style: italic; }
-    .tag { letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.7); background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.2); border-radius: 9999px; padding: 0.25rem 0.75rem; font-size: 0.65rem; }
-    .text-outline-minor { text-shadow: 0 1px 3px rgba(0,0,0,0.6); }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
-    .animate-fade { animation: fadeIn 0.9s ease-out forwards; }
-    .reveal-up { opacity: 0; transform: translateY(20px); animation: fadeIn 0.7s ease-out forwards; }
-    .chip { cursor: pointer; padding: 0.35rem 0.75rem; border-radius: 9999px; border: 1px solid rgba(255,255,255,0.2); font-size: 11px; transition: all 0.2s; }
-    .chip:hover, .chip.active { background: rgba(236,72,153,0.35); border-color: rgba(236,72,153,0.7); }
-    ::-webkit-scrollbar { width: 8px; } ::-webkit-scrollbar-track { background: #111; } ::-webkit-scrollbar-thumb { background: #444; border-radius: 4px; }
+    .chip { cursor: pointer; padding: 0.35rem 0.7rem; border-radius: 9999px; border: 1px solid rgba(255,255,255,0.18); font-size: 11px; transition: all 0.2s; user-select: none; }
+    .chip:hover, .chip.active { background: rgba(236,72,153,0.4); border-color: rgba(236,72,153,0.8); }
+    .field { width: 100%; background: rgba(0,0,0,0.45); border: 1px solid rgba(255,255,255,0.18); border-radius: 0.75rem; padding: 0.65rem 1rem; font-size: 0.875rem; color: #fff; outline: none; }
+    .field:focus { border-color: rgba(236,72,153,0.55); }
+    .field::placeholder { color: rgba(255,255,255,0.35); }
+    .label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: rgba(255,255,255,0.45); margin-bottom: 0.4rem; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    .animate-fade { animation: fadeIn 0.7s ease-out forwards; }
+    ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-track { background: #111; } ::-webkit-scrollbar-thumb { background: #444; border-radius: 3px; }
   </style>
 </head>
 <body>
@@ -39,180 +36,166 @@
     <div class="bg-overlay"></div>
   </div>
 
-  <main class="relative z-10 max-w-4xl mx-auto px-4 sm:px-5 py-8 sm:py-14 min-h-screen flex flex-col items-center">
-    <header class="text-center mb-8 w-full animate-fade">
-      <p class="text-[10px] tracking-[0.3em] text-gray-300 mb-3 uppercase font-bold">Premium Resources</p>
-      <h1 class="heading-cinematic text-[2.1rem] sm:text-5xl font-semibold text-white drop-shadow-lg mb-5">Wasu09 — Free AI Tools</h1>
-      <div class="inline-flex items-center p-1.5 pr-5 rounded-full ultra-glass border border-white/20">
-        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-violet-500 to-fuchsia-500 flex items-center justify-center text-white font-bold text-sm mr-3">W</div>
-        <p class="text-xs sm:text-sm font-medium text-gray-100">Simplifying Tech & AI</p>
-      </div>
+  <main class="relative z-10 max-w-3xl mx-auto px-4 py-8 sm:py-12 min-h-screen">
+    <header class="text-center mb-8 animate-fade">
+      <p class="text-[10px] tracking-[0.3em] text-gray-400 mb-2 uppercase font-bold">Wasu09</p>
+      <h1 class="heading-cinematic text-3xl sm:text-4xl font-semibold text-white mb-2">AI Influencer Studio</h1>
+      <p class="text-xs text-white/50">Lock once · Generate unlimited · Same face every time</p>
     </header>
 
-    <!-- ========== PERMANENT AI INFLUENCER STUDIO ========== -->
-    <section class="w-full max-w-3xl mb-10 animate-fade">
-      <div class="ultra-glass rounded-2xl p-5 sm:p-6 border border-white/20">
+    <section class="ultra-glass rounded-2xl p-5 sm:p-6 border border-white/15 animate-fade">
 
-        <!-- Header -->
-        <div class="flex items-center justify-between mb-5">
-          <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-pink-500 to-rose-500 flex items-center justify-center">
-              <i class="fas fa-user-astronaut text-white"></i>
-            </div>
-            <div>
-              <h2 class="text-white font-semibold text-base">AI Influencer Studio</h2>
-              <p class="text-[10px] text-white/50">Lock identity once → change only dress, pose, location</p>
-            </div>
-          </div>
-          <span id="lockBadge" class="text-[10px] px-2.5 py-1 rounded-full border font-medium bg-white/5 text-white/40 border-white/20">NOT LOCKED</span>
+      <!-- LOCK BADGE -->
+      <div class="flex items-center justify-between mb-5">
+        <div class="flex items-center gap-2">
+          <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-pink-500 to-rose-500 flex items-center justify-center"><i class="fas fa-user-astronaut text-white text-sm"></i></div>
+          <span class="text-sm font-semibold text-white">Influencer Profile</span>
+        </div>
+        <span id="lockBadge" class="text-[10px] px-2.5 py-1 rounded-full border font-medium bg-white/5 text-white/40 border-white/20">NOT LOCKED</span>
+      </div>
+
+      <!-- ===== SETUP ===== -->
+      <div id="setupPanel">
+        <p class="text-xs text-white/55 mb-2">1. Upload 1–4 clear face / body photos</p>
+        <div class="flex flex-wrap gap-2 items-start mb-4">
+          <label class="cursor-pointer ultra-glass border border-dashed border-pink-400/40 rounded-xl px-4 py-3 text-xs hover:bg-pink-500/10 flex flex-col items-center gap-1 min-w-[100px]">
+            <i class="fas fa-camera text-lg text-pink-400"></i>
+            <span>Add Photos</span>
+            <input type="file" id="faceUpload" accept="image/*" multiple class="hidden" />
+          </label>
+          <div id="facePreviews" class="flex flex-wrap gap-2"></div>
         </div>
 
-        <!-- SETUP (shown when not locked) -->
-        <div id="setupPanel">
-          <p class="text-xs text-white/60 mb-3">Step 1: Upload 1–3 clear face/body photos of your influencer</p>
-          <div class="flex flex-wrap gap-3 items-start mb-4">
-            <label class="cursor-pointer ultra-glass border border-dashed border-pink-400/40 rounded-xl px-4 py-4 text-xs hover:bg-pink-500/10 flex flex-col items-center gap-1.5 min-w-[110px]">
-              <i class="fas fa-camera text-xl text-pink-400"></i>
-              <span>Upload Photos</span>
-              <input type="file" id="faceUpload" accept="image/*" multiple class="hidden" />
-            </label>
-            <div id="facePreviews" class="flex flex-wrap gap-2"></div>
+        <p class="label">2. Identity description</p>
+        <textarea id="identityDesc" rows="2" class="field mb-3" placeholder="e.g. 24 year old Indian woman, long wavy black hair, brown eyes, slim athletic build, fair skin, sharp jawline"></textarea>
+
+        <p class="label">3. Micro details (permanent — skin, makeup, body, style)</p>
+        <textarea id="microDetails" rows="2" class="field mb-4" placeholder="e.g. natural makeup, slight freckles, toned arms, elegant posture, soft smile, no jewelry"></textarea>
+
+        <button id="lockBtn" class="w-full py-3 rounded-xl text-sm font-semibold bg-gradient-to-r from-pink-600 to-rose-600 hover:from-pink-500 hover:to-rose-500 flex items-center justify-center gap-2">
+          <i class="fas fa-lock"></i> Lock Profile Permanently
+        </button>
+      </div>
+
+      <!-- ===== STUDIO (LOCKED) ===== -->
+      <div id="studioPanel" class="hidden">
+        <!-- Locked bar -->
+        <div class="flex items-center gap-3 mb-5 p-3 rounded-xl bg-pink-500/10 border border-pink-400/25">
+          <div id="lockedFaces" class="flex gap-1"></div>
+          <div class="flex-1 min-w-0">
+            <p class="text-xs font-medium text-pink-200" id="lockedTitle">Profile Locked</p>
+            <p class="text-[10px] text-white/40 truncate" id="lockedSub"></p>
           </div>
-
-          <p class="text-xs text-white/60 mb-2">Step 2: Describe fixed identity (optional but recommended)</p>
-          <textarea id="identityDesc" rows="2" placeholder="e.g. 25 year old Indian woman, long black hair, brown eyes, slim physique, fair skin" class="w-full bg-black/40 border border-white/20 rounded-xl px-4 py-3 text-sm text-white placeholder-white/35 outline-none focus:border-pink-400/50 resize-none mb-4"></textarea>
-
-          <button id="lockBtn" class="w-full py-3 rounded-xl text-sm font-semibold bg-gradient-to-r from-pink-600 to-rose-600 hover:from-pink-500 hover:to-rose-500 transition-all flex items-center justify-center gap-2">
-            <i class="fas fa-lock"></i> Lock Influencer Permanently
-          </button>
+          <button id="editProfileBtn" class="text-[10px] text-white/50 hover:text-pink-300 underline">Edit</button>
+          <button id="unlockBtn" class="text-[10px] text-red-400/70 hover:text-red-300 underline">Unlock</button>
         </div>
 
-        <!-- LOCKED STUDIO (shown when locked) -->
-        <div id="studioPanel" class="hidden">
-          <!-- Locked identity bar -->
-          <div class="flex items-center gap-3 mb-5 p-3 rounded-xl bg-pink-500/10 border border-pink-400/20">
-            <div id="lockedFaces" class="flex gap-1.5"></div>
-            <div class="flex-1 min-w-0">
-              <p class="text-xs font-medium text-pink-200 truncate" id="lockedName">Influencer Locked</p>
-              <p class="text-[10px] text-white/40 truncate" id="lockedDesc"></p>
-            </div>
-            <button id="unlockBtn" class="text-[10px] text-white/40 hover:text-pink-300 underline whitespace-nowrap">Change</button>
-          </div>
-
-          <!-- Quick selectors -->
-          <div class="space-y-4 mb-4">
-            <div>
-              <p class="text-[11px] uppercase tracking-wider text-white/45 mb-2">Shot Type</p>
-              <div class="flex flex-wrap gap-1.5" id="shotChips">
-                <span class="chip active" data-val="full body shot">Full Body</span>
-                <span class="chip" data-val="close-up portrait face focus">Close-up</span>
-                <span class="chip" data-val="medium shot waist up">Medium</span>
-                <span class="chip" data-val="half body shot">Half Body</span>
-              </div>
-            </div>
-
-            <div>
-              <p class="text-[11px] uppercase tracking-wider text-white/45 mb-2">Pose</p>
-              <div class="flex flex-wrap gap-1.5" id="poseChips">
-                <span class="chip active" data-val="standing naturally">Standing</span>
-                <span class="chip" data-val="sitting elegantly">Sitting</span>
-                <span class="chip" data-val="walking towards camera">Walking</span>
-                <span class="chip" data-val="looking over shoulder">Over Shoulder</span>
-                <span class="chip" data-val="hands on hips confident pose">Confident</span>
-                <span class="chip" data-val="leaning against wall">Leaning</span>
-              </div>
-            </div>
-
-            <div>
-              <p class="text-[11px] uppercase tracking-wider text-white/45 mb-2">Dress / Outfit</p>
-              <input id="dressInput" type="text" placeholder="e.g. red saree, black leather jacket, white summer dress" class="w-full bg-black/40 border border-white/20 rounded-xl px-4 py-2.5 text-sm text-white placeholder-white/35 outline-none focus:border-pink-400/50" />
-            </div>
-
-            <div>
-              <p class="text-[11px] uppercase tracking-wider text-white/45 mb-2">Location / Background</p>
-              <input id="locationInput" type="text" placeholder="e.g. Goa beach sunset, Mumbai cafe, luxury hotel lobby" class="w-full bg-black/40 border border-white/20 rounded-xl px-4 py-2.5 text-sm text-white placeholder-white/35 outline-none focus:border-pink-400/50" />
-            </div>
-
-            <div>
-              <p class="text-[11px] uppercase tracking-wider text-white/45 mb-2">Extra details (optional)</p>
-              <input id="extraInput" type="text" placeholder="e.g. golden hour lighting, cinematic, 8k, smiling" class="w-full bg-black/40 border border-white/20 rounded-xl px-4 py-2.5 text-sm text-white placeholder-white/35 outline-none focus:border-pink-400/50" />
+        <!-- Shot + Pose -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+          <div>
+            <p class="label">Shot Type</p>
+            <div class="flex flex-wrap gap-1.5" id="shotChips">
+              <span class="chip active" data-val="full body shot, entire body visible from head to toe">Full Body</span>
+              <span class="chip" data-val="close-up portrait, face and shoulders only, detailed face">Close-up</span>
+              <span class="chip" data-val="medium shot, waist up">Medium</span>
+              <span class="chip" data-val="half body shot, from head to hips">Half Body</span>
             </div>
           </div>
-
-          <div class="flex gap-2">
-            <button id="genImageBtn" class="flex-1 py-3 rounded-xl text-sm font-semibold bg-gradient-to-r from-pink-600 to-rose-600 hover:from-pink-500 hover:to-rose-500 transition-all flex items-center justify-center gap-2">
-              <i class="fas fa-image"></i> Generate Photo
-            </button>
-            <button id="genVideoBtn" class="flex-1 py-3 rounded-xl text-sm font-semibold bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-500 hover:to-fuchsia-500 transition-all flex items-center justify-center gap-2">
-              <i class="fas fa-video"></i> Generate Video
-            </button>
-          </div>
-
-          <div id="infLoading" class="hidden text-center py-8">
-            <div class="w-10 h-10 mx-auto rounded-full border-2 border-pink-400/30 border-t-pink-400 animate-spin mb-2"></div>
-            <p class="text-sm text-white/60" id="infLoadingText">Generating...</p>
-            <p class="text-[11px] text-white/40">First time may need free Puter login</p>
-          </div>
-
-          <div id="infResult" class="hidden mt-4">
-            <div id="infContainer" class="rounded-xl overflow-hidden border border-white/15 bg-black/50 min-h-[220px] flex items-center justify-center"></div>
-            <p id="infStatus" class="text-xs text-white/50 mt-2"></p>
+          <div>
+            <p class="label">Pose</p>
+            <div class="flex flex-wrap gap-1.5" id="poseChips">
+              <span class="chip active" data-val="standing naturally, relaxed posture">Standing</span>
+              <span class="chip" data-val="sitting elegantly">Sitting</span>
+              <span class="chip" data-val="walking towards camera">Walking</span>
+              <span class="chip" data-val="looking over shoulder at camera">Over Shoulder</span>
+              <span class="chip" data-val="hands on hips, confident pose">Confident</span>
+              <span class="chip" data-val="leaning casually">Leaning</span>
+            </div>
           </div>
         </div>
 
+        <!-- Dress / Location / Extra -->
+        <div class="space-y-3 mb-4">
+          <div>
+            <p class="label">Dress / Outfit</p>
+            <input id="dressInput" class="field" placeholder="red silk saree, black crop top and jeans, white summer dress..." />
+          </div>
+          <div>
+            <p class="label">Location / Background</p>
+            <input id="locationInput" class="field" placeholder="Goa beach at sunset, luxury hotel lobby, city street night..." />
+          </div>
+          <div>
+            <p class="label">Extra / Mood (optional)</p>
+            <input id="extraInput" class="field" placeholder="golden hour, soft smile, wind in hair, cinematic lighting..." />
+          </div>
+        </div>
+
+        <!-- Size / Orientation / Multi -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-4">
+          <div>
+            <p class="label">Orientation</p>
+            <select id="orientSelect" class="field text-xs">
+              <option value="1:1">Square 1:1</option>
+              <option value="9:16" selected>Portrait 9:16</option>
+              <option value="16:9">Landscape 16:9</option>
+              <option value="4:5">Portrait 4:5</option>
+            </select>
+          </div>
+          <div>
+            <p class="label">Size</p>
+            <select id="sizeSelect" class="field text-xs">
+              <option value="1024">HD 1024</option>
+              <option value="1280" selected>HD+ 1280</option>
+              <option value="768">Standard 768</option>
+            </select>
+          </div>
+          <div>
+            <p class="label">Multi Shots</p>
+            <select id="multiSelect" class="field text-xs">
+              <option value="1" selected>1 image</option>
+              <option value="2">2 images</option>
+              <option value="3">3 images</option>
+              <option value="4">4 images</option>
+            </select>
+          </div>
+          <div>
+            <p class="label">Output</p>
+            <select id="outType" class="field text-xs">
+              <option value="image" selected>Photo</option>
+              <option value="video">Video</option>
+            </select>
+          </div>
+        </div>
+
+        <button id="generateBtn" class="w-full py-3 rounded-xl text-sm font-semibold bg-gradient-to-r from-pink-600 to-rose-600 hover:from-pink-500 hover:to-rose-500 flex items-center justify-center gap-2 mb-2">
+          <i class="fas fa-magic"></i> Generate
+        </button>
+
+        <div id="infLoading" class="hidden text-center py-8">
+          <div class="w-10 h-10 mx-auto rounded-full border-2 border-pink-400/30 border-t-pink-400 animate-spin mb-2"></div>
+          <p class="text-sm text-white/60" id="infLoadingText">Generating...</p>
+          <p class="text-[11px] text-white/35">First time may need free Puter login</p>
+        </div>
+
+        <div id="infResult" class="hidden mt-4">
+          <div id="infContainer" class="grid grid-cols-1 sm:grid-cols-2 gap-3"></div>
+          <p id="infStatus" class="text-xs text-white/45 mt-3"></p>
+        </div>
       </div>
     </section>
 
-    <!-- Tools -->
-    <section class="w-full max-w-3xl">
-      <div class="flex justify-between items-end mb-5 px-1">
-        <h2 class="text-white/80 font-medium text-sm uppercase tracking-widest flex items-center gap-2">
-          <i class="fas fa-fire text-orange-400"></i> Trending Top Tools
-        </h2>
-      </div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 pb-16" id="cardsGrid">
-        <a href="https://docs.google.com/document/d/1lXIw7md7JiQOCnrlyBPBPIOQIL1uev_OEyOAm52qw9s/edit?usp=sharing" target="_blank" rel="noopener" class="glass-card group reveal-up">
-          <div class="icon-circle"><i class="fas fa-photo-film"></i></div>
-          <h3 class="font-semibold text-lg mb-1.5 text-white">Seedance & Video Creation</h3>
-          <p class="text-sm text-gray-200 mb-4 line-clamp-2">3 websites for Seedance videos</p>
-          <span class="tag">VIDEO</span>
-        </a>
-        <a href="https://docs.google.com/document/d/1qBfGzXfC3W3iDh95XOT_36izL9a6eFiRLX2QsvmVJ1A/edit?usp=sharing" target="_blank" rel="noopener" class="glass-card group reveal-up">
-          <div class="icon-circle"><i class="fas fa-robot"></i></div>
-          <h3 class="font-semibold text-lg mb-1.5 text-white">Seedance 2.5 FREE</h3>
-          <p class="text-sm text-gray-200 mb-4 line-clamp-2">30s video + free credits</p>
-          <span class="tag">SEEDANCE</span>
-        </a>
-        <a href="https://docs.google.com/document/d/18NGNmy0CYm_V_47TeZ03K7aiNh_bRYU6hKAXeFjqMa8/edit?usp=sharing" target="_blank" rel="noopener" class="glass-card group reveal-up">
-          <div class="icon-circle"><i class="fas fa-user-astronaut"></i></div>
-          <h3 class="font-semibold text-lg mb-1.5 text-white">AI Influencer Videos</h3>
-          <p class="text-sm text-gray-200 mb-4 line-clamp-2">Unlimited influencer videos FREE</p>
-          <span class="tag">INFLUENCER</span>
-        </a>
-        <a href="https://docs.google.com/document/d/1y-r2ajkvNpuH4twVcX8u0KHBBOPAE0mtS5Za8ZDulSw/edit?usp=sharing" target="_blank" rel="noopener" class="glass-card group reveal-up">
-          <div class="icon-circle"><i class="fas fa-gift"></i></div>
-          <h3 class="font-semibold text-lg mb-1.5 text-white">20 Free Video Websites</h3>
-          <p class="text-sm text-gray-200 mb-4 line-clamp-2">Free video models list</p>
-          <span class="tag">FREE</span>
-        </a>
-      </div>
-    </section>
+    <p class="text-[10px] text-white/25 text-center mt-4">Puter.js · Free for you · User pays own usage · Minimal restrictions</p>
   </main>
 
-  <div class="fixed bottom-5 left-5 text-[10px] text-white/40 z-20 hidden sm:block">Made with ❤️ by Wasu09</div>
-  <div class="fixed bottom-5 right-5 z-20">
-    <button id="musicBtn" class="ultra-glass w-11 h-11 rounded-full flex items-center justify-center border border-white/25 text-white/90 hover:bg-white/15"><i id="musicIcon" class="fas fa-volume-mute text-sm"></i></button>
-  </div>
-
-  <audio id="bgMusic" loop preload="auto"><source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3" type="audio/mpeg"></audio>
   <canvas id="mouseCanvas" style="position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:9999;mix-blend-mode:screen;"></canvas>
 
   <script>
-    // ===== PERMANENT INFLUENCER STATE =====
     let faces = JSON.parse(localStorage.getItem('wasu09_faces') || '[]');
     let identity = JSON.parse(localStorage.getItem('wasu09_identity') || 'null');
-    let shot = 'full body shot';
-    let pose = 'standing naturally';
+    let shot = 'full body shot, entire body visible from head to toe';
+    let pose = 'standing naturally, relaxed posture';
+
+    const $ = id => document.getElementById(id);
 
     function fileToDataURL(file) {
       return new Promise((res, rej) => {
@@ -223,195 +206,219 @@
       });
     }
 
+    function sizeFromOrient(orient, base) {
+      const b = parseInt(base) || 1024;
+      if (orient === '1:1') return { w: b, h: b };
+      if (orient === '9:16') return { w: Math.round(b * 9/16), h: b };
+      if (orient === '16:9') return { w: b, h: Math.round(b * 9/16) };
+      if (orient === '4:5') return { w: Math.round(b * 4/5), h: b };
+      return { w: b, h: b };
+    }
+
     function showSetup() {
-      document.getElementById('setupPanel').classList.remove('hidden');
-      document.getElementById('studioPanel').classList.add('hidden');
-      document.getElementById('lockBadge').textContent = 'NOT LOCKED';
-      document.getElementById('lockBadge').className = 'text-[10px] px-2.5 py-1 rounded-full border font-medium bg-white/5 text-white/40 border-white/20';
-      renderFacePreviews();
+      $('setupPanel').classList.remove('hidden');
+      $('studioPanel').classList.add('hidden');
+      $('lockBadge').textContent = 'NOT LOCKED';
+      $('lockBadge').className = 'text-[10px] px-2.5 py-1 rounded-full border font-medium bg-white/5 text-white/40 border-white/20';
+      renderFaces();
+      if (identity) {
+        $('identityDesc').value = identity.desc || '';
+        $('microDetails').value = identity.micro || '';
+      }
     }
 
     function showStudio() {
-      document.getElementById('setupPanel').classList.add('hidden');
-      document.getElementById('studioPanel').classList.remove('hidden');
-      document.getElementById('lockBadge').textContent = '🔒 LOCKED';
-      document.getElementById('lockBadge').className = 'text-[10px] px-2.5 py-1 rounded-full border font-medium bg-emerald-500/20 text-emerald-300 border-emerald-400/40';
+      $('setupPanel').classList.add('hidden');
+      $('studioPanel').classList.remove('hidden');
+      $('lockBadge').textContent = '🔒 LOCKED';
+      $('lockBadge').className = 'text-[10px] px-2.5 py-1 rounded-full border font-medium bg-emerald-500/20 text-emerald-300 border-emerald-400/40';
 
-      const lockedFaces = document.getElementById('lockedFaces');
-      lockedFaces.innerHTML = '';
+      const box = $('lockedFaces');
+      box.innerHTML = '';
       faces.forEach(src => {
         const img = document.createElement('img');
         img.src = src;
-        img.className = 'w-10 h-10 rounded-lg object-cover border border-pink-400/40';
-        lockedFaces.appendChild(img);
+        img.className = 'w-9 h-9 rounded-lg object-cover border border-pink-400/40';
+        box.appendChild(img);
       });
-      document.getElementById('lockedName').textContent = 'Influencer Locked';
-      document.getElementById('lockedDesc').textContent = identity?.desc || (faces.length + ' photo(s)');
+      $('lockedTitle').textContent = 'Profile Locked';
+      $('lockedSub').textContent = (identity?.desc || '').slice(0, 50) || (faces.length + ' photo(s)');
     }
 
-    function renderFacePreviews() {
-      const box = document.getElementById('facePreviews');
+    function renderFaces() {
+      const box = $('facePreviews');
       box.innerHTML = '';
       faces.forEach((src, i) => {
         const wrap = document.createElement('div');
         wrap.className = 'relative';
-        wrap.innerHTML = '<img src="' + src + '" class="w-16 h-16 rounded-lg object-cover border border-white/30" /><button data-i="' + i + '" class="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-red-500 text-white text-[10px] flex items-center justify-center remove-face">×</button>';
+        wrap.innerHTML = '<img src="' + src + '" class="w-14 h-14 rounded-lg object-cover border border-white/25" /><button data-i="' + i + '" class="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-red-500 text-white text-[9px] flex items-center justify-center rm">×</button>';
         box.appendChild(wrap);
       });
-      box.querySelectorAll('.remove-face').forEach(btn => {
-        btn.addEventListener('click', () => {
-          faces.splice(parseInt(btn.dataset.i), 1);
+      box.querySelectorAll('.rm').forEach(btn => {
+        btn.onclick = () => {
+          faces.splice(+btn.dataset.i, 1);
           localStorage.setItem('wasu09_faces', JSON.stringify(faces));
-          renderFacePreviews();
-        });
+          renderFaces();
+        };
       });
     }
 
-    // Init
-    if (identity && identity.locked && faces.length) showStudio();
+    if (identity?.locked && faces.length) showStudio();
     else showSetup();
 
-    document.getElementById('faceUpload').addEventListener('change', async (e) => {
-      const files = Array.from(e.target.files || []).slice(0, 3 - faces.length);
-      for (const f of files) {
-        faces.push(await fileToDataURL(f));
-      }
+    $('faceUpload').onchange = async (e) => {
+      const files = Array.from(e.target.files || []).slice(0, 4 - faces.length);
+      for (const f of files) faces.push(await fileToDataURL(f));
       localStorage.setItem('wasu09_faces', JSON.stringify(faces));
-      renderFacePreviews();
+      renderFaces();
       e.target.value = '';
-    });
+    };
 
-    document.getElementById('lockBtn').addEventListener('click', () => {
-      if (!faces.length) {
-        alert('Please upload at least 1 face photo!');
-        return;
-      }
+    $('lockBtn').onclick = () => {
+      if (!faces.length) return alert('Upload at least 1 face photo!');
       identity = {
         locked: true,
-        desc: (document.getElementById('identityDesc').value || '').trim(),
-        lockedAt: Date.now()
+        desc: ($('identityDesc').value || '').trim(),
+        micro: ($('microDetails').value || '').trim(),
+        at: Date.now()
       };
       localStorage.setItem('wasu09_identity', JSON.stringify(identity));
       localStorage.setItem('wasu09_faces', JSON.stringify(faces));
       showStudio();
-    });
+    };
 
-    document.getElementById('unlockBtn').addEventListener('click', () => {
-      if (!confirm('Unlock and change influencer identity?')) return;
+    $('editProfileBtn').onclick = () => showSetup();
+    $('unlockBtn').onclick = () => {
+      if (!confirm('Unlock profile? You can lock again after editing.')) return;
       identity = null;
       localStorage.removeItem('wasu09_identity');
       showSetup();
-    });
+    };
 
-    // Chips
-    function setupChips(containerId, onSelect) {
-      const el = document.getElementById(containerId);
-      el.querySelectorAll('.chip').forEach(chip => {
-        chip.addEventListener('click', () => {
-          el.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
-          chip.classList.add('active');
-          onSelect(chip.dataset.val);
-        });
+    function chips(id, setter) {
+      $(id).querySelectorAll('.chip').forEach(c => {
+        c.onclick = () => {
+          $(id).querySelectorAll('.chip').forEach(x => x.classList.remove('active'));
+          c.classList.add('active');
+          setter(c.dataset.val);
+        };
       });
     }
-    setupChips('shotChips', v => shot = v);
-    setupChips('poseChips', v => pose = v);
+    chips('shotChips', v => shot = v);
+    chips('poseChips', v => pose = v);
 
-    // Build prompt
     function buildPrompt() {
-      const dress = (document.getElementById('dressInput').value || '').trim() || 'stylish casual outfit';
-      const location = (document.getElementById('locationInput').value || '').trim() || 'beautiful outdoor setting';
-      const extra = (document.getElementById('extraInput').value || '').trim();
-      const idPart = identity?.desc ? identity.desc + ', ' : '';
-
+      const dress = ($('dressInput').value || '').trim() || 'stylish modern outfit';
+      const loc = ($('locationInput').value || '').trim() || 'beautiful setting';
+      const extra = ($('extraInput').value || '').trim();
+      const id = identity?.desc ? identity.desc + ', ' : '';
+      const micro = identity?.micro ? identity.micro + ', ' : '';
       return (
-        idPart +
-        shot + ', ' +
-        pose + ', ' +
-        'wearing ' + dress + ', ' +
-        'at ' + location +
+        id + micro +
+        shot + ', ' + pose + ', ' +
+        'wearing ' + dress + ', at ' + loc +
         (extra ? ', ' + extra : '') +
-        ', highly detailed face, consistent identity, photorealistic, 8k'
+        ', highly detailed face, same person, consistent identity, photorealistic, sharp focus'
       );
     }
 
-    async function generate(type) {
+    function downloadBtn(url, name) {
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = name || 'wasu09-influencer.jpg';
+      a.target = '_blank';
+      a.className = 'absolute bottom-2 right-2 ultra-glass px-2.5 py-1 rounded-lg text-[10px] border border-white/25 hover:bg-white/15 flex items-center gap-1';
+      a.innerHTML = '<i class="fas fa-download"></i> Download';
+      return a;
+    }
+
+    $('generateBtn').onclick = async () => {
       const prompt = buildPrompt();
-      const loading = document.getElementById('infLoading');
-      const result = document.getElementById('infResult');
-      const container = document.getElementById('infContainer');
-      const status = document.getElementById('infStatus');
-      const loadingText = document.getElementById('infLoadingText');
+      const multi = Math.min(4, parseInt($('multiSelect').value) || 1);
+      const outType = $('outType').value;
+      const orient = $('orientSelect').value;
+      const baseSize = $('sizeSelect').value;
+      const { w, h } = sizeFromOrient(orient, baseSize);
+
+      const loading = $('infLoading');
+      const result = $('infResult');
+      const container = $('infContainer');
+      const status = $('infStatus');
 
       result.classList.add('hidden');
       loading.classList.remove('hidden');
       container.innerHTML = '';
-      loadingText.textContent = type === 'video' ? 'Generating video... (30–90 sec)' : 'Generating photo...';
+      $('infLoadingText').textContent = outType === 'video'
+        ? 'Generating video... (30–90s)'
+        : 'Generating ' + multi + ' image(s)...';
+
+      const results = [];
 
       try {
-        if (type === 'video') {
-          const opts = {
-            prompt: prompt,
-            reference_images: faces.slice(0, 3)
-          };
+        if (outType === 'video') {
+          const opts = { prompt, reference_images: faces.slice(0, 3) };
           const videoEl = await puter.ai.txt2vid(opts);
-          videoEl.className = 'w-full max-h-[420px] mx-auto';
+          videoEl.className = 'w-full max-h-[400px] rounded-lg';
           videoEl.controls = true;
           videoEl.autoplay = true;
           videoEl.loop = true;
-          container.appendChild(videoEl);
+          const wrap = document.createElement('div');
+          wrap.className = 'relative rounded-xl overflow-hidden border border-white/15 bg-black/40';
+          wrap.appendChild(videoEl);
+          if (videoEl.src) wrap.appendChild(downloadBtn(videoEl.src, 'wasu09-video.mp4'));
+          container.appendChild(wrap);
           try { videoEl.play(); } catch(e) {}
+          results.push('video');
         } else {
-          const opts = {
-            input_images: faces.slice(0, 3)
-          };
-          const imgEl = await puter.ai.txt2img(prompt, opts);
-          imgEl.className = 'w-full max-h-[420px] object-contain mx-auto';
-          container.appendChild(imgEl);
+          for (let i = 0; i < multi; i++) {
+            $('infLoadingText').textContent = 'Generating image ' + (i + 1) + ' / ' + multi + '...';
+            const opts = {
+              input_images: faces.slice(0, 4),
+              width: w,
+              height: h
+            };
+            // slight prompt variation for multi
+            const p = multi > 1 ? prompt + ', variation ' + (i + 1) : prompt;
+            const imgEl = await puter.ai.txt2img(p, opts);
+            imgEl.className = 'w-full max-h-[380px] object-contain';
+            const wrap = document.createElement('div');
+            wrap.className = 'relative rounded-xl overflow-hidden border border-white/15 bg-black/40';
+            wrap.appendChild(imgEl);
+            const src = imgEl.src || imgEl.currentSrc;
+            if (src) wrap.appendChild(downloadBtn(src, 'wasu09-influencer-' + (i + 1) + '.jpg'));
+            container.appendChild(wrap);
+            results.push(imgEl);
+          }
         }
+
         loading.classList.add('hidden');
         result.classList.remove('hidden');
-        status.textContent = '🎭 ' + prompt.slice(0, 70) + (prompt.length > 70 ? '...' : '');
+        status.textContent = '🎭 ' + prompt.slice(0, 80) + (prompt.length > 80 ? '...' : '');
       } catch (err) {
         console.error(err);
         loading.classList.add('hidden');
         result.classList.remove('hidden');
-        status.textContent = 'Error — try again or login to Puter (free)';
-        container.innerHTML = '<p class="text-sm text-white/40 p-6 text-center">Failed. First use needs free Puter account login.</p>';
+        status.textContent = 'Error: ' + (err.message || 'Try again / Puter login');
+        container.innerHTML = '<p class="text-sm text-white/40 p-6 text-center col-span-full">Failed. First use needs free Puter login. Then retry.</p>';
       }
-    }
+    };
 
-    document.getElementById('genImageBtn').addEventListener('click', () => generate('image'));
-    document.getElementById('genVideoBtn').addEventListener('click', () => generate('video'));
-
-    // Music
-    const bgMusic = document.getElementById('bgMusic');
-    const musicBtn = document.getElementById('musicBtn');
-    const musicIcon = document.getElementById('musicIcon');
-    let isPlaying = false;
-    bgMusic.volume = 0.35;
-    musicBtn.addEventListener('click', () => {
-      if (isPlaying) { bgMusic.pause(); musicIcon.className = 'fas fa-volume-mute text-sm'; isPlaying = false; }
-      else { bgMusic.play().then(() => { musicIcon.className = 'fas fa-volume-up text-sm'; isPlaying = true; }).catch(()=>{}); }
-    });
-
-    // Simple glow cursor
-    const canvas = document.getElementById('mouseCanvas');
+    // Glow cursor
+    const canvas = $('mouseCanvas');
     const ctx = canvas.getContext('2d');
-    let w, h, mx = -100, my = -100, gx = 0, gy = 0;
-    function resize() { w = canvas.width = innerWidth; h = canvas.height = innerHeight; }
+    let W, H, mx = -99, my = -99, gx = 0, gy = 0;
+    function resize() { W = canvas.width = innerWidth; H = canvas.height = innerHeight; }
     addEventListener('resize', resize); resize();
     addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
-    function loop() {
-      ctx.clearRect(0,0,w,h);
+    (function loop() {
+      ctx.clearRect(0, 0, W, H);
       gx += (mx - gx) * 0.12; gy += (my - gy) * 0.12;
-      const g = ctx.createRadialGradient(gx, gy, 0, gx, gy, 130);
-      g.addColorStop(0, 'rgba(236,72,153,0.25)');
+      const g = ctx.createRadialGradient(gx, gy, 0, gx, gy, 120);
+      g.addColorStop(0, 'rgba(236,72,153,0.22)');
       g.addColorStop(1, 'transparent');
-      ctx.beginPath(); ctx.arc(gx, gy, 130, 0, Math.PI*2); ctx.fillStyle = g; ctx.fill();
+      ctx.beginPath(); ctx.arc(gx, gy, 120, 0, Math.PI * 2); ctx.fillStyle = g; ctx.fill();
       requestAnimationFrame(loop);
-    }
-    loop();
+    })();
   </script>
 </body>
 </html>
