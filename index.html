@@ -28,6 +28,14 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#000;color:#fff;min-h
 .animate-fade{animation:fadeIn 0.6s ease-out forwards}
 ::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:#111}::-webkit-scrollbar-thumb{background:#444;border-radius:3px}
 </style>
+<link rel="manifest" href="./manifest.json"/>
+<meta name="theme-color" content="#ec4899"/>
+<meta name="mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<meta name="apple-mobile-web-app-title" content="Wasu09"/>
+<link rel="apple-touch-icon" href="./icon.svg"/>
+<link rel="icon" href="./icon.svg" type="image/svg+xml"/>
 </head>
 <body>
 <div class="bg-container">
@@ -43,6 +51,12 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#000;color:#fff;min-h
 <h1 class="heading-cinematic text-3xl sm:text-4xl font-semibold text-white">AI Influencer Studio</h1>
 <p class="text-xs text-white/45 mt-1">Video Replication V4 · One click prompts</p>
 </header>
+
+<div class="text-center mb-4 animate-fade">
+<button id="installAppBtn" class="hidden px-5 py-2.5 rounded-full text-xs font-semibold bg-gradient-to-r from-pink-600 to-rose-600 border border-pink-400/40 shadow-lg">
+<i class="fas fa-download mr-1.5"></i> Install App
+</button>
+</div>
 
 <section class="ultra-glass rounded-2xl p-4 border border-white/12 mb-4 animate-fade">
 <div class="flex items-center justify-between mb-2">
@@ -161,7 +175,7 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#000;color:#fff;min-h
 </div>
 </section>
 
-<p class="text-[10px] text-white/25 text-center">Reference video motion · Target image identity · One click both prompts</p>
+<p class="text-[10px] text-white/25 text-center">Reference video motion · Target image identity · Install as app on phone</p>
 </main>
 
 <canvas id="mouseCanvas" style="position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:9999;mix-blend-mode:screen"></canvas>
@@ -188,6 +202,36 @@ function buildNegative(){return'identity drift, face morphing, different person,
 $('v4OneClick').onclick=()=>{const hasTarget=targetImageData||faces.length||identity?.desc;if(!hasTarget){alert('Pehle Target Image upload karo YA face lock karo');return}if(!$('refVideo').files?.length&&!($('v4Notes').value||'').trim()){if(!confirm('Reference video nahi hai. Sirf notes se prompts banayein?'))return}$('v4Status').classList.remove('hidden');$('v4Status').textContent='Building complete prompts...';$('outImagePrompt').textContent=buildCompleteImagePrompt();$('outVideoPrompt').textContent=buildCompleteVideoPrompt();$('outNegPrompt').textContent=buildNegative();$('v4Results').classList.remove('hidden');$('v4Status').textContent='Ready — Image prompt + Video prompt';$('v4Results').scrollIntoView({behavior:'smooth',block:'nearest'})};
 document.querySelectorAll('.copy-btn').forEach(btn=>{btn.onclick=()=>{navigator.clipboard.writeText($(btn.dataset.copy).textContent).then(()=>{const t=btn.textContent;btn.textContent='Copied!';setTimeout(()=>btn.textContent=t,1500)})}});
 const canvas=$('mouseCanvas');const ctx=canvas.getContext('2d');let W,H,mx=-99,my=-99,gx=0,gy=0;function resize(){W=canvas.width=innerWidth;H=canvas.height=innerHeight}addEventListener('resize',resize);resize();addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY});(function loop(){ctx.clearRect(0,0,W,H);gx+=(mx-gx)*0.12;gy+=(my-gy)*0.12;const g=ctx.createRadialGradient(gx,gy,0,gx,gy,100);g.addColorStop(0,'rgba(34,211,238,0.15)');g.addColorStop(1,'transparent');ctx.beginPath();ctx.arc(gx,gy,100,0,Math.PI*2);ctx.fillStyle=g;ctx.fill();requestAnimationFrame(loop)})();
+</script>
+
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js').catch(e => console.log('SW fail', e));
+  });
+}
+let deferredPrompt;
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  const btn = document.getElementById('installAppBtn');
+  if (btn) btn.classList.remove('hidden');
+});
+document.addEventListener('DOMContentLoaded', () => {
+  const btn = document.getElementById('installAppBtn');
+  if (btn) {
+    btn.onclick = async () => {
+      if (!deferredPrompt) {
+        alert('Install: Chrome menu (⋮) → Install app / Add to Home screen');
+        return;
+      }
+      deferredPrompt.prompt();
+      await deferredPrompt.userChoice;
+      deferredPrompt = null;
+      btn.classList.add('hidden');
+    };
+  }
+});
 </script>
 </body>
 </html>
