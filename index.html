@@ -1,1 +1,173 @@
-<PLACEHOLDER>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Wasu09 — AI Influencer Studio</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://js.puter.com/v2/"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,600;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+:root{--glass-bg:#00000030;--glass-border:#ffffff22}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:#000;color:#fff;min-height:100vh;overflow-x:hidden}
+.bg-container{position:fixed;inset:0;z-index:0}
+.bg-video{width:100%;height:100%;object-fit:cover;filter:brightness(0.48) contrast(1.1)}
+.bg-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0.45),rgba(0,0,0,0.85))}
+.ultra-glass{background:var(--glass-bg);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid var(--glass-border)}
+.heading-cinematic{font-family:'Playfair Display',serif;font-style:italic}
+.field{width:100%;background:rgba(0,0,0,0.45);border:1px solid rgba(255,255,255,0.18);border-radius:0.75rem;padding:0.6rem 0.9rem;font-size:0.875rem;color:#fff;outline:none}
+.field:focus{border-color:rgba(34,211,238,0.55)}
+.field::placeholder{color:rgba(255,255,255,0.32)}
+.label{font-size:10px;text-transform:uppercase;letter-spacing:0.07em;color:rgba(255,255,255,0.42);margin-bottom:0.35rem}
+.prompt-box{background:rgba(0,0,0,0.5);border:1px solid rgba(255,255,255,0.12);border-radius:0.75rem;padding:0.85rem;font-size:11px;line-height:1.5;color:rgba(255,255,255,0.8);white-space:pre-wrap;max-height:220px;overflow-y:auto}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.animate-fade{animation:fadeIn 0.6s ease-out forwards}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:#111}::-webkit-scrollbar-thumb{background:#444;border-radius:3px}
+</style>
+</head>
+<body>
+<div class="bg-container">
+<video class="bg-video" autoplay muted loop playsinline>
+<source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260416_101255_3099d3e4-d0cf-4e59-9666-97fbf521ac71.mp4" type="video/mp4"/>
+</video>
+<div class="bg-overlay"></div>
+</div>
+
+<main class="relative z-10 max-w-3xl mx-auto px-4 py-8 min-h-screen">
+<header class="text-center mb-6 animate-fade">
+<p class="text-[10px] tracking-[0.3em] text-gray-400 mb-1 uppercase font-bold">Wasu09</p>
+<h1 class="heading-cinematic text-3xl sm:text-4xl font-semibold text-white">AI Influencer Studio</h1>
+<p class="text-xs text-white/45 mt-1">Influencer · Video Replication V4 · Same face always</p>
+</header>
+
+<div class="ultra-glass rounded-xl p-4 mb-4 border border-white/12 animate-fade">
+<div class="flex items-center justify-between mb-2">
+<p class="text-xs font-medium text-white/80"><i class="fab fa-google text-blue-400 mr-1"></i> Gemini API Key</p>
+<span id="geminiStatus" class="text-[10px] px-2 py-0.5 rounded-full border border-white/20 text-white/40">Not set</span>
+</div>
+<div class="flex gap-2">
+<input id="geminiKey" type="password" class="field text-xs flex-1" placeholder="Paste API key from aistudio.google.com"/>
+<button id="saveGeminiKey" class="px-4 py-2 rounded-xl text-xs font-semibold bg-blue-600 hover:bg-blue-500 whitespace-nowrap">Save</button>
+</div>
+</div>
+
+<section class="ultra-glass rounded-2xl p-5 border border-white/12 mb-5 animate-fade">
+<div class="flex items-center justify-between mb-3">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-lg bg-gradient-to-br from-pink-500 to-rose-500 flex items-center justify-center"><i class="fas fa-user-astronaut text-white text-xs"></i></div>
+<span class="text-sm font-semibold">Influencer Profile</span>
+</div>
+<span id="lockBadge" class="text-[10px] px-2 py-0.5 rounded-full border bg-white/5 text-white/40 border-white/20">NOT LOCKED</span>
+</div>
+<div id="setupPanel">
+<div class="flex flex-wrap gap-2 mb-2">
+<label class="cursor-pointer border border-dashed border-pink-400/40 rounded-xl px-3 py-2 text-xs hover:bg-pink-500/10 flex items-center gap-1.5">
+<i class="fas fa-camera text-pink-400"></i> Add Face Photos
+<input type="file" id="faceUpload" accept="image/*" multiple class="hidden"/>
+</label>
+<div id="facePreviews" class="flex flex-wrap gap-2"></div>
+</div>
+<input id="identityDesc" class="field text-xs mb-2" placeholder="Identity: 24yo Indian woman, long black hair, slim..."/>
+<button id="lockBtn" class="w-full py-2 rounded-xl text-xs font-semibold bg-gradient-to-r from-pink-600 to-rose-600">Lock Profile</button>
+</div>
+<div id="studioPanel" class="hidden">
+<div class="flex items-center gap-2 p-2 rounded-xl bg-pink-500/10 border border-pink-400/20">
+<div id="lockedFaces" class="flex gap-1"></div>
+<p class="text-xs text-pink-200 flex-1 truncate" id="lockedSub">Locked</p>
+<button id="editProfileBtn" class="text-[10px] text-white/50 underline">Edit</button>
+<button id="unlockBtn" class="text-[10px] text-red-400/70 underline">Unlock</button>
+</div>
+</div>
+</section>
+
+<section class="ultra-glass rounded-2xl p-5 border border-cyan-400/20 mb-5 animate-fade">
+<div class="flex items-center gap-2 mb-1">
+<div class="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center"><i class="fas fa-film text-white text-xs"></i></div>
+<div>
+<h2 class="text-sm font-semibold text-white">Video Replication V4</h2>
+<p class="text-[10px] text-white/45">Reference motion → Target identity → First Frame + I2V prompts</p>
+</div>
+</div>
+<div class="mt-4 space-y-3">
+<div>
+<p class="label">1. Reference motion</p>
+<textarea id="v4Motion" rows="3" class="field text-xs" placeholder="e.g. stands center, head turns left over 2s, right hand to hair at 3s, camera slow push-in 2-5s"></textarea>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+<div><p class="label">Start pose / first frame</p><input id="v4StartPose" class="field text-xs" placeholder="standing, body 3/4, hands at sides, face 3/4 visible"/></div>
+<div><p class="label">Camera</p><input id="v4Camera" class="field text-xs" placeholder="static then slow push-in, eye-level, medium shot"/></div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+<div><p class="label">Framing</p><input id="v4Frame" class="field text-xs" placeholder="9:16 vertical, subject center, waist-up"/></div>
+<div><p class="label">Duration (sec)</p><input id="v4Duration" class="field text-xs" type="number" value="5" min="2" max="20"/></div>
+</div>
+<div><p class="label">Environment / lighting</p><input id="v4Env" class="field text-xs" placeholder="soft light from left, dark background"/></div>
+<div><p class="label">Motion anchors (timeline)</p><textarea id="v4Anchors" rows="2" class="field text-xs" placeholder="0s START · 1s head left · 2.5s hand to hair · 4s push-in · 5s end"></textarea></div>
+<div class="flex flex-wrap gap-2">
+<button id="v4GenFF" class="flex-1 min-w-[120px] py-2.5 rounded-xl text-xs font-semibold bg-gradient-to-r from-cyan-600 to-blue-600"><i class="fas fa-image mr-1"></i> First-Frame</button>
+<button id="v4GenI2V" class="flex-1 min-w-[120px] py-2.5 rounded-xl text-xs font-semibold bg-gradient-to-r from-violet-600 to-fuchsia-600"><i class="fas fa-video mr-1"></i> I2V Prompt</button>
+<button id="v4GenFull" class="flex-1 min-w-[120px] py-2.5 rounded-xl text-xs font-semibold bg-gradient-to-r from-pink-600 to-rose-600"><i class="fas fa-magic mr-1"></i> Full V4 Pack</button>
+</div>
+</div>
+<div id="v4Outputs" class="hidden mt-4 space-y-3">
+<div><div class="flex justify-between mb-1"><p class="label mb-0">FIRST-FRAME IMAGE PROMPT</p><button data-copy="v4OutFF" class="copy-btn text-[10px] text-cyan-300 underline">Copy</button></div><div id="v4OutFF" class="prompt-box"></div></div>
+<div><div class="flex justify-between mb-1"><p class="label mb-0">I2V MASTER PROMPT</p><button data-copy="v4OutI2V" class="copy-btn text-[10px] text-violet-300 underline">Copy</button></div><div id="v4OutI2V" class="prompt-box"></div></div>
+<div><div class="flex justify-between mb-1"><p class="label mb-0">NEGATIVE PROMPT</p><button data-copy="v4OutNeg" class="copy-btn text-[10px] text-rose-300 underline">Copy</button></div><div id="v4OutNeg" class="prompt-box"></div></div>
+<div class="text-[10px] text-white/40 space-y-1 border-t border-white/10 pt-3">
+<p><b class="text-white/60">Workflow:</b></p>
+<p>1. Copy First-Frame Prompt → generate image with locked face (Gemini/Colab)</p>
+<p>2. Use that image as I2V start frame</p>
+<p>3. Paste I2V + Negative → generate video</p>
+<p>4. Identity = locked influencer · Motion = reference</p>
+</div>
+</div>
+</section>
+
+<section class="ultra-glass rounded-2xl p-4 border border-white/12 mb-4 animate-fade">
+<p class="text-xs text-white/50 mb-2">Quick photo (locked identity)</p>
+<div class="flex gap-2">
+<input id="quickPrompt" class="field text-xs flex-1" placeholder="wearing red saree at beach sunset..."/>
+<button id="quickGen" class="px-4 py-2 rounded-xl text-xs font-semibold bg-pink-600 hover:bg-pink-500">Generate</button>
+</div>
+<div id="quickResult" class="hidden mt-3"></div>
+</section>
+
+<p class="text-[10px] text-white/25 text-center">V4: Reference motion + Target identity · First frame lock · I2V continuity</p>
+</main>
+
+<canvas id="mouseCanvas" style="position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:9999;mix-blend-mode:screen"></canvas>
+
+<script>
+let faces=JSON.parse(localStorage.getItem('wasu09_faces')||'[]');
+let identity=JSON.parse(localStorage.getItem('wasu09_identity')||'null');
+let geminiKey=localStorage.getItem('wasu09_gemini_key')||'';
+const $=id=>document.getElementById(id);
+function fileToDataURL(file){return new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(r.result);r.onerror=rej;r.readAsDataURL(file)})}
+function dataURLtoBase64(d){return d.split(',')[1]||d}
+function updateGeminiStatus(){if(geminiKey){$('geminiStatus').textContent='Ready';$('geminiStatus').className='text-[10px] px-2 py-0.5 rounded-full border border-emerald-400/40 text-emerald-300 bg-emerald-500/15';$('geminiKey').value=geminiKey.slice(0,8)+'••••••••'}}
+updateGeminiStatus();
+$('saveGeminiKey').onclick=()=>{const v=$('geminiKey').value.trim();if(!v||v.includes('••••'))return alert('Paste valid key');geminiKey=v;localStorage.setItem('wasu09_gemini_key',geminiKey);updateGeminiStatus();alert('Saved')};
+function showSetup(){$('setupPanel').classList.remove('hidden');$('studioPanel').classList.add('hidden');$('lockBadge').textContent='NOT LOCKED';$('lockBadge').className='text-[10px] px-2 py-0.5 rounded-full border bg-white/5 text-white/40 border-white/20';renderFaces();if(identity)$('identityDesc').value=identity.desc||''}
+function showStudio(){$('setupPanel').classList.add('hidden');$('studioPanel').classList.remove('hidden');$('lockBadge').textContent='🔒 LOCKED';$('lockBadge').className='text-[10px] px-2 py-0.5 rounded-full border bg-emerald-500/20 text-emerald-300 border-emerald-400/40';const box=$('lockedFaces');box.innerHTML='';faces.forEach(src=>{const img=document.createElement('img');img.src=src;img.className='w-7 h-7 rounded-lg object-cover border border-pink-400/40';box.appendChild(img)});$('lockedSub').textContent=(identity?.desc||'').slice(0,40)||faces.length+' photos'}
+function renderFaces(){const box=$('facePreviews');box.innerHTML='';faces.forEach((src,i)=>{const wrap=document.createElement('div');wrap.className='relative';wrap.innerHTML='<img src="'+src+'" class="w-10 h-10 rounded-lg object-cover border border-white/25"/><button data-i="'+i+'" class="absolute -top-1 -right-1 w-3.5 h-3.5 rounded-full bg-red-500 text-[8px] flex items-center justify-center rm">×</button>';box.appendChild(wrap)});box.querySelectorAll('.rm').forEach(btn=>{btn.onclick=()=>{faces.splice(+btn.dataset.i,1);localStorage.setItem('wasu09_faces',JSON.stringify(faces));renderFaces()}})}
+if(identity?.locked&&faces.length)showStudio();else showSetup();
+$('faceUpload').onchange=async e=>{const files=Array.from(e.target.files||[]).slice(0,4-faces.length);for(const f of files)faces.push(await fileToDataURL(f));localStorage.setItem('wasu09_faces',JSON.stringify(faces));renderFaces();e.target.value=''};
+$('lockBtn').onclick=()=>{if(!faces.length)return alert('Upload face first');identity={locked:true,desc:($('identityDesc').value||'').trim(),at:Date.now()};localStorage.setItem('wasu09_identity',JSON.stringify(identity));localStorage.setItem('wasu09_faces',JSON.stringify(faces));showStudio()};
+$('editProfileBtn').onclick=()=>showSetup();
+$('unlockBtn').onclick=()=>{if(!confirm('Unlock?'))return;identity=null;localStorage.removeItem('wasu09_identity');showSetup()};
+function targetIdentityText(){return(identity?.desc||'')||'the target person from the reference face photos (exact same face, hair, body proportions)'}
+function buildFirstFramePrompt(){const start=($('v4StartPose').value||'').trim()||'natural standing pose facing camera';const frame=($('v4Frame').value||'').trim()||'vertical 9:16, medium shot, subject centered';const cam=($('v4Camera').value||'').trim()||'eye-level camera, static';const env=($('v4Env').value||'').trim()||'soft natural lighting';const id=targetIdentityText();return'FIRST-FRAME IMAGE GENERATION PROMPT\n\nCreate a single still image that will be the exact starting frame of a video.\n\nTARGET IDENTITY (preserve exactly):\n'+id+'\nUse the same face structure, eyes, nose, lips, jawline, skin, hairstyle and body proportions. Do not redesign the person.\n\nSTARTING POSE:\n'+start+'\n\nCOMPOSITION / FRAMING:\n'+frame+'\nMatch subject screen position, headroom, and crop carefully.\n\nCAMERA:\n'+cam+'\n\nENVIRONMENT & LIGHTING:\n'+env+'\n\nRULES:\n- Photorealistic, sharp focus, cinematic quality\n- Face visibility must match the intended start pose\n- Preserve target clothing from identity / face refs\n- No extra limbs, no warped hands, no identity drift\n- This image is ONLY the first frame — no motion implied in the still'}
+function buildI2VPrompt(){const motion=($('v4Motion').value||'').trim()||'subtle natural movement';const start=($('v4StartPose').value||'').trim()||'starting pose as in the first-frame image';const cam=($('v4Camera').value||'').trim()||'camera as specified';const anchors=($('v4Anchors').value||'').trim();const env=($('v4Env').value||'').trim()||'consistent lighting and environment';const dur=($('v4Duration').value||'5').trim();const id=targetIdentityText();const frame=($('v4Frame').value||'').trim()||'preserve composition';const timeline=anchors||motion;return'I2V MASTER PROMPT\n\n### SCENE\nTarget subject: '+id+'\nEnvironment: '+env+'\nDuration: approximately '+dur+' seconds\nFraming: '+frame+'\n\n### START FRAME LOCK\nBegin exactly from the supplied first-frame image.\nDo not change pose, crop, camera position, facial expression, or framing at frame 0.\nFirst motion must begin from the existing pose: '+start+'\n\n### IDENTITY LOCK\nMaintain the exact identity of the target character throughout the entire sequence.\nDo not alter facial structure, eyes, eyebrows, nose, lips, jawline, skin appearance, hairstyle, or distinctive features.\nNo face morphing, no identity drift, no character substitution.\n\n### MOTION TIMELINE\n'+timeline+'\n\n### CAMERA TIMELINE\n'+cam+'\nTransfer reference camera behavior only — do not invent extra pans, zooms, or cuts.\n\n### SECONDARY MOTION\nOnly natural secondary motion (hair, fabric) responding to body/camera movement. No invented gestures.\n\n### LIGHTING & CONTINUITY\n'+env+'\nKeep lighting direction and background consistent.\n\n### ENDING\nEnd in a natural final pose consistent with the motion timeline.\n\n### PHYSICS\nNatural body mechanics, correct hands/fingers, stable clothing and hair continuity.'}
+function buildNegative(){return'identity drift, face morphing, different person, facial redesign, extra fingers, missing fingers, extra limbs, duplicated body parts, deformed hands, warped anatomy, body distortion, clothing mutation, hair mutation, background morphing, random objects, camera jitter, unwanted zoom, unwanted cuts, flicker, temporal inconsistency, unnatural motion, sudden pose changes, rubber arms, disappearing hands'}
+function showV4Outputs(ff,i2v,neg){$('v4OutFF').textContent=ff;$('v4OutI2V').textContent=i2v;$('v4OutNeg').textContent=neg;$('v4Outputs').classList.remove('hidden');$('v4Outputs').scrollIntoView({behavior:'smooth',block:'nearest'})}
+$('v4GenFF').onclick=()=>showV4Outputs(buildFirstFramePrompt(),buildI2VPrompt(),buildNegative());
+$('v4GenI2V').onclick=()=>showV4Outputs(buildFirstFramePrompt(),buildI2VPrompt(),buildNegative());
+$('v4GenFull').onclick=()=>showV4Outputs(buildFirstFramePrompt(),buildI2VPrompt(),buildNegative());
+document.querySelectorAll('.copy-btn').forEach(btn=>{btn.onclick=()=>{navigator.clipboard.writeText($(btn.dataset.copy).textContent).then(()=>{btn.textContent='Copied!';setTimeout(()=>btn.textContent='Copy',1500)})}});
+$('quickGen').onclick=async()=>{const p=($('quickPrompt').value||'').trim();if(!p)return alert('Prompt likho');if(!faces.length)return alert('Pehle face lock karo');const box=$('quickResult');box.classList.remove('hidden');box.innerHTML='<p class="text-xs text-white/50">Generating...</p>';try{let imgEl;if(geminiKey){const parts=[{text:(identity?.desc?identity.desc+', ':'')+p+', highly detailed face, same person, photorealistic'}];faces.slice(0,2).forEach(d=>{parts.push({inline_data:{mime_type:d.startsWith('data:image/png')?'image/png':'image/jpeg',data:dataURLtoBase64(d)}})});const models=['gemini-2.5-flash-image','gemini-2.0-flash-preview-image-generation'];let ok=false;for(const model of models){const res=await fetch('https://generativelanguage.googleapis.com/v1beta/models/'+model+':generateContent?key='+encodeURIComponent(geminiKey),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({contents:[{parts}],generationConfig:{responseModalities:['TEXT','IMAGE']}})});const data=await res.json();if(!res.ok)continue;for(const part of(data?.candidates?.[0]?.content?.parts||[])){const id=part.inlineData||part.inline_data;if(id?.data){imgEl=new Image();imgEl.src='data:'+(id.mimeType||id.mime_type||'image/png')+';base64,'+id.data;await new Promise((r,j)=>{imgEl.onload=r;imgEl.onerror=j});ok=true;break}}if(ok)break}if(!ok)throw new Error('Gemini failed / quota')}else{imgEl=await puter.ai.txt2img((identity?.desc?identity.desc+', ':'')+p,{input_images:faces.slice(0,3)})}imgEl.className='w-full max-h-[320px] object-contain rounded-lg';box.innerHTML='';box.appendChild(imgEl)}catch(e){box.innerHTML='<p class="text-xs text-red-300">'+(e.message||'Error')+'</p>'}};
+const canvas=$('mouseCanvas');const ctx=canvas.getContext('2d');let W,H,mx=-99,my=-99,gx=0,gy=0;function resize(){W=canvas.width=innerWidth;H=canvas.height=innerHeight}addEventListener('resize',resize);resize();addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY});(function loop(){ctx.clearRect(0,0,W,H);gx+=(mx-gx)*0.12;gy+=(my-gy)*0.12;const g=ctx.createRadialGradient(gx,gy,0,gx,gy,100);g.addColorStop(0,'rgba(34,211,238,0.15)');g.addColorStop(1,'transparent');ctx.beginPath();ctx.arc(gx,gy,100,0,Math.PI*2);ctx.fillStyle=g;ctx.fill();requestAnimationFrame(loop)})();
+</script>
+</body>
+</html>
