@@ -5,46 +5,36 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"/>
 <title>Wasu09 — AI Influencer Studio</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<script src="https://js.puter.com/v2/"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,600;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 <style>
 :root{--glass-bg:#00000030;--glass-border:#ffffff22}
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Plus Jakarta Sans',sans-serif;background:#000;color:#fff;min-height:100vh;overflow-x:hidden}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:#000;color:#fff;min-height:100vh;overflow-x:hidden;padding-bottom:env(safe-area-inset-bottom,0)}
 .bg-container{position:fixed;inset:0;z-index:0}
-.bg-video{width:100%;height:100%;object-fit:cover;filter:brightness(0.48) contrast(1.1)}
-.bg-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0.45),rgba(0,0,0,0.85))}
+.bg-video{width:100%;height:100%;object-fit:cover;filter:brightness(0.45) contrast(1.1)}
+.bg-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0.5),rgba(0,0,0,0.88))}
 .ultra-glass{background:var(--glass-bg);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid var(--glass-border)}
 .heading-cinematic{font-family:'Playfair Display',serif;font-style:italic}
 .field{width:100%;background:rgba(0,0,0,0.45);border:1px solid rgba(255,255,255,0.18);border-radius:0.85rem;padding:0.7rem 0.9rem;font-size:16px;color:#fff;outline:none;min-height:44px}
-.field:focus{border-color:rgba(34,211,238,0.55)}
+.field:focus{border-color:rgba(236,72,153,0.55)}
 .field::placeholder{color:rgba(255,255,255,0.32)}
 .label{font-size:10px;text-transform:uppercase;letter-spacing:0.07em;color:rgba(255,255,255,0.42);margin-bottom:0.35rem}
-.prompt-box{background:rgba(0,0,0,0.55);border:1px solid rgba(255,255,255,0.12);border-radius:0.75rem;padding:0.85rem;font-size:12px;line-height:1.5;color:rgba(255,255,255,0.85);white-space:pre-wrap;max-height:200px;overflow-y:auto;min-height:80px;-webkit-overflow-scrolling:touch}
-.upload-box{border:1px dashed rgba(34,211,238,0.35);border-radius:0.85rem;padding:1rem 0.75rem;text-align:center;cursor:pointer;transition:0.2s;background:rgba(0,0,0,0.25);min-height:110px;display:flex;flex-direction:column;align-items:center;justify-content:center}
-.upload-box:hover{border-color:rgba(34,211,238,0.7);background:rgba(34,211,238,0.06)}
-button,label,.upload-box{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.prompt-box{background:rgba(0,0,0,0.55);border:1px solid rgba(255,255,255,0.12);border-radius:0.75rem;padding:0.85rem;font-size:12px;line-height:1.5;color:rgba(255,255,255,0.88);white-space:pre-wrap;max-height:280px;overflow-y:auto;-webkit-overflow-scrolling:touch}
+.upload-box{border:1px dashed rgba(236,72,153,0.4);border-radius:0.85rem;padding:1rem 0.75rem;text-align:center;cursor:pointer;background:rgba(0,0,0,0.25);min-height:100px;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.upload-box:hover{border-color:rgba(236,72,153,0.75);background:rgba(236,72,153,0.06)}
+.mode-btn{flex:1;min-width:0;padding:0.55rem 0.4rem;border-radius:0.75rem;font-size:11px;font-weight:600;border:1px solid rgba(255,255,255,0.15);background:rgba(0,0,0,0.35);color:rgba(255,255,255,0.55);transition:0.15s}
+.mode-btn.active{background:linear-gradient(135deg,#db2777,#e11d48);border-color:rgba(251,113,133,0.5);color:#fff}
+button,label{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-.animate-fade{animation:fadeIn 0.6s ease-out forwards}
-::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:#111}::-webkit-scrollbar-thumb{background:#444;border-radius:3px}
-html{-webkit-text-size-adjust:100%}
-body{padding-bottom:env(safe-area-inset-bottom,0)}
-main{padding-left:max(0.75rem,env(safe-area-inset-left));padding-right:max(0.75rem,env(safe-area-inset-right));padding-bottom:max(5rem,env(safe-area-inset-bottom))}
-#v4OneClick{min-height:48px;font-size:14px!important}
-#lockBtn{min-height:44px}
-.copy-btn{min-height:36px;min-width:56px;padding:0.35rem 0.75rem!important}
-@media(max-width:640px){
-.heading-cinematic{font-size:1.65rem!important;line-height:1.25}
-.ultra-glass{border-radius:1rem}
-#videoPreview,#targetImgPreview,#firstFrameThumb{max-height:160px!important}
-}
+.animate-fade{animation:fadeIn 0.5s ease-out forwards}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-thumb{background:#444;border-radius:3px}
+main{padding-left:max(0.75rem,env(safe-area-inset-left));padding-right:max(0.75rem,env(safe-area-inset-right));padding-bottom:max(5.5rem,env(safe-area-inset-bottom))}
+@media(max-width:640px){.heading-cinematic{font-size:1.55rem!important}}
 </style>
 <link rel="manifest" href="./manifest.json"/>
 <meta name="theme-color" content="#ec4899"/>
-<meta name="mobile-web-app-capable" content="yes"/>
 <meta name="apple-mobile-web-app-capable" content="yes"/>
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
 <meta name="apple-mobile-web-app-title" content="Wasu09"/>
 <link rel="apple-touch-icon" href="./icon.svg"/>
 <link rel="icon" href="./icon.svg" type="image/svg+xml"/>
@@ -61,127 +51,131 @@ main{padding-left:max(0.75rem,env(safe-area-inset-left));padding-right:max(0.75r
 <header class="text-center mb-5 animate-fade">
 <p class="text-[10px] tracking-[0.3em] text-gray-400 mb-1 uppercase font-bold">Wasu09</p>
 <h1 class="heading-cinematic text-3xl sm:text-4xl font-semibold text-white">AI Influencer Studio</h1>
-<p class="text-xs text-white/45 mt-1">Video Replication V4 · One click prompts</p>
+<p class="text-xs text-white/45 mt-1">Recreate Video Pro · COS-TA prompts</p>
 </header>
 
 <section class="ultra-glass rounded-2xl p-4 border border-white/12 mb-4 animate-fade">
 <div class="flex items-center justify-between mb-3">
-<span class="text-sm font-semibold"><i class="fas fa-user-astronaut text-pink-400 mr-1"></i> Target Identity</span>
+<span class="text-sm font-semibold"><i class="fas fa-user-astronaut text-pink-400 mr-1"></i> Target Identity (I1)</span>
 <span id="lockBadge" class="text-[10px] px-2 py-0.5 rounded-full border bg-white/5 text-white/40 border-white/20">NOT SET</span>
 </div>
 <div class="flex flex-wrap gap-2 items-center">
-<label class="cursor-pointer border border-dashed border-pink-400/40 rounded-xl px-3 py-2.5 text-xs hover:bg-pink-500/10 flex items-center gap-1.5 min-h-[44px]">
+<label class="cursor-pointer border border-dashed border-pink-400/40 rounded-xl px-3 py-2.5 text-xs flex items-center gap-1.5 min-h-[44px]">
 <i class="fas fa-camera text-pink-400"></i> Face
 <input type="file" id="faceUpload" accept="image/*" multiple class="hidden"/>
 </label>
 <div id="facePreviews" class="flex flex-wrap gap-1.5"></div>
-<input id="identityDesc" class="field text-sm flex-1 min-w-[140px]" placeholder="Identity desc (optional)"/>
-<button id="lockBtn" class="px-4 py-2.5 rounded-xl text-xs font-semibold bg-pink-600 hover:bg-pink-500 min-h-[44px]">Lock</button>
+<input id="identityDesc" class="field text-sm flex-1 min-w-[140px]" placeholder="Identity: face features, age, hair..."/>
+<button id="lockBtn" class="px-4 py-2.5 rounded-xl text-xs font-semibold bg-pink-600 min-h-[44px]">Lock</button>
 </div>
 </section>
 
-<section class="ultra-glass rounded-2xl p-4 sm:p-5 border border-cyan-400/25 mb-5 animate-fade">
+<section class="ultra-glass rounded-2xl p-4 sm:p-5 border border-pink-400/25 mb-5 animate-fade">
 <div class="flex items-center gap-2 mb-4">
-<div class="w-9 h-9 rounded-lg bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center flex-shrink-0"><i class="fas fa-film text-white text-sm"></i></div>
+<div class="w-9 h-9 rounded-lg bg-gradient-to-br from-pink-500 to-rose-600 flex items-center justify-center flex-shrink-0"><i class="fas fa-film text-white text-sm"></i></div>
 <div class="min-w-0">
-<h2 class="text-sm font-semibold">Video Replication V4</h2>
-<p class="text-[10px] text-white/45 leading-snug">Upload video + target → 1 click → both prompts</p>
+<h2 class="text-sm font-semibold">Recreate Video Pro</h2>
+<p class="text-[10px] text-white/45">Reference video → controlled face/product replace → COS-TA prompts</p>
 </div>
 </div>
 
-<div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
+<p class="label">Replacement mode</p>
+<div class="flex gap-1.5 mb-4" id="modeRow">
+<button type="button" data-mode="face" class="mode-btn active">FACE ONLY</button>
+<button type="button" data-mode="product" class="mode-btn">PRODUCT</button>
+<button type="button" data-mode="face_product" class="mode-btn">FACE+PRODUCT</button>
+<button type="button" data-mode="full" class="mode-btn">FULL CHAR</button>
+</div>
+
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
 <div>
-<p class="label">Reference Video</p>
+<p class="label">Reference Video (V1)</p>
 <label class="upload-box block">
 <input type="file" id="refVideo" accept="video/*" class="hidden"/>
 <div id="videoPreviewWrap" class="hidden mb-2 w-full">
-<video id="videoPreview" class="w-full max-h-40 rounded-lg mx-auto" controls muted playsinline></video>
+<video id="videoPreview" class="w-full max-h-36 rounded-lg" controls muted playsinline></video>
+<img id="firstFrameThumb" class="w-full max-h-24 object-contain rounded-lg mt-1 hidden border border-white/15"/>
 <canvas id="firstFrameCanvas" class="hidden"></canvas>
-<img id="firstFrameThumb" class="w-full max-h-28 object-contain rounded-lg mx-auto mt-1 hidden border border-white/15"/>
 </div>
 <div id="videoUploadHint">
-<i class="fas fa-video text-cyan-400 text-xl mb-1"></i>
-<p class="text-xs text-white/60">Tap to upload video</p>
-<p class="text-[10px] text-white/35 mt-0.5">First frame auto-extract</p>
+<i class="fas fa-video text-pink-400 text-xl mb-1"></i>
+<p class="text-xs text-white/60">Tap · reference video</p>
 </div>
 </label>
 </div>
 <div>
-<p class="label">Target Image</p>
+<p class="label">Target / Product image</p>
 <label class="upload-box block">
 <input type="file" id="refImage" accept="image/*" class="hidden"/>
 <div id="imagePreviewWrap" class="hidden mb-2 w-full">
-<img id="targetImgPreview" class="w-full max-h-40 object-contain rounded-lg mx-auto border border-white/15"/>
+<img id="targetImgPreview" class="w-full max-h-36 object-contain rounded-lg border border-white/15"/>
 </div>
 <div id="imageUploadHint">
-<i class="fas fa-user text-pink-400 text-xl mb-1"></i>
-<p class="text-xs text-white/60">Tap to upload image</p>
-<p class="text-[10px] text-white/35 mt-0.5">Or use locked face photos</p>
+<i class="fas fa-image text-pink-400 text-xl mb-1"></i>
+<p class="text-xs text-white/60">Tap · face or product</p>
 </div>
 </label>
 </div>
 </div>
 
 <div class="mb-3">
-<p class="label">Extra notes (optional)</p>
-<textarea id="v4Notes" rows="2" class="field" placeholder="head turns left, hand to hair, slow push-in, cream saree..."></textarea>
+<p class="label">Observed motion / notes</p>
+<textarea id="rvNotes" rows="2" class="field" placeholder="0–2s look camera, 2–4s turn left hand to hair, slow push-in..."></textarea>
 </div>
-<div class="grid grid-cols-2 gap-2 mb-4">
-<div><p class="label">Duration (sec)</p><input id="v4Duration" type="number" value="5" min="2" max="30" class="field" inputmode="numeric"/></div>
+<div class="grid grid-cols-2 gap-2 mb-3">
+<div><p class="label">Duration (sec)</p><input id="rvDuration" type="number" value="5" min="1" max="60" class="field" inputmode="numeric"/></div>
 <div><p class="label">Aspect</p>
-<select id="v4Aspect" class="field">
+<select id="rvAspect" class="field">
+<option value="source">Source (keep)</option>
 <option value="9:16">9:16</option>
 <option value="16:9">16:9</option>
 <option value="1:1">1:1</option>
-<option value="4:5">4:5</option>
 </select></div>
 </div>
+<div class="mb-4">
+<p class="label">Product detail (PRODUCT mode)</p>
+<input id="rvProduct" class="field" placeholder="e.g. matte pink lipstick, gold cap, logo front"/>
+</div>
 
-<button id="v4OneClick" class="w-full py-3.5 rounded-xl text-sm font-bold bg-gradient-to-r from-cyan-500 via-blue-600 to-violet-600 hover:opacity-95 flex items-center justify-center gap-2 active:scale-[0.98] transition">
-<i class="fas fa-bolt"></i> Generate Both Prompts
+<button id="rvGenerate" class="w-full py-3.5 rounded-xl text-sm font-bold bg-gradient-to-r from-pink-600 via-rose-600 to-fuchsia-600 flex items-center justify-center gap-2 active:scale-[0.98] min-h-[48px]">
+<i class="fas fa-bolt"></i> Generate COS-TA Package
 </button>
-<p id="v4Status" class="text-[10px] text-white/40 text-center mt-2 hidden"></p>
+<p id="rvStatus" class="text-[10px] text-white/40 text-center mt-2 hidden"></p>
 
-<div id="v4Results" class="hidden mt-5 space-y-4">
-<div class="rounded-xl border border-cyan-400/30 bg-cyan-950/20 p-3 sm:p-4">
-<div class="flex items-center justify-between mb-2 gap-2">
-<div class="flex items-center gap-2 min-w-0">
-<span class="w-6 h-6 rounded-md bg-cyan-500/30 flex items-center justify-center text-[10px] font-bold text-cyan-200 flex-shrink-0">1</span>
-<p class="text-xs font-semibold text-cyan-200 truncate">IMAGE PROMPT</p>
+<div id="rvResults" class="hidden mt-5 space-y-4">
+<div class="rounded-xl border border-white/15 bg-black/30 p-3">
+<div class="flex justify-between mb-1"><p class="text-[10px] font-semibold text-white/70">CHANGE / PRESERVE CONTRACT</p>
+<button data-copy="outContract" class="copy-btn text-[10px] text-pink-300 underline">Copy</button></div>
+<div id="outContract" class="prompt-box max-h-32 text-[11px]"></div>
 </div>
-<button data-copy="outImagePrompt" class="copy-btn text-[10px] px-3 py-1.5 rounded-lg bg-cyan-500/20 text-cyan-200 border border-cyan-400/30 flex-shrink-0">Copy</button>
+<div class="rounded-xl border border-cyan-400/30 bg-cyan-950/15 p-3">
+<div class="flex justify-between mb-1 items-center gap-2">
+<p class="text-xs font-semibold text-cyan-200">1 · FIRST-FRAME / ANCHOR IMAGE</p>
+<button data-copy="outAnchor" class="copy-btn text-[10px] px-2 py-1 rounded-lg bg-cyan-500/20 text-cyan-200 border border-cyan-400/30">Copy</button>
 </div>
-<p class="text-[10px] text-white/40 mb-2">First-frame image banane ke liye</p>
-<div id="outImagePrompt" class="prompt-box"></div>
+<div id="outAnchor" class="prompt-box"></div>
 </div>
-
-<div class="rounded-xl border border-violet-400/30 bg-violet-950/20 p-3 sm:p-4">
-<div class="flex items-center justify-between mb-2 gap-2">
-<div class="flex items-center gap-2 min-w-0">
-<span class="w-6 h-6 rounded-md bg-violet-500/30 flex items-center justify-center text-[10px] font-bold text-violet-200 flex-shrink-0">2</span>
-<p class="text-xs font-semibold text-violet-200 truncate">VIDEO PROMPT</p>
+<div class="rounded-xl border border-violet-400/30 bg-violet-950/15 p-3">
+<div class="flex justify-between mb-1 items-center gap-2">
+<p class="text-xs font-semibold text-violet-200">2 · COS-TA SHOT PROMPT (I2V)</p>
+<button data-copy="outCosta" class="copy-btn text-[10px] px-2 py-1 rounded-lg bg-violet-500/20 text-violet-200 border border-violet-400/30">Copy</button>
 </div>
-<button data-copy="outVideoPrompt" class="copy-btn text-[10px] px-3 py-1.5 rounded-lg bg-violet-500/20 text-violet-200 border border-violet-400/30 flex-shrink-0">Copy</button>
+<div id="outCosta" class="prompt-box"></div>
 </div>
-<p class="text-[10px] text-white/40 mb-2">I2V tool me paste karo</p>
-<div id="outVideoPrompt" class="prompt-box"></div>
+<div class="rounded-xl border border-rose-400/25 bg-rose-950/15 p-3">
+<div class="flex justify-between mb-1"><p class="text-[10px] font-semibold text-rose-200/90">NEGATIVE</p>
+<button data-copy="outNeg" class="copy-btn text-[10px] text-rose-300 underline">Copy</button></div>
+<div id="outNeg" class="prompt-box max-h-24 text-[11px]"></div>
 </div>
-
-<div class="rounded-xl border border-rose-400/20 bg-rose-950/15 p-3">
-<div class="flex items-center justify-between mb-1 gap-2">
-<p class="text-[10px] font-semibold text-rose-200/90">NEGATIVE</p>
-<button data-copy="outNegPrompt" class="copy-btn text-[10px] text-rose-300 underline flex-shrink-0">Copy</button>
-</div>
-<div id="outNegPrompt" class="prompt-box max-h-24 text-[10px]"></div>
-</div>
+<p class="text-[10px] text-white/35">Anchor image → I2V with COS-TA · Mode locks identity/product · Source motion preserved</p>
 </div>
 </section>
 
-<p class="text-[10px] text-white/25 text-center px-2 pb-2">Reference motion · Target identity · Install app from bottom bar</p>
+<p class="text-[10px] text-white/25 text-center">Recreate Video Pro · Evidence-grounded · FACE / PRODUCT locks</p>
 </main>
 
 <div id="mobileInstallBar" class="fixed bottom-0 left-0 right-0 z-50 p-3 bg-gradient-to-t from-black via-black/95 to-transparent sm:hidden">
-<button id="installAppBtnMobile" class="w-full py-3.5 rounded-2xl text-sm font-bold bg-gradient-to-r from-pink-600 to-rose-600 shadow-lg border border-pink-400/30 flex items-center justify-center gap-2 active:scale-[0.98]">
+<button id="installAppBtnMobile" class="w-full py-3.5 rounded-2xl text-sm font-bold bg-gradient-to-r from-pink-600 to-rose-600 border border-pink-400/30 flex items-center justify-center gap-2">
 <i class="fas fa-download"></i> Install App on Phone
 </button>
 </div>
@@ -194,26 +188,29 @@ let identity=JSON.parse(localStorage.getItem('wasu09_identity')||'null');
 let targetImageData=null;
 let refVideoMeta={name:'',duration:0,width:0,height:0};
 let firstFrameDataUrl=null;
+let mode='face';
 window.deferredPrompt=null;
 const $=id=>document.getElementById(id);
 function fileToDataURL(file){return new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(r.result);r.onerror=rej;r.readAsDataURL(file)})}
-function renderFaces(){const box=$('facePreviews');box.innerHTML='';faces.forEach((src,i)=>{const wrap=document.createElement('div');wrap.className='relative';wrap.innerHTML='<img src="'+src+'" class="w-10 h-10 rounded-lg object-cover border border-white/25"/><button data-i="'+i+'" class="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-red-500 text-[10px] flex items-center justify-center rm">×</button>';box.appendChild(wrap)});box.querySelectorAll('.rm').forEach(btn=>{btn.onclick=()=>{faces.splice(+btn.dataset.i,1);localStorage.setItem('wasu09_faces',JSON.stringify(faces));renderFaces();updateBadge()}})}
+function renderFaces(){const box=$('facePreviews');box.innerHTML='';faces.forEach((src,i)=>{const w=document.createElement('div');w.className='relative';w.innerHTML='<img src="'+src+'" class="w-10 h-10 rounded-lg object-cover border border-white/25"/><button data-i="'+i+'" class="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-red-500 text-[10px] flex items-center justify-center rm">×</button>';box.appendChild(w)});box.querySelectorAll('.rm').forEach(btn=>{btn.onclick=()=>{faces.splice(+btn.dataset.i,1);localStorage.setItem('wasu09_faces',JSON.stringify(faces));renderFaces();updateBadge()}})}
 function updateBadge(){const has=faces.length||targetImageData||identity?.desc;if(has){$('lockBadge').textContent='READY';$('lockBadge').className='text-[10px] px-2 py-0.5 rounded-full border bg-emerald-500/20 text-emerald-300 border-emerald-400/40'}else{$('lockBadge').textContent='NOT SET';$('lockBadge').className='text-[10px] px-2 py-0.5 rounded-full border bg-white/5 text-white/40 border-white/20'}}
 renderFaces();updateBadge();if(identity?.desc)$('identityDesc').value=identity.desc;
 $('faceUpload').onchange=async e=>{const files=Array.from(e.target.files||[]).slice(0,4-faces.length);for(const f of files)faces.push(await fileToDataURL(f));localStorage.setItem('wasu09_faces',JSON.stringify(faces));renderFaces();updateBadge();e.target.value=''};
-$('lockBtn').onclick=()=>{identity={locked:true,desc:($('identityDesc').value||'').trim(),at:Date.now()};localStorage.setItem('wasu09_identity',JSON.stringify(identity));localStorage.setItem('wasu09_faces',JSON.stringify(faces));updateBadge();alert('Identity saved')};
+$('lockBtn').onclick=()=>{identity={locked:true,desc:($('identityDesc').value||'').trim(),at:Date.now()};localStorage.setItem('wasu09_identity',JSON.stringify(identity));localStorage.setItem('wasu09_faces',JSON.stringify(faces));updateBadge()};
+document.querySelectorAll('.mode-btn').forEach(b=>{b.onclick=()=>{document.querySelectorAll('.mode-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');mode=b.dataset.mode}});
 $('refImage').onchange=async e=>{const f=e.target.files?.[0];if(!f)return;targetImageData=await fileToDataURL(f);$('targetImgPreview').src=targetImageData;$('imagePreviewWrap').classList.remove('hidden');$('imageUploadHint').classList.add('hidden');updateBadge()};
-$('refVideo').onchange=async e=>{const f=e.target.files?.[0];if(!f)return;const url=URL.createObjectURL(f);const vid=$('videoPreview');vid.src=url;$('videoPreviewWrap').classList.remove('hidden');$('videoUploadHint').classList.add('hidden');refVideoMeta.name=f.name;vid.onloadedmetadata=()=>{refVideoMeta.duration=vid.duration||0;refVideoMeta.width=vid.videoWidth||0;refVideoMeta.height=vid.videoHeight||0;if(refVideoMeta.duration)$('v4Duration').value=Math.min(20,Math.max(2,Math.round(refVideoMeta.duration)));vid.currentTime=0.05};vid.onseeked=()=>{try{const c=$('firstFrameCanvas');c.width=vid.videoWidth;c.height=vid.videoHeight;c.getContext('2d').drawImage(vid,0,0);firstFrameDataUrl=c.toDataURL('image/jpeg',0.85);const thumb=$('firstFrameThumb');thumb.src=firstFrameDataUrl;thumb.classList.remove('hidden')}catch(err){console.warn(err)}}};
-function targetIdentityText(){if(identity?.desc)return identity.desc;if(targetImageData)return'the exact person shown in the uploaded target image (same face, hair, body, clothing appearance)';if(faces.length)return'the exact person from the uploaded face reference photos (same face, hair, body proportions)';return'the target person (match uploaded reference image identity exactly)'}
-function buildCompleteImagePrompt(){const notes=($('v4Notes').value||'').trim();const aspect=$('v4Aspect').value;const id=targetIdentityText();const hasVideo=!!refVideoMeta.name;const hasFF=!!firstFrameDataUrl;let poseHint='Match the pose, body orientation, head angle, hand positions, and face visibility of the reference video first frame.';if(notes)poseHint+=' User notes: '+notes+'.';return'COMPLETE FIRST-FRAME IMAGE PROMPT\n\nGenerate ONE photorealistic still image. This will be frame 0 of a video.\n\n=== TARGET IDENTITY (MANDATORY — DO NOT CHANGE) ===\n'+id+'\nPreserve exact face structure, eyes, eyebrows, nose, lips, jawline, skin tone, hairstyle, hairline, body proportions, and clothing from the target image/face references.\nDo NOT copy the reference video person face or identity.\n\n=== COMPOSITION (from reference video first frame) ===\nAspect ratio: '+aspect+'\n'+(hasVideo?'Use the uploaded reference video first frame as the composition blueprint (framing, crop, subject position, camera angle).':'Use cinematic framing matching the notes.')+'\n'+(hasFF?'A first-frame thumbnail was extracted — match that composition closely.':'')+'\n\n=== POSE & BODY ===\n'+poseHint+'\nMatch: torso angle, shoulder angle, head rotation/tilt, arm/hand placement.\nIf reference first frame hides the face, keep target face similarly hidden.\n\n=== ENVIRONMENT & LIGHTING ===\nMatch reference first-frame environment and lighting when possible.\n'+(notes?'Notes: '+notes:'Natural cinematic lighting.')+'\n\n=== QUALITY ===\nPhotorealistic, sharp focus, 8k detail, natural skin, correct hands (5 fingers), no artifacts.\nSTATIC first frame only — no motion blur required.'}
-function buildCompleteVideoPrompt(){const notes=($('v4Notes').value||'').trim();const dur=($('v4Duration').value||'5').trim();const aspect=$('v4Aspect').value;const id=targetIdentityText();const hasVideo=!!refVideoMeta.name;const meta=hasVideo?'Reference video: '+refVideoMeta.name+(refVideoMeta.duration?', ~'+refVideoMeta.duration.toFixed(1)+'s':'')+(refVideoMeta.width?', '+refVideoMeta.width+'x'+refVideoMeta.height:''):'Use notes for motion.';return'COMPLETE I2V MASTER PROMPT\n\n=== SCENE ===\nTarget subject: '+id+'\nDuration: ~'+dur+' seconds\nAspect: '+aspect+'\n'+meta+'\n\n=== START FRAME LOCK ===\nBegin EXACTLY from the supplied first-frame image.\nDo not change pose, crop, camera, expression, or framing at frame 0.\nAll motion starts from that existing pose only.\n\n=== IDENTITY LOCK ===\nMaintain exact target identity for the entire video.\nNo face morphing, identity drift, or character substitution.\n\n=== MOTION (from reference video) ===\n'+(hasVideo?'Replicate body motion, hand paths, head turns, and timing of the uploaded reference video.':'Follow motion in notes.')+'\n'+(notes?'User notes / motion: '+notes:'Subtle natural motion only — no invented gestures.')+'\nDo NOT invent extra hand gestures, random walking, or unsupported camera moves.\n\n=== CAMERA ===\nMatch reference video camera behavior (static / pan / tilt / push-in).\nPreserve composition trajectory and subject screen position.\n\n=== SECONDARY MOTION ===\nOnly natural hair and fabric response to body/camera movement.\n\n=== LIGHTING & CONTINUITY ===\nKeep lighting and background consistent with first frame.\n\n=== PHYSICS ===\nNatural joints, correct hands/fingers, stable clothing, no rubber limbs.\n\n=== ENDING ===\nEnd in a natural final pose consistent with the reference motion timeline.'}
-function buildNegative(){return'identity drift, face morphing, different person, facial redesign, extra fingers, missing fingers, extra limbs, deformed hands, warped anatomy, clothing mutation, hair mutation, background morphing, camera jitter, unwanted zoom, unwanted cuts, flicker, temporal inconsistency, unnatural motion, sudden pose changes, rubber arms, disappearing hands'}
-$('v4OneClick').onclick=()=>{const hasTarget=targetImageData||faces.length||identity?.desc;if(!hasTarget){alert('Pehle Target Image upload karo YA face lock karo');return}if(!$('refVideo').files?.length&&!($('v4Notes').value||'').trim()){if(!confirm('Reference video nahi hai. Sirf notes se prompts banayein?'))return}$('v4Status').classList.remove('hidden');$('v4Status').textContent='Building...';$('outImagePrompt').textContent=buildCompleteImagePrompt();$('outVideoPrompt').textContent=buildCompleteVideoPrompt();$('outNegPrompt').textContent=buildNegative();$('v4Results').classList.remove('hidden');$('v4Status').textContent='Ready';$('v4Results').scrollIntoView({behavior:'smooth',block:'nearest'})};
+$('refVideo').onchange=e=>{const f=e.target.files?.[0];if(!f)return;const url=URL.createObjectURL(f);const vid=$('videoPreview');vid.src=url;$('videoPreviewWrap').classList.remove('hidden');$('videoUploadHint').classList.add('hidden');refVideoMeta.name=f.name;vid.onloadedmetadata=()=>{refVideoMeta.duration=vid.duration||0;refVideoMeta.width=vid.videoWidth||0;refVideoMeta.height=vid.videoHeight||0;if(refVideoMeta.duration)$('rvDuration').value=Math.min(30,Math.max(1,Math.round(refVideoMeta.duration)));vid.currentTime=0.05};vid.onseeked=()=>{try{const c=$('firstFrameCanvas');c.width=vid.videoWidth;c.height=vid.videoHeight;c.getContext('2d').drawImage(vid,0,0);firstFrameDataUrl=c.toDataURL('image/jpeg',0.85);const t=$('firstFrameThumb');t.src=firstFrameDataUrl;t.classList.remove('hidden')}catch(err){}}};
+function idText(){if(identity?.desc)return identity.desc;if(faces.length||targetImageData)return'exact person from uploaded face/target reference (I1) — same face structure, eyes, nose, lips, jaw, skin, hair';return'target person from I1 reference image'}
+function buildContract(){const product=($('rvProduct').value||'').trim();const lines=[];lines.push('MODE: '+mode.toUpperCase().replace('_',' + '));lines.push('V1 = reference video (motion, camera, timing, set, performance)');lines.push('I1 = target face/identity reference');if(mode.includes('product')||mode==='full')lines.push('P1 = product reference'+(product?': '+product:''));lines.push('');if(mode==='face'){lines.push('CHANGE: facial identity only (I1)');lines.push('PRESERVE: body, outfit, hair/headwear, pose, performance, camera, set, lighting, audio structure, timing')}else if(mode==='product'){lines.push('CHANGE: nominated product only (P1)');lines.push('PRESERVE: face, body, outfit (non-product), camera, set, motion, audio')}else if(mode==='face_product'){lines.push('CHANGE: face (I1) + product (P1)');lines.push('PRESERVE: body proportions, non-product clothes, camera, set, timing, performance energy')}else{lines.push('CHANGE: full character as specified');lines.push('PRESERVE: camera path, set layout, shot timing, audio structure unless noted')}lines.push('ADAPT ONLY AS NECESSARY: shadows, grip, fabric response, skin junctions');return lines.join('\n')}
+function buildAnchor(){const notes=($('rvNotes').value||'').trim();const aspect=$('rvAspect').value;const id=idText();const product=($('rvProduct').value||'').trim();let change='Replace only facial identity using I1. Preserve source body, outfit, hair, pose, framing.';if(mode==='product')change='Replace only the product using P1'+(product?' ('+product+')':'')+'. Preserve face and body.';if(mode==='face_product')change='Replace face (I1) and product (P1'+(product?': '+product:'')+'). Preserve body and non-product outfit.';if(mode==='full')change='Apply full character translation per notes while matching source composition.';return'ANCHOR / FIRST-FRAME IMAGE PROMPT\n\nCreate Shot 1 opening frame. Match the reference video first-frame composition, perspective, screen placement, pose, grip, occlusion, set and lighting.\n\nSTRICT MODEL IDENTITY LOCK — PRIORITY 100\n'+id+'\nUse I1 only for facial identity. Preserve source head pose, expression, gaze. Same face after any occlusion. No identity drift.\n\n'+(mode.includes('product')||mode==='full'?'STRICT PRODUCT/OUTFIT LOCK — PRIORITY 100\n'+(product||'P1 product reference')+'\nReplace only the nominated item. No source-product design leakage.\n\n':'')+'CHANGE: '+change+'\nPRESERVE: source framing, camera height/angle, set, lighting direction, depth of field, rendering style.\nAspect: '+(aspect==='source'?'match source video':aspect)+'\n'+(notes?'Notes: '+notes:'')+'\nPhotorealistic, sharp, correct hands, no collage, no extra captions.'}
+function buildCosta(){const notes=($('rvNotes').value||'').trim();const dur=($('rvDuration').value||'5').trim();const aspect=$('rvAspect').value;const id=idText();const product=($('rvProduct').value||'').trim();const meta=refVideoMeta.name?('V1 file: '+refVideoMeta.name+(refVideoMeta.duration?' ~'+refVideoMeta.duration.toFixed(1)+'s':'')):'V1 = uploaded/described reference';let idLock='STRICT MODEL IDENTITY LOCK — PRIORITY 100\n'+id+'\nI1 controls facial identity only. Preserve source head pose, expression, gaze and speech performance. Same face after turns/occlusion. No identity drift or blend with original face.';let prodLock='';if(mode==='product'||mode==='face_product'||mode==='full'){prodLock='STRICT OUTFIT/PRODUCT LOCK — PRIORITY 100\n'+(product||'P1 product from reference image')+'\nReplace only nominated product. Preserve non-target objects. Coherent grip, weight, shadows. No product duplication or label geometry drift.'}if(mode==='product'){idLock='PRESERVE source face and body identity. Do not change facial identity.'}return'SHOT 1 — source 0–'+dur+'s; generation target ~'+dur+'s\nAttachments: V1=reference video · I1=face/identity · '+(mode.includes('product')||mode==='full'?'P1=product':'')+'\n'+meta+'\n\nC — CONTEXT\nRecreate the observed source shot from V1. '+(mode==='face'?'Use I1 only for facial identity.':mode==='product'?'Use P1 only for product.':mode==='face_product'?'Use I1 for face and P1 for product.':'Full character per notes.')+'\nPreserve source body/outfit/set/camera/style/audio structure except selected replacement fields.\n\n'+idLock+'\n\n'+prodLock+'\n\nO — OBJECTIVE\nOpening: match first-frame pose, framing, grip, camera position.\nLocal motion: '+(notes||'Replicate body motion, hand paths, head turns and timing from V1. No invented gestures.')+'\nCamera: match V1 camera behavior (static/pan/tilt/push-in). Preserve subject screen position.\nEnvironment: keep set anchors and depth order from V1.\nEnding: natural end pose consistent with V1 timeline.\nAspect: '+(aspect==='source'?'preserve source':aspect)+'\n\nS — STYLE\nPhotorealistic. Preserve source lighting, textures, depth of field, motion blur character.\n\nT — TONE\nSource-supported performance energy — do not invent new acting style.\n\nA — AUDIENCE\nPreserve source presentation; no invented demographics or CTAs.\n\nSTART FRAME LOCK\nBegin exactly from the supplied anchor/first-frame image. No pose/crop/camera change at frame 0.'}
+function buildNeg(){return'identity drift, face morphing, different person, blending with original face, extra fingers, missing fingers, deformed hands, product duplication, source-product design leakage, clothing mutation, background morphing, camera jitter, unwanted cuts, invented gestures, sudden pose changes, rubber limbs, text artifacts, watermark'}
+$('rvGenerate').onclick=()=>{const hasTarget=targetImageData||faces.length||identity?.desc||mode==='product';if(!hasTarget&&mode!=='product'){alert('Pehle face/target image set karo');return}if(!refVideoMeta.name&&!($('rvNotes').value||'').trim()){if(!confirm('Video nahi hai. Notes se package banayein?'))return}$('rvStatus').classList.remove('hidden');$('rvStatus').textContent='Building...';$('outContract').textContent=buildContract();$('outAnchor').textContent=buildAnchor();$('outCosta').textContent=buildCosta();$('outNeg').textContent=buildNeg();$('rvResults').classList.remove('hidden');$('rvStatus').textContent='Ready';$('rvResults').scrollIntoView({behavior:'smooth',block:'nearest'})};
 document.querySelectorAll('.copy-btn').forEach(btn=>{btn.onclick=()=>{navigator.clipboard.writeText($(btn.dataset.copy).textContent).then(()=>{const t=btn.textContent;btn.textContent='Copied!';setTimeout(()=>btn.textContent=t,1500)})}});
 if('serviceWorker' in navigator){window.addEventListener('load',()=>{navigator.serviceWorker.register('./sw.js').catch(()=>{})})}
 window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();window.deferredPrompt=e});
-$('installAppBtnMobile').onclick=async()=>{if(window.deferredPrompt){window.deferredPrompt.prompt();await window.deferredPrompt.userChoice;window.deferredPrompt=null;$('mobileInstallBar').classList.add('hidden')}else{const ios=/iPad|iPhone|iPod/.test(navigator.userAgent);alert(ios?'Safari → Share → Add to Home Screen':'Chrome menu ⋮ → Install app / Add to Home screen')}};
-const canvas=$('mouseCanvas');const ctx=canvas.getContext('2d');let W,H,mx=-99,my=-99,gx=0,gy=0;function resize(){W=canvas.width=innerWidth;H=canvas.height=innerHeight}addEventListener('resize',resize);resize();addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY});addEventListener('touchmove',e=>{if(e.touches[0]){mx=e.touches[0].clientX;my=e.touches[0].clientY}},{passive:true});(function loop(){ctx.clearRect(0,0,W,H);gx+=(mx-gx)*0.12;gy+=(my-gy)*0.12;const g=ctx.createRadialGradient(gx,gy,0,gx,gy,80);g.addColorStop(0,'rgba(34,211,238,0.12)');g.addColorStop(1,'transparent');ctx.beginPath();ctx.arc(gx,gy,80,0,Math.PI*2);ctx.fillStyle=g;ctx.fill();requestAnimationFrame(loop)})();
+$('installAppBtnMobile').onclick=async()=>{if(window.deferredPrompt){window.deferredPrompt.prompt();await window.deferredPrompt.userChoice;window.deferredPrompt=null;$('mobileInstallBar').classList.add('hidden')}else{alert(/iPhone|iPad|iPod/.test(navigator.userAgent)?'Safari → Share → Add to Home Screen':'Chrome ⋮ → Install app')}};
+const canvas=$('mouseCanvas');const ctx=canvas.getContext('2d');let W,H,mx=-99,my=-99,gx=0,gy=0;function resize(){W=canvas.width=innerWidth;H=canvas.height=innerHeight}addEventListener('resize',resize);resize();addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY});addEventListener('touchmove',e=>{if(e.touches[0]){mx=e.touches[0].clientX;my=e.touches[0].clientY}},{passive:true});(function loop(){ctx.clearRect(0,0,W,H);gx+=(mx-gx)*0.12;gy+=(my-gy)*0.12;const g=ctx.createRadialGradient(gx,gy,0,gx,gy,80);g.addColorStop(0,'rgba(236,72,153,0.12)');g.addColorStop(1,'transparent');ctx.beginPath();ctx.arc(gx,gy,80,0,Math.PI*2);ctx.fillStyle=g;ctx.fill();requestAnimationFrame(loop)})();
 </script>
 </body>
 </html>
