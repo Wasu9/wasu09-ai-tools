@@ -3,141 +3,198 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"/>
-<title>Wasu09 — Recreate Video Pro</title>
+<title>Wasu09 — Prompt Guide</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,600;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 <style>
-:root{--glass-bg:#00000035;--glass-border:#ffffff22}
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Plus Jakarta Sans',sans-serif;background:#000;color:#fff;min-height:100vh;overflow-x:hidden;padding-bottom:env(safe-area-inset-bottom,0)}
-.bg-container{position:fixed;inset:0;z-index:0}
-.bg-video{width:100%;height:100%;object-fit:cover;filter:brightness(0.42) contrast(1.08)}
-.bg-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0.55),rgba(0,0,0,0.9))}
-.ultra-glass{background:var(--glass-bg);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--glass-border)}
-.heading-cinematic{font-family:'Playfair Display',serif;font-style:italic}
-.field{width:100%;background:rgba(0,0,0,0.5);border:1px solid rgba(255,255,255,0.16);border-radius:0.85rem;padding:0.65rem 0.85rem;font-size:16px;color:#fff;outline:none;min-height:44px}
-.field:focus{border-color:rgba(236,72,153,0.55)}
-.field::placeholder{color:rgba(255,255,255,0.3)}
-.label{font-size:10px;text-transform:uppercase;letter-spacing:0.07em;color:rgba(255,255,255,0.42);margin-bottom:0.3rem}
-.prompt-box{background:rgba(0,0,0,0.55);border:1px solid rgba(255,255,255,0.12);border-radius:0.75rem;padding:0.8rem;font-size:12px;line-height:1.55;color:rgba(255,255,255,0.88);white-space:pre-wrap;max-height:260px;overflow-y:auto;-webkit-overflow-scrolling:touch}
-.upload-box{border:1px dashed rgba(236,72,153,0.4);border-radius:0.85rem;padding:0.9rem;text-align:center;cursor:pointer;background:rgba(0,0,0,0.28);min-height:96px;display:flex;flex-direction:column;align-items:center;justify-content:center}
-.chip{flex:1;min-width:0;padding:0.55rem 0.35rem;border-radius:0.75rem;font-size:11px;font-weight:600;border:1px solid rgba(255,255,255,0.14);background:rgba(0,0,0,0.35);color:rgba(255,255,255,0.5)}
-.chip.active{background:linear-gradient(135deg,#db2777,#e11d48);border-color:rgba(251,113,133,0.5);color:#fff}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:#000;color:#fff;min-height:100vh;overflow-x:hidden}
+.glass{background:#00000038;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid #ffffff20}
+.field{width:100%;background:#00000080;border:1px solid #ffffff28;border-radius:.85rem;padding:.65rem .85rem;font-size:16px;color:#fff;outline:none;min-height:44px}
+.field:focus{border-color:#f472b6}
+.label{font-size:10px;text-transform:uppercase;letter-spacing:.07em;color:#ffffff6a;margin-bottom:.3rem}
+.prompt{background:#00000090;border:1px solid #ffffff18;border-radius:.75rem;padding:.8rem;font-size:12px;line-height:1.55;color:#ffffffe0;white-space:pre-wrap;max-height:220px;overflow-y:auto}
+.upload{border:1px dashed #f472b666;border-radius:.85rem;padding:.85rem;text-align:center;cursor:pointer;background:#00000040;min-height:88px;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.chip{padding:.45rem .7rem;border-radius:999px;font-size:11px;font-weight:600;border:1px solid #ffffff22;background:#00000050;color:#ffffff70}
+.chip.on{background:linear-gradient(135deg,#db2777,#e11d48);border-color:#fb7185;color:#fff}
+.tab{flex:1;padding:.7rem;font-size:12px;font-weight:700;border:1px solid #ffffff18;background:#00000040;color:#ffffff60}
+.tab.on{background:linear-gradient(135deg,#9d174d,#be123c);color:#fff;border-color:#fb7185}
 button,label{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
-main{padding-left:max(0.75rem,env(safe-area-inset-left));padding-right:max(0.75rem,env(safe-area-inset-right));padding-bottom:max(5.5rem,env(safe-area-inset-bottom))}
-.section-title{font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:rgba(255,255,255,0.55);margin:0.75rem 0 0.4rem}
+.heading{font-family:'Playfair Display',serif;font-style:italic}
+main{padding:1.25rem max(.75rem,env(safe-area-inset-left)) 5.5rem max(.75rem,env(safe-area-inset-right))}
 </style>
 <link rel="manifest" href="./manifest.json"/>
 <meta name="theme-color" content="#ec4899"/>
 <link rel="apple-touch-icon" href="./icon.svg"/>
 </head>
 <body>
-<div class="bg-container"><video class="bg-video" autoplay muted loop playsinline><source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260416_101255_3099d3e4-d0cf-4e59-9666-97fbf521ac71.mp4" type="video/mp4"/></video><div class="bg-overlay"></div></div>
-<main class="relative z-10 max-w-3xl mx-auto px-3 py-5 min-h-screen">
-<header class="text-center mb-5"><p class="text-[10px] tracking-[0.3em] text-gray-400 uppercase font-bold">Wasu09</p>
-<h1 class="heading-cinematic text-3xl font-semibold text-white">Recreate Video Pro</h1>
-<p class="text-xs text-white/45 mt-1">UGC · Dance Reel · Full timeline prompts</p></header>
+<div style="position:fixed;inset:0;z-index:0"><video autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;filter:brightness(.4)"><source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260416_101255_3099d3e4-d0cf-4e59-9666-97fbf521ac71.mp4"/></video><div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.55),rgba(0,0,0,.92))"></div></div>
 
-<section class="ultra-glass rounded-2xl p-4 border border-white/12 mb-4">
-<div class="flex items-center justify-between mb-2"><span class="text-sm font-semibold"><i class="fas fa-user text-pink-400 mr-1"></i> Model / Face (I1)</span>
-<span id="lockBadge" class="text-[10px] px-2 py-0.5 rounded-full border border-white/20 text-white/40">NOT SET</span></div>
+<main class="relative z-10 max-w-2xl mx-auto">
+<header class="text-center mb-5">
+<p class="text-[10px] tracking-[0.3em] text-gray-400 uppercase font-bold">Wasu09</p>
+<h1 class="heading text-3xl font-semibold">Prompt Guide</h1>
+<p class="text-xs text-white/45 mt-1">UGC Ad · Video Recreate · Image + Video prompts alag</p>
+</header>
+
+<section class="glass rounded-2xl p-4 mb-4">
+<div class="flex items-center justify-between mb-2">
+<span class="text-sm font-semibold"><i class="fas fa-user text-pink-400 mr-1"></i> Model face (I1)</span>
+<span id="badge" class="text-[10px] px-2 py-0.5 rounded-full border border-white/20 text-white/40">NOT SET</span>
+</div>
 <div class="flex flex-wrap gap-2 items-center">
-<label class="cursor-pointer border border-dashed border-pink-400/40 rounded-xl px-3 py-2.5 text-xs flex items-center gap-1.5 min-h-[44px]"><i class="fas fa-camera text-pink-400"></i> Face
-<input type="file" id="faceUpload" accept="image/*" multiple class="hidden"/></label>
-<div id="facePreviews" class="flex flex-wrap gap-1.5"></div>
-<input id="identityDesc" class="field flex-1 min-w-[140px]" placeholder="Face lock: age, hair, features..."/>
+<label class="cursor-pointer border border-dashed border-pink-400/40 rounded-xl px-3 py-2.5 text-xs flex items-center gap-1.5 min-h-[44px]">
+<i class="fas fa-camera text-pink-400"></i> Face
+<input type="file" id="faceUp" accept="image/*" multiple class="hidden"/>
+</label>
+<div id="faces" class="flex gap-1.5 flex-wrap"></div>
+<input id="idDesc" class="field flex-1 min-w-[120px]" placeholder="Optional: age, hair, skin..."/>
 <button id="lockBtn" class="px-4 py-2.5 rounded-xl text-xs font-semibold bg-pink-600 min-h-[44px]">Lock</button>
-</div></section>
-
-<section class="ultra-glass rounded-2xl p-4 border border-pink-400/25 mb-5">
-<p class="label">1 · Content type</p>
-<div class="flex gap-1.5 mb-4" id="typeRow">
-<button type="button" data-type="ugc" class="chip active">UGC / Ad</button>
-<button type="button" data-type="dance" class="chip">Dance / Reel</button>
-<button type="button" data-type="general" class="chip">General</button>
-</div>
-
-<p class="label">2 · Video + target</p>
-<div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
-<div><label class="upload-box block"><input type="file" id="refVideo" accept="video/*" class="hidden"/>
-<div id="videoPreviewWrap" class="hidden w-full mb-1"><video id="videoPreview" class="w-full max-h-36 rounded-lg" controls muted playsinline></video>
-<img id="firstFrameThumb" class="w-full max-h-20 object-contain rounded mt-1 hidden border border-white/15"/><canvas id="firstFrameCanvas" class="hidden"></canvas></div>
-<div id="videoUploadHint"><i class="fas fa-video text-pink-400 text-lg mb-1"></i><p class="text-xs text-white/60">Video (V1)</p></div></label>
-<p id="videoMeta" class="text-[10px] text-white/35 mt-1 hidden"></p></div>
-<div><label class="upload-box block"><input type="file" id="refImage" accept="image/*" class="hidden"/>
-<div id="imagePreviewWrap" class="hidden w-full mb-1"><img id="targetImgPreview" class="w-full max-h-36 object-contain rounded-lg border border-white/15"/></div>
-<div id="imageUploadHint"><i class="fas fa-image text-pink-400 text-lg mb-1"></i><p class="text-xs text-white/60">Target / product</p></div></label></div>
-</div>
-
-<p class="section-title">3 · Frame-level detail (jitna accurate utna similar)</p>
-<div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-2">
-<div><p class="label">Camera movement</p><input id="tlCamera" class="field" placeholder="static → slow push-in / pan left..."/></div>
-<div><p class="label">Framing / angle</p><input id="tlFrame" class="field" placeholder="MCU, eye-level, subject center"/></div>
-</div>
-<div class="mb-2"><p class="label">Body & actions (timeline)</p>
-<textarea id="tlActions" rows="3" class="field" placeholder="0-1s: face camera&#10;1-3s: head left, hand to hair&#10;3-5s: smile, settle"></textarea></div>
-<div class="mb-2"><p class="label">Face & expression</p>
-<textarea id="tlFace" rows="2" class="field" placeholder="soft smile; eyes to camera; natural blink"></textarea></div>
-<div class="mb-2" id="productBlock"><p class="label">Hands / product (UGC)</p>
-<textarea id="tlHands" rows="2" class="field" placeholder="product right hand; label to camera at 2s"></textarea></div>
-<div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-2">
-<div><p class="label">Lighting & set</p><input id="tlLight" class="field" placeholder="soft key left, warm room"/></div>
-<div><p class="label">Audio</p><input id="tlAudio" class="field" placeholder="talk / beat / silence"/></div>
-</div>
-<div class="grid grid-cols-2 gap-2 mb-2">
-<div><p class="label">Duration</p><input id="tlDur" type="number" value="5" min="1" max="60" class="field"/></div>
-<div><p class="label">Aspect</p><select id="tlAspect" class="field"><option value="source">Source</option><option value="9:16">9:16</option><option value="16:9">16:9</option><option value="1:1">1:1</option></select></div>
-</div>
-<div class="mb-4" id="productNameBlock"><p class="label">Product (UGC)</p><input id="tlProduct" class="field" placeholder="pink lipstick, gold cap"/></div>
-
-<button id="btnGen" class="w-full py-3.5 rounded-xl text-sm font-bold bg-gradient-to-r from-pink-600 via-rose-600 to-fuchsia-600 flex items-center justify-center gap-2 min-h-[48px]"><i class="fas fa-bolt"></i> Generate Full Package</button>
-<p id="status" class="text-[10px] text-white/40 text-center mt-2 hidden"></p>
-
-<div id="results" class="hidden mt-5 space-y-3">
-<div class="rounded-xl border border-white/12 bg-black/35 p-3"><div class="flex justify-between mb-1"><span class="text-[10px] font-semibold text-white/60">CONTRACT</span><button data-copy="outContract" class="copy-btn text-[10px] text-pink-300 underline">Copy</button></div><div id="outContract" class="prompt-box max-h-28 text-[11px]"></div></div>
-<div class="rounded-xl border border-amber-400/30 bg-amber-950/15 p-3"><div class="flex justify-between mb-1"><span class="text-xs font-semibold text-amber-200">STARTING FRAME GUIDE</span><button data-copy="outStartGuide" class="copy-btn text-[10px] px-2 py-1 rounded-lg bg-amber-500/20 text-amber-200 border border-amber-400/30">Copy</button></div><p class="text-[10px] text-white/40 mb-1">Model image = video first frame jaisa</p><div id="outStartGuide" class="prompt-box"></div></div>
-<div class="rounded-xl border border-cyan-400/30 bg-cyan-950/15 p-3"><div class="flex justify-between mb-1"><span class="text-xs font-semibold text-cyan-200">1 · ANCHOR IMAGE PROMPT</span><button data-copy="outAnchor" class="copy-btn text-[10px] px-2 py-1 rounded-lg bg-cyan-500/20 text-cyan-200 border border-cyan-400/30">Copy</button></div><div id="outAnchor" class="prompt-box"></div></div>
-<div class="rounded-xl border border-violet-400/30 bg-violet-950/15 p-3"><div class="flex justify-between mb-1"><span class="text-xs font-semibold text-violet-200">2 · FULL VIDEO PROMPT</span><button data-copy="outFull" class="copy-btn text-[10px] px-2 py-1 rounded-lg bg-violet-500/20 text-violet-200 border border-violet-400/30">Copy</button></div><div id="outFull" class="prompt-box" style="max-height:320px"></div></div>
-<div class="rounded-xl border border-rose-400/25 bg-rose-950/15 p-3"><div class="flex justify-between mb-1"><span class="text-[10px] font-semibold text-rose-200/90">NEGATIVE</span><button data-copy="outNeg" class="copy-btn text-[10px] text-rose-300 underline">Copy</button></div><div id="outNeg" class="prompt-box max-h-24 text-[11px]"></div></div>
-<p class="text-[10px] text-white/35">Guide → Anchor still → Full prompt + negative → I2V</p>
 </div>
 </section>
+
+<div class="flex gap-2 mb-4">
+<button type="button" class="tab on rounded-xl" data-tab="ugc">UGC Ad</button>
+<button type="button" class="tab rounded-xl" data-tab="vid">Video Recreate</button>
+</div>
+
+<section id="panelUgc" class="glass rounded-2xl p-4 mb-4">
+<p class="text-xs text-white/50 mb-3">Product + model → ad · Hindi dialogue · <b class="text-white/70">image & video prompt alag</b></p>
+<label class="upload block mb-3">
+<input type="file" id="prodUp" accept="image/*" class="hidden"/>
+<div id="prodPrev" class="hidden"><img id="prodImg" class="max-h-28 mx-auto rounded-lg"/></div>
+<div id="prodHint"><i class="fas fa-box text-pink-400 text-lg mb-1"></i><p class="text-xs text-white/55">Product image</p></div>
+</label>
+<div class="grid grid-cols-2 gap-2 mb-2">
+<div><p class="label">Style</p>
+<select id="ugcStyle" class="field">
+<option value="talking">Talking head</option>
+<option value="demo">Product demo</option>
+<option value="unbox">Unboxing</option>
+<option value="grwm">GRWM</option>
+</select></div>
+<div><p class="label">Tone</p>
+<select id="ugcTone" class="field">
+<option value="dost">Dosti / casual</option>
+<option value="premium">Premium</option>
+<option value="funny">Funny</option>
+<option value="serious">Serious</option>
+</select></div>
+</div>
+<div class="grid grid-cols-2 gap-2 mb-3">
+<div><p class="label">Length</p>
+<select id="ugcDur" class="field">
+<option value="8">8s</option>
+<option value="10" selected>10s</option>
+<option value="15">15s</option>
+</select></div>
+<div><p class="label">Product name</p>
+<input id="ugcName" class="field" placeholder="e.g. Rose matte lipstick"/></div>
+</div>
+<button id="ugcGen" class="w-full py-3.5 rounded-xl text-sm font-bold bg-gradient-to-r from-pink-600 to-rose-600 min-h-[48px]"><i class="fas fa-bolt mr-1"></i> Generate UGC Package</button>
+<div id="ugcOut" class="hidden mt-4 space-y-3">
+<div class="rounded-xl border border-cyan-400/30 bg-cyan-950/20 p-3">
+<div class="flex justify-between mb-1"><span class="text-xs font-semibold text-cyan-200">IMAGE PROMPT · Hero still</span>
+<button data-c="ugcImg" class="copy text-[10px] px-2 py-1 rounded-lg bg-cyan-500/20 text-cyan-200 border border-cyan-400/30">Copy</button></div>
+<div id="ugcImg" class="prompt"></div></div>
+<div class="rounded-xl border border-violet-400/30 bg-violet-950/20 p-3">
+<div class="flex justify-between mb-1"><span class="text-xs font-semibold text-violet-200">VIDEO PROMPT · Ad</span>
+<button data-c="ugcVid" class="copy text-[10px] px-2 py-1 rounded-lg bg-violet-500/20 text-violet-200 border border-violet-400/30">Copy</button></div>
+<div id="ugcVid" class="prompt"></div></div>
+<div class="rounded-xl border border-amber-400/30 bg-amber-950/15 p-3">
+<div class="flex justify-between mb-1"><span class="text-xs font-semibold text-amber-200">Hindi dialogue options</span>
+<button data-c="ugcDlg" class="copy text-[10px] text-amber-200 underline">Copy</button></div>
+<div id="ugcDlg" class="prompt max-h-40"></div></div>
+<div class="rounded-xl border border-rose-400/20 p-3">
+<div class="flex justify-between mb-1"><span class="text-[10px] font-semibold text-rose-200">NEGATIVE</span>
+<button data-c="ugcNeg" class="copy text-[10px] text-rose-300 underline">Copy</button></div>
+<div id="ugcNeg" class="prompt max-h-20 text-[11px]"></div></div>
+</div>
+</section>
+
+<section id="panelVid" class="glass rounded-2xl p-4 mb-4 hidden">
+<p class="text-xs text-white/50 mb-3">Video → recreate prompts · 10s default · lamba = 2 parts · <b class="text-white/70">image & video alag</b></p>
+<p class="label">Pehle choose · Image type</p>
+<div class="flex gap-2 mb-3" id="imgTypeRow">
+<button type="button" data-it="first" class="chip on flex-1">First frame</button>
+<button type="button" data-it="sheet" class="chip flex-1">Character sheet</button>
+</div>
+<label class="upload block mb-3">
+<input type="file" id="refVid" accept="video/*" class="hidden"/>
+<div id="vidPrev" class="hidden w-full"><video id="vidEl" class="w-full max-h-36 rounded-lg" controls muted playsinline></video>
+<canvas id="ffC" class="hidden"></canvas>
+<img id="ffThumb" class="max-h-20 mx-auto mt-1 rounded hidden border border-white/15"/></div>
+<div id="vidHint"><i class="fas fa-video text-pink-400 text-lg mb-1"></i><p class="text-xs text-white/55">Reference video</p></div>
+</label>
+<p id="vidMeta" class="text-[10px] text-white/35 mb-2 hidden"></p>
+<div class="mb-2"><p class="label">Motion notes (optional)</p>
+<textarea id="vidNotes" rows="2" class="field" placeholder="0-3s look camera, 3-7s turn, camera push-in..."></textarea></div>
+<div class="grid grid-cols-2 gap-2 mb-3">
+<div><p class="label">Target length</p>
+<select id="vidDur" class="field">
+<option value="10" selected>10s (default)</option>
+<option value="8">8s</option>
+<option value="15">15s → 2 parts</option>
+<option value="20">20s → 2 parts</option>
+</select></div>
+<div><p class="label">Aspect</p>
+<select id="vidAspect" class="field">
+<option value="9:16">9:16</option>
+<option value="16:9">16:9</option>
+<option value="1:1">1:1</option>
+</select></div>
+</div>
+<button id="vidGen" class="w-full py-3.5 rounded-xl text-sm font-bold bg-gradient-to-r from-violet-600 to-fuchsia-600 min-h-[48px]"><i class="fas fa-bolt mr-1"></i> Generate Recreate Package</button>
+<div id="vidOut" class="hidden mt-4 space-y-3">
+<div class="rounded-xl border border-cyan-400/30 bg-cyan-950/20 p-3">
+<div class="flex justify-between mb-1"><span class="text-xs font-semibold text-cyan-200" id="imgPromptTitle">IMAGE PROMPT · First frame</span>
+<button data-c="vImg" class="copy text-[10px] px-2 py-1 rounded-lg bg-cyan-500/20 text-cyan-200 border border-cyan-400/30">Copy</button></div>
+<div id="vImg" class="prompt"></div></div>
+<div class="rounded-xl border border-violet-400/30 bg-violet-950/20 p-3">
+<div class="flex justify-between mb-1"><span class="text-xs font-semibold text-violet-200" id="vidPromptTitle">VIDEO PROMPT · Part 1</span>
+<button data-c="vVid1" class="copy text-[10px] px-2 py-1 rounded-lg bg-violet-500/20 text-violet-200 border border-violet-400/30">Copy</button></div>
+<div id="vVid1" class="prompt"></div></div>
+<div id="part2Wrap" class="hidden rounded-xl border border-fuchsia-400/30 bg-fuchsia-950/15 p-3">
+<div class="flex justify-between mb-1"><span class="text-xs font-semibold text-fuchsia-200">VIDEO PROMPT · Part 2</span>
+<button data-c="vVid2" class="copy text-[10px] px-2 py-1 rounded-lg bg-fuchsia-500/20 text-fuchsia-200 border border-fuchsia-400/30">Copy</button></div>
+<div id="vVid2" class="prompt"></div></div>
+<div class="rounded-xl border border-rose-400/20 p-3">
+<div class="flex justify-between mb-1"><span class="text-[10px] font-semibold text-rose-200">NEGATIVE</span>
+<button data-c="vNeg" class="copy text-[10px] text-rose-300 underline">Copy</button></div>
+<div id="vNeg" class="prompt max-h-20 text-[11px]"></div></div>
+</div>
+</section>
+
+<p class="text-[10px] text-white/25 text-center">Image prompt alag · Video prompt alag · First frame / Character sheet</p>
 </main>
 
 <div class="fixed bottom-0 left-0 right-0 z-50 p-3 bg-gradient-to-t from-black via-black/95 to-transparent sm:hidden">
-<button id="installBtn" class="w-full py-3.5 rounded-2xl text-sm font-bold bg-gradient-to-r from-pink-600 to-rose-600 border border-pink-400/30"><i class="fas fa-download"></i> Install App</button>
+<button id="installBtn" class="w-full py-3 rounded-2xl text-sm font-bold bg-gradient-to-r from-pink-600 to-rose-600 border border-pink-400/30"><i class="fas fa-download mr-1"></i> Install App</button>
 </div>
-<canvas id="mouseCanvas" style="position:fixed;inset:0;width:100vw;height:100vh;pointer-events:none;z-index:9999;mix-blend-mode:screen"></canvas>
+
 <script>
 let faces=JSON.parse(localStorage.getItem('wasu09_faces')||'[]');
 let identity=JSON.parse(localStorage.getItem('wasu09_identity')||'null');
-let targetImageData=null,refVideoMeta={name:'',duration:0},contentType='ugc';
-window.deferredPrompt=null;
+let prodData=null,vidMeta={name:'',dur:0},imgType='first';
 const $=id=>document.getElementById(id);
-function fileToDataURL(f){return new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(r.result);r.onerror=rej;r.readAsDataURL(f)})}
-function renderFaces(){const box=$('facePreviews');box.innerHTML='';faces.forEach((src,i)=>{const d=document.createElement('div');d.className='relative';d.innerHTML='<img src="'+src+'" class="w-10 h-10 rounded-lg object-cover border border-white/25"/><button data-i="'+i+'" class="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-red-500 text-[10px] flex items-center justify-center rm">×</button>';box.appendChild(d)});box.querySelectorAll('.rm').forEach(b=>b.onclick=()=>{faces.splice(+b.dataset.i,1);localStorage.setItem('wasu09_faces',JSON.stringify(faces));renderFaces();badge()})}
-function badge(){const ok=faces.length||targetImageData||identity?.desc;$('lockBadge').textContent=ok?'READY':'NOT SET';$('lockBadge').className='text-[10px] px-2 py-0.5 rounded-full border '+(ok?'bg-emerald-500/20 text-emerald-300 border-emerald-400/40':'border-white/20 text-white/40')}
-renderFaces();badge();if(identity?.desc)$('identityDesc').value=identity.desc;
-$('faceUpload').onchange=async e=>{for(const f of [...e.target.files].slice(0,4-faces.length))faces.push(await fileToDataURL(f));localStorage.setItem('wasu09_faces',JSON.stringify(faces));renderFaces();badge();e.target.value=''};
-$('lockBtn').onclick=()=>{identity={locked:true,desc:($('identityDesc').value||'').trim()};localStorage.setItem('wasu09_identity',JSON.stringify(identity));localStorage.setItem('wasu09_faces',JSON.stringify(faces));badge()};
-document.querySelectorAll('#typeRow .chip').forEach(b=>{b.onclick=()=>{document.querySelectorAll('#typeRow .chip').forEach(x=>x.classList.remove('active'));b.classList.add('active');contentType=b.dataset.type;const u=contentType==='ugc';$('productBlock').style.display=u?'':'none';$('productNameBlock').style.display=u?'':'none'}});
-$('refImage').onchange=async e=>{const f=e.target.files?.[0];if(!f)return;targetImageData=await fileToDataURL(f);$('targetImgPreview').src=targetImageData;$('imagePreviewWrap').classList.remove('hidden');$('imageUploadHint').classList.add('hidden');badge()};
-$('refVideo').onchange=e=>{const f=e.target.files?.[0];if(!f)return;const vid=$('videoPreview');vid.src=URL.createObjectURL(f);$('videoPreviewWrap').classList.remove('hidden');$('videoUploadHint').classList.add('hidden');refVideoMeta.name=f.name;vid.onloadedmetadata=()=>{refVideoMeta.duration=vid.duration||0;if(refVideoMeta.duration)$('tlDur').value=Math.min(30,Math.round(refVideoMeta.duration));$('videoMeta').classList.remove('hidden');$('videoMeta').textContent=refVideoMeta.duration.toFixed(1)+'s';vid.currentTime=0.05};vid.onseeked=()=>{try{const c=$('firstFrameCanvas');c.width=vid.videoWidth;c.height=vid.videoHeight;c.getContext('2d').drawImage(vid,0,0);const t=$('firstFrameThumb');t.src=c.toDataURL('image/jpeg',0.85);t.classList.remove('hidden')}catch(err){}}};
-function idText(){if(identity?.desc)return identity.desc;if(faces.length||targetImageData)return'exact person from I1 — same face structure, eyes, nose, lips, jaw, skin, hair';return'target from I1'}
-function buildContract(){const p=($('tlProduct').value||'').trim();let L=['CONTENT TYPE: '+contentType.toUpperCase(),'V1=video · I1=face'+(contentType==='ugc'?' · P1=product'+(p?': '+p:''):''),'',contentType==='ugc'?'CHANGE: face+product | PRESERVE: body,set,camera,timing':contentType==='dance'?'CHANGE: face only | PRESERVE: choreography,camera energy,outfit,set':'CHANGE: face | PRESERVE: camera,set,timing','ADAPT: shadows, grip, face boundary only'];return L.join('\n')}
-function buildStartGuide(){const cam=($('tlCamera').value||'match source').trim();const fr=($('tlFrame').value||'match source').trim();const face=($('tlFace').value||'opening expression').trim();const act=($('tlActions').value||'').trim();const first=act.split('\n')[0]||act||'opening pose from V1 frame 0';const hands=($('tlHands').value||'match V1').trim();const light=($('tlLight').value||'match V1').trim();return'STARTING FRAME GUIDE\n\nGOAL: I1 model = V1 first frame pose + crop.\n\nIDENTITY: '+idText()+'\nExpression t=0: '+face.split('.')[0]+'\n\nPOSE: '+first+'\nHands: '+hands+'\n\nCAMERA: '+fr+' | '+cam+'\nLIGHT: '+light+'\n\nCHECK: same face · pose match · crop match · hands OK'}
-function buildAnchor(){const act=($('tlActions').value||'').trim();const open=act.split('\n')[0]||act||'V1 opening pose';const product=($('tlProduct').value||'').trim();const aspect=$('tlAspect').value;let extra=contentType==='ugc'&&product?'\nPRODUCT LOCK: '+product:contentType==='dance'?'\nFull-body dance stance from V1; face only.':'';return'ANCHOR IMAGE PROMPT\n\nFrame 0 still only.\n\nIDENTITY LOCK: '+idText()+'\n\nPOSE: '+open+'\nExpression: '+(($('tlFace').value||'match V1').trim())+'\nHands: '+(($('tlHands').value||'match V1').trim())+'\n\nFraming: '+(($('tlFrame').value||'match V1').trim())+'\nCamera: '+(($('tlCamera').value||'match V1').trim())+'\nAspect: '+(aspect==='source'?'source':aspect)+'\nLight: '+(($('tlLight').value||'match V1').trim())+extra+'\n\nPhotoreal, correct hands, no collage. STATIC.'}
-function buildFull(){const dur=($('tlDur').value||'5').trim();const aspect=$('tlAspect').value;const product=($('tlProduct').value||'').trim();const typeB=contentType==='ugc'?'TYPE=UGC/AD · face+product · no random dance':contentType==='dance'?'TYPE=DANCE/REEL · face only · full choreography timing':'TYPE=GENERAL · face · preserve camera+performance';return'FULL RECREATION — point by point\n~'+dur+'s | '+(aspect==='source'?'source':aspect)+'\n'+(refVideoMeta.name?'V1: '+refVideoMeta.name:'')+'\n\n'+typeB+'\n\nIDENTITY LOCK: '+idText()+'\n'+(contentType==='ugc'&&product?'PRODUCT LOCK: '+product+'\n':'')+'\nSTART FRAME: exact anchor. No change at frame 0.\n\nFACE / EXPRESSION:\n'+(($('tlFace').value||'Match V1 expressions').trim())+'\n\nBODY / ACTIONS:\n'+(($('tlActions').value||'Match V1 motion timeline').trim())+'\n\nCAMERA:\n'+(($('tlCamera').value||'Match V1').trim())+' | '+(($('tlFrame').value||'').trim())+'\n\nLIGHT: '+(($('tlLight').value||'stable').trim())+'\nAUDIO: '+(($('tlAudio').value||'source-like').trim())+'\n\nPHYSICS: natural joints, correct fingers.\nEND: final timeline pose.'}
-function buildNeg(){return contentType==='dance'?'identity drift, simplified dance, skipped steps, extra limbs, warped hands, wrong camera cuts, rubber limbs':contentType==='ugc'?'identity drift, wrong product, product duplicate, label gibberish, extra fingers, invented dance, text artifacts':'identity drift, extra fingers, invented gestures, unwanted camera, background morph, flicker'}
-$('btnGen').onclick=()=>{if(!(faces.length||targetImageData||identity?.desc)){alert('Pehle face lock karo');return}$('status').classList.remove('hidden');$('outContract').textContent=buildContract();$('outStartGuide').textContent=buildStartGuide();$('outAnchor').textContent=buildAnchor();$('outFull').textContent=buildFull();$('outNeg').textContent=buildNeg();$('results').classList.remove('hidden');$('status').textContent='Ready';$('results').scrollIntoView({behavior:'smooth',block:'nearest'})};
-document.querySelectorAll('.copy-btn').forEach(btn=>{btn.onclick=()=>navigator.clipboard.writeText($(btn.dataset.copy).textContent).then(()=>{const t=btn.textContent;btn.textContent='Copied!';setTimeout(()=>btn.textContent=t,1200)})});
+function f2d(f){return new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(r.result);r.onerror=rej;r.readAsDataURL(f)})}
+function idT(){if(identity?.desc)return identity.desc;if(faces.length)return'exact person from I1 face refs — same face, eyes, nose, lips, jaw, skin, hair';return'target model from I1'}
+function badge(){const ok=faces.length||identity?.desc;$('badge').textContent=ok?'READY':'NOT SET';$('badge').className='text-[10px] px-2 py-0.5 rounded-full border '+(ok?'bg-emerald-500/20 text-emerald-300 border-emerald-400/40':'border-white/20 text-white/40')}
+function renderF(){const b=$('faces');b.innerHTML='';faces.forEach((s,i)=>{const d=document.createElement('div');d.className='relative';d.innerHTML='<img src="'+s+'" class="w-10 h-10 rounded-lg object-cover border border-white/25"/><button data-i="'+i+'" class="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-red-500 text-[10px] flex items-center justify-center rm">×</button>';b.appendChild(d)});b.querySelectorAll('.rm').forEach(x=>x.onclick=()=>{faces.splice(+x.dataset.i,1);localStorage.setItem('wasu09_faces',JSON.stringify(faces));renderF();badge()})}
+renderF();badge();if(identity?.desc)$('idDesc').value=identity.desc;
+$('faceUp').onchange=async e=>{for(const f of [...e.target.files].slice(0,4-faces.length))faces.push(await f2d(f));localStorage.setItem('wasu09_faces',JSON.stringify(faces));renderF();badge();e.target.value=''};
+$('lockBtn').onclick=()=>{identity={locked:true,desc:($('idDesc').value||'').trim()};localStorage.setItem('wasu09_identity',JSON.stringify(identity));localStorage.setItem('wasu09_faces',JSON.stringify(faces));badge()};
+document.querySelectorAll('.tab').forEach(t=>{t.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));t.classList.add('on');const ugc=t.dataset.tab==='ugc';$('panelUgc').classList.toggle('hidden',!ugc);$('panelVid').classList.toggle('hidden',ugc)}});
+document.querySelectorAll('#imgTypeRow .chip').forEach(c=>{c.onclick=()=>{document.querySelectorAll('#imgTypeRow .chip').forEach(x=>x.classList.remove('on'));c.classList.add('on');imgType=c.dataset.it;$('imgPromptTitle').textContent=imgType==='sheet'?'IMAGE PROMPT · Character sheet':'IMAGE PROMPT · First frame'}});
+$('prodUp').onchange=async e=>{const f=e.target.files?.[0];if(!f)return;prodData=await f2d(f);$('prodImg').src=prodData;$('prodPrev').classList.remove('hidden');$('prodHint').classList.add('hidden')};
+$('refVid').onchange=e=>{const f=e.target.files?.[0];if(!f)return;const v=$('vidEl');v.src=URL.createObjectURL(f);$('vidPrev').classList.remove('hidden');$('vidHint').classList.add('hidden');vidMeta.name=f.name;v.onloadedmetadata=()=>{vidMeta.dur=v.duration||0;$('vidMeta').classList.remove('hidden');$('vidMeta').textContent=vidMeta.dur.toFixed(1)+'s · '+f.name;if(vidMeta.dur>12)$('vidDur').value='15';v.currentTime=0.05};v.onseeked=()=>{try{const c=$('ffC');c.width=v.videoWidth;c.height=v.videoHeight;c.getContext('2d').drawImage(v,0,0);const t=$('ffThumb');t.src=c.toDataURL('image/jpeg',0.85);t.classList.remove('hidden')}catch(e){}}};
+$('ugcGen').onclick=()=>{if(!faces.length&&!identity?.desc){alert('Pehle model face lock karo');return}const name=($('ugcName').value||'the product').trim();const style=$('ugcStyle').value,tone=$('ugcTone').value,dur=$('ugcDur').value;const id=idT();const styleMap={talking:'talking-head to camera',demo:'hands-on product demo',unbox:'unboxing reveal',grwm:'get-ready-with-me'};const toneMap={dost:'friendly Hindi UGC, natural, best-friend energy',premium:'polished premium beauty ad',funny:'light playful humour',serious:'confident clear claims'};$('ugcImg').textContent='IMAGE PROMPT — UGC hero still\n\nSTRICT IDENTITY: '+id+'\nProduct: '+name+' (from product reference — exact packaging)\n\nShot: vertical 9:16, '+styleMap[style]+', medium close-up.\nModel holds/shows product clearly, label readable.\nTone: '+toneMap[tone]+'.\nSoft beauty light, clean bg, photoreal, sharp product.\nNo text overlay, correct hands.';$('ugcVid').textContent='VIDEO PROMPT — '+dur+'s UGC ad\n\nIDENTITY LOCK: '+id+'\nPRODUCT LOCK: '+name+'\n\nDuration ~'+dur+'s · 9:16 · '+styleMap[style]+' · '+toneMap[tone]+'\n\nTIMELINE:\n0–2s HOOK: face camera, product enters.\n2–'+(Math.max(3,dur-3))+'s DEMO: show product, natural hands, talk energy.\nLast 2–3s CTA: product to camera, settle.\n\nCamera stable / slight push-in. Start from IMAGE hero frame.\nNo random dance. Natural hands.';const dlg={dost:['Arre yeh '+name+' try kiya? Texture bahut smooth hai!','Sacchi — '+name+' ne glow next level kar diya. Link bio!','Ek baar laga ke dekho '+name+'.'],premium:[name+' — refined formula, visible finish. Everyday essential.','Clean beauty feel with '+name+'. Polished, long-lasting.',name+' ne wohi finish di jo chahiye thi.'],funny:['Pehle socha hype hai… phir '+name+' try kiya.','Warning: '+name+' addictive ho sakta hai 😅','Main bas ek din try boli thi. Ab roz '+name+'!'],serious:[name+' se smoother even look. Consistent use matter karta hai.','Simple routine: cleanse, '+name+', done.','Transparent choice — '+name+' jab finish clear chahiye.']};$('ugcDlg').textContent=(dlg[tone]||dlg.dost).map((t,i)=>(i+1)+'. '+t).join('\n\n')+'\n\nCTA: Link bio · Ab try karo · Comment YES';$('ugcNeg').textContent='identity drift, wrong product, extra fingers, text overlay, watermark, random dance, label gibberish';$('ugcOut').classList.remove('hidden');$('ugcOut').scrollIntoView({behavior:'smooth',block:'nearest'})};
+$('vidGen').onclick=()=>{if(!faces.length&&!identity?.desc){alert('Pehle model face lock karo');return}const notes=($('vidNotes').value||'').trim();const dur=+$('vidDur').value||10;const aspect=$('vidAspect').value;const id=idT();const two=dur>10;const half=Math.ceil(dur/2);if(imgType==='sheet'){$('vImg').textContent='IMAGE PROMPT — Character sheet\n\nSTRICT IDENTITY: '+id+'\n\nNeutral gray sheet:\n• Front face neutral\n• 3/4 view\n• Slight smile\n\nConsistent face all panels. Photoreal. Identity lock before video.'}else{$('vImg').textContent='IMAGE PROMPT — First frame (frame 0)\n\nSTRICT IDENTITY: '+id+'\n\nMatch reference video opening: crop, pose, hands, head angle.\nExpression = first moment of video.\nAspect '+aspect+'.\n'+(notes?('Opening: '+notes.split('\n')[0]):'')+'\nPhotoreal still — I2V start frame. Correct hands.'}const motion=notes||'Replicate body motion, head turns, hand paths and timing from reference video. No invented gestures.';const base='IDENTITY LOCK: '+id+'\nSTART FRAME LOCK: begin from '+(imgType==='sheet'?'character front pose':'first-frame image')+'. No pose change at frame 0.\nAspect '+aspect+'.';$('vVid1').textContent='VIDEO PROMPT — '+(two?'Part 1 (0–'+half+'s)':'Full ~'+dur+'s')+'\n\n'+base+'\n\nMOTION:\n'+motion+'\n\n'+(two?'FIRST half only. End mid-hold for Part 2.':'Full timeline. Natural end pose.')+'\n\nNatural physics, stable face.';if(two){$('part2Wrap').classList.remove('hidden');$('vVid2').textContent='VIDEO PROMPT — Part 2 ('+half+'s–'+dur+'s)\n\n'+base+'\n\nContinue FROM end of Part 1 (same pose, crop, face).\nComplete remaining motion:\n'+motion+'\n\nNo identity drift. Seamless match to Part 1.';$('vidPromptTitle').textContent='VIDEO PROMPT · Part 1'}else{$('part2Wrap').classList.add('hidden');$('vidPromptTitle').textContent='VIDEO PROMPT · '+dur+'s'}$('vNeg').textContent='identity drift, face morph, extra fingers, invented gestures, wrong camera cuts, background morph, rubber limbs, flicker';$('vidOut').classList.remove('hidden');$('vidOut').scrollIntoView({behavior:'smooth',block:'nearest'})};
+document.querySelectorAll('.copy').forEach(b=>{b.onclick=()=>{navigator.clipboard.writeText($(b.dataset.c).textContent).then(()=>{const t=b.textContent;b.textContent='Copied!';setTimeout(()=>b.textContent=t,1200)})}});
 if('serviceWorker' in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
 window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();window.deferredPrompt=e});
-$('installBtn').onclick=async()=>{if(window.deferredPrompt){window.deferredPrompt.prompt();await window.deferredPrompt.userChoice}else alert('Browser menu → Add to Home Screen')};
-const c=$('mouseCanvas'),x=c.getContext('2d');let W,H,mx=-9,my=-9,gx=0,gy=0;function rs(){W=c.width=innerWidth;H=c.height=innerHeight}addEventListener('resize',rs);rs();
-addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY});
-(function loop(){x.clearRect(0,0,W,H);gx+=(mx-gx)*0.12;gy+=(my-gy)*0.12;const g=x.createRadialGradient(gx,gy,0,gx,gy,70);g.addColorStop(0,'rgba(236,72,153,0.1)');g.addColorStop(1,'transparent');x.beginPath();x.arc(gx,gy,70,0,Math.PI*2);x.fillStyle=g;x.fill();requestAnimationFrame(loop)})();
+$('installBtn').onclick=async()=>{if(window.deferredPrompt){window.deferredPrompt.prompt();await window.deferredPrompt.userChoice}else alert('Menu → Add to Home Screen')};
 </script>
 </body>
 </html>
