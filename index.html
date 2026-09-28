@@ -3,214 +3,141 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"/>
-<title>Wasu09 — AI Influencer Studio</title>
+<title>Wasu09 — Recreate Video Pro</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,600;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 <style>
-:root{--glass-bg:#00000030;--glass-border:#ffffff22}
+:root{--glass-bg:#00000035;--glass-border:#ffffff22}
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Plus Jakarta Sans',sans-serif;background:#000;color:#fff;min-height:100vh;overflow-x:hidden;padding-bottom:env(safe-area-inset-bottom,0)}
 .bg-container{position:fixed;inset:0;z-index:0}
-.bg-video{width:100%;height:100%;object-fit:cover;filter:brightness(0.45) contrast(1.1)}
-.bg-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0.5),rgba(0,0,0,0.88))}
-.ultra-glass{background:var(--glass-bg);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid var(--glass-border)}
+.bg-video{width:100%;height:100%;object-fit:cover;filter:brightness(0.42) contrast(1.08)}
+.bg-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0.55),rgba(0,0,0,0.9))}
+.ultra-glass{background:var(--glass-bg);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--glass-border)}
 .heading-cinematic{font-family:'Playfair Display',serif;font-style:italic}
-.field{width:100%;background:rgba(0,0,0,0.45);border:1px solid rgba(255,255,255,0.18);border-radius:0.85rem;padding:0.7rem 0.9rem;font-size:16px;color:#fff;outline:none;min-height:44px}
+.field{width:100%;background:rgba(0,0,0,0.5);border:1px solid rgba(255,255,255,0.16);border-radius:0.85rem;padding:0.65rem 0.85rem;font-size:16px;color:#fff;outline:none;min-height:44px}
 .field:focus{border-color:rgba(236,72,153,0.55)}
-.field::placeholder{color:rgba(255,255,255,0.32)}
-.label{font-size:10px;text-transform:uppercase;letter-spacing:0.07em;color:rgba(255,255,255,0.42);margin-bottom:0.35rem}
-.prompt-box{background:rgba(0,0,0,0.55);border:1px solid rgba(255,255,255,0.12);border-radius:0.75rem;padding:0.85rem;font-size:12px;line-height:1.5;color:rgba(255,255,255,0.88);white-space:pre-wrap;max-height:280px;overflow-y:auto;-webkit-overflow-scrolling:touch}
-.upload-box{border:1px dashed rgba(236,72,153,0.4);border-radius:0.85rem;padding:1rem 0.75rem;text-align:center;cursor:pointer;background:rgba(0,0,0,0.25);min-height:100px;display:flex;flex-direction:column;align-items:center;justify-content:center}
-.upload-box:hover{border-color:rgba(236,72,153,0.75);background:rgba(236,72,153,0.06)}
-.mode-btn{flex:1;min-width:0;padding:0.55rem 0.4rem;border-radius:0.75rem;font-size:11px;font-weight:600;border:1px solid rgba(255,255,255,0.15);background:rgba(0,0,0,0.35);color:rgba(255,255,255,0.55);transition:0.15s}
-.mode-btn.active{background:linear-gradient(135deg,#db2777,#e11d48);border-color:rgba(251,113,133,0.5);color:#fff}
+.field::placeholder{color:rgba(255,255,255,0.3)}
+.label{font-size:10px;text-transform:uppercase;letter-spacing:0.07em;color:rgba(255,255,255,0.42);margin-bottom:0.3rem}
+.prompt-box{background:rgba(0,0,0,0.55);border:1px solid rgba(255,255,255,0.12);border-radius:0.75rem;padding:0.8rem;font-size:12px;line-height:1.55;color:rgba(255,255,255,0.88);white-space:pre-wrap;max-height:260px;overflow-y:auto;-webkit-overflow-scrolling:touch}
+.upload-box{border:1px dashed rgba(236,72,153,0.4);border-radius:0.85rem;padding:0.9rem;text-align:center;cursor:pointer;background:rgba(0,0,0,0.28);min-height:96px;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.chip{flex:1;min-width:0;padding:0.55rem 0.35rem;border-radius:0.75rem;font-size:11px;font-weight:600;border:1px solid rgba(255,255,255,0.14);background:rgba(0,0,0,0.35);color:rgba(255,255,255,0.5)}
+.chip.active{background:linear-gradient(135deg,#db2777,#e11d48);border-color:rgba(251,113,133,0.5);color:#fff}
 button,label{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
-@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-.animate-fade{animation:fadeIn 0.5s ease-out forwards}
-::-webkit-scrollbar{width:4px}::-webkit-scrollbar-thumb{background:#444;border-radius:3px}
 main{padding-left:max(0.75rem,env(safe-area-inset-left));padding-right:max(0.75rem,env(safe-area-inset-right));padding-bottom:max(5.5rem,env(safe-area-inset-bottom))}
-@media(max-width:640px){.heading-cinematic{font-size:1.55rem!important}}
+.section-title{font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:rgba(255,255,255,0.55);margin:0.75rem 0 0.4rem}
 </style>
 <link rel="manifest" href="./manifest.json"/>
 <meta name="theme-color" content="#ec4899"/>
-<meta name="apple-mobile-web-app-capable" content="yes"/>
-<meta name="apple-mobile-web-app-title" content="Wasu09"/>
 <link rel="apple-touch-icon" href="./icon.svg"/>
-<link rel="icon" href="./icon.svg" type="image/svg+xml"/>
 </head>
 <body>
-<div class="bg-container">
-<video class="bg-video" autoplay muted loop playsinline>
-<source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260416_101255_3099d3e4-d0cf-4e59-9666-97fbf521ac71.mp4" type="video/mp4"/>
-</video>
-<div class="bg-overlay"></div>
-</div>
+<div class="bg-container"><video class="bg-video" autoplay muted loop playsinline><source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260416_101255_3099d3e4-d0cf-4e59-9666-97fbf521ac71.mp4" type="video/mp4"/></video><div class="bg-overlay"></div></div>
+<main class="relative z-10 max-w-3xl mx-auto px-3 py-5 min-h-screen">
+<header class="text-center mb-5"><p class="text-[10px] tracking-[0.3em] text-gray-400 uppercase font-bold">Wasu09</p>
+<h1 class="heading-cinematic text-3xl font-semibold text-white">Recreate Video Pro</h1>
+<p class="text-xs text-white/45 mt-1">UGC · Dance Reel · Full timeline prompts</p></header>
 
-<main class="relative z-10 max-w-3xl mx-auto px-3 sm:px-4 py-5 sm:py-8 min-h-screen">
-<header class="text-center mb-5 animate-fade">
-<p class="text-[10px] tracking-[0.3em] text-gray-400 mb-1 uppercase font-bold">Wasu09</p>
-<h1 class="heading-cinematic text-3xl sm:text-4xl font-semibold text-white">AI Influencer Studio</h1>
-<p class="text-xs text-white/45 mt-1">Recreate Video Pro · COS-TA prompts</p>
-</header>
-
-<section class="ultra-glass rounded-2xl p-4 border border-white/12 mb-4 animate-fade">
-<div class="flex items-center justify-between mb-3">
-<span class="text-sm font-semibold"><i class="fas fa-user-astronaut text-pink-400 mr-1"></i> Target Identity (I1)</span>
-<span id="lockBadge" class="text-[10px] px-2 py-0.5 rounded-full border bg-white/5 text-white/40 border-white/20">NOT SET</span>
-</div>
+<section class="ultra-glass rounded-2xl p-4 border border-white/12 mb-4">
+<div class="flex items-center justify-between mb-2"><span class="text-sm font-semibold"><i class="fas fa-user text-pink-400 mr-1"></i> Model / Face (I1)</span>
+<span id="lockBadge" class="text-[10px] px-2 py-0.5 rounded-full border border-white/20 text-white/40">NOT SET</span></div>
 <div class="flex flex-wrap gap-2 items-center">
-<label class="cursor-pointer border border-dashed border-pink-400/40 rounded-xl px-3 py-2.5 text-xs flex items-center gap-1.5 min-h-[44px]">
-<i class="fas fa-camera text-pink-400"></i> Face
-<input type="file" id="faceUpload" accept="image/*" multiple class="hidden"/>
-</label>
+<label class="cursor-pointer border border-dashed border-pink-400/40 rounded-xl px-3 py-2.5 text-xs flex items-center gap-1.5 min-h-[44px]"><i class="fas fa-camera text-pink-400"></i> Face
+<input type="file" id="faceUpload" accept="image/*" multiple class="hidden"/></label>
 <div id="facePreviews" class="flex flex-wrap gap-1.5"></div>
-<input id="identityDesc" class="field text-sm flex-1 min-w-[140px]" placeholder="Identity: face features, age, hair..."/>
+<input id="identityDesc" class="field flex-1 min-w-[140px]" placeholder="Face lock: age, hair, features..."/>
 <button id="lockBtn" class="px-4 py-2.5 rounded-xl text-xs font-semibold bg-pink-600 min-h-[44px]">Lock</button>
-</div>
-</section>
+</div></section>
 
-<section class="ultra-glass rounded-2xl p-4 sm:p-5 border border-pink-400/25 mb-5 animate-fade">
-<div class="flex items-center gap-2 mb-4">
-<div class="w-9 h-9 rounded-lg bg-gradient-to-br from-pink-500 to-rose-600 flex items-center justify-center flex-shrink-0"><i class="fas fa-film text-white text-sm"></i></div>
-<div class="min-w-0">
-<h2 class="text-sm font-semibold">Recreate Video Pro</h2>
-<p class="text-[10px] text-white/45">Reference video → controlled face/product replace → COS-TA prompts</p>
-</div>
+<section class="ultra-glass rounded-2xl p-4 border border-pink-400/25 mb-5">
+<p class="label">1 · Content type</p>
+<div class="flex gap-1.5 mb-4" id="typeRow">
+<button type="button" data-type="ugc" class="chip active">UGC / Ad</button>
+<button type="button" data-type="dance" class="chip">Dance / Reel</button>
+<button type="button" data-type="general" class="chip">General</button>
 </div>
 
-<p class="label">Replacement mode</p>
-<div class="flex gap-1.5 mb-4" id="modeRow">
-<button type="button" data-mode="face" class="mode-btn active">FACE ONLY</button>
-<button type="button" data-mode="product" class="mode-btn">PRODUCT</button>
-<button type="button" data-mode="face_product" class="mode-btn">FACE+PRODUCT</button>
-<button type="button" data-mode="full" class="mode-btn">FULL CHAR</button>
-</div>
-
+<p class="label">2 · Video + target</p>
 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
-<div>
-<p class="label">Reference Video (V1)</p>
-<label class="upload-box block">
-<input type="file" id="refVideo" accept="video/*" class="hidden"/>
-<div id="videoPreviewWrap" class="hidden mb-2 w-full">
-<video id="videoPreview" class="w-full max-h-36 rounded-lg" controls muted playsinline></video>
-<img id="firstFrameThumb" class="w-full max-h-24 object-contain rounded-lg mt-1 hidden border border-white/15"/>
-<canvas id="firstFrameCanvas" class="hidden"></canvas>
-</div>
-<div id="videoUploadHint">
-<i class="fas fa-video text-pink-400 text-xl mb-1"></i>
-<p class="text-xs text-white/60">Tap · reference video</p>
-</div>
-</label>
-</div>
-<div>
-<p class="label">Target / Product image</p>
-<label class="upload-box block">
-<input type="file" id="refImage" accept="image/*" class="hidden"/>
-<div id="imagePreviewWrap" class="hidden mb-2 w-full">
-<img id="targetImgPreview" class="w-full max-h-36 object-contain rounded-lg border border-white/15"/>
-</div>
-<div id="imageUploadHint">
-<i class="fas fa-image text-pink-400 text-xl mb-1"></i>
-<p class="text-xs text-white/60">Tap · face or product</p>
-</div>
-</label>
-</div>
+<div><label class="upload-box block"><input type="file" id="refVideo" accept="video/*" class="hidden"/>
+<div id="videoPreviewWrap" class="hidden w-full mb-1"><video id="videoPreview" class="w-full max-h-36 rounded-lg" controls muted playsinline></video>
+<img id="firstFrameThumb" class="w-full max-h-20 object-contain rounded mt-1 hidden border border-white/15"/><canvas id="firstFrameCanvas" class="hidden"></canvas></div>
+<div id="videoUploadHint"><i class="fas fa-video text-pink-400 text-lg mb-1"></i><p class="text-xs text-white/60">Video (V1)</p></div></label>
+<p id="videoMeta" class="text-[10px] text-white/35 mt-1 hidden"></p></div>
+<div><label class="upload-box block"><input type="file" id="refImage" accept="image/*" class="hidden"/>
+<div id="imagePreviewWrap" class="hidden w-full mb-1"><img id="targetImgPreview" class="w-full max-h-36 object-contain rounded-lg border border-white/15"/></div>
+<div id="imageUploadHint"><i class="fas fa-image text-pink-400 text-lg mb-1"></i><p class="text-xs text-white/60">Target / product</p></div></label></div>
 </div>
 
-<div class="mb-3">
-<p class="label">Observed motion / notes</p>
-<textarea id="rvNotes" rows="2" class="field" placeholder="0–2s look camera, 2–4s turn left hand to hair, slow push-in..."></textarea>
+<p class="section-title">3 · Frame-level detail (jitna accurate utna similar)</p>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-2">
+<div><p class="label">Camera movement</p><input id="tlCamera" class="field" placeholder="static → slow push-in / pan left..."/></div>
+<div><p class="label">Framing / angle</p><input id="tlFrame" class="field" placeholder="MCU, eye-level, subject center"/></div>
 </div>
-<div class="grid grid-cols-2 gap-2 mb-3">
-<div><p class="label">Duration (sec)</p><input id="rvDuration" type="number" value="5" min="1" max="60" class="field" inputmode="numeric"/></div>
-<div><p class="label">Aspect</p>
-<select id="rvAspect" class="field">
-<option value="source">Source (keep)</option>
-<option value="9:16">9:16</option>
-<option value="16:9">16:9</option>
-<option value="1:1">1:1</option>
-</select></div>
+<div class="mb-2"><p class="label">Body & actions (timeline)</p>
+<textarea id="tlActions" rows="3" class="field" placeholder="0-1s: face camera&#10;1-3s: head left, hand to hair&#10;3-5s: smile, settle"></textarea></div>
+<div class="mb-2"><p class="label">Face & expression</p>
+<textarea id="tlFace" rows="2" class="field" placeholder="soft smile; eyes to camera; natural blink"></textarea></div>
+<div class="mb-2" id="productBlock"><p class="label">Hands / product (UGC)</p>
+<textarea id="tlHands" rows="2" class="field" placeholder="product right hand; label to camera at 2s"></textarea></div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-2">
+<div><p class="label">Lighting & set</p><input id="tlLight" class="field" placeholder="soft key left, warm room"/></div>
+<div><p class="label">Audio</p><input id="tlAudio" class="field" placeholder="talk / beat / silence"/></div>
 </div>
-<div class="mb-4">
-<p class="label">Product detail (PRODUCT mode)</p>
-<input id="rvProduct" class="field" placeholder="e.g. matte pink lipstick, gold cap, logo front"/>
+<div class="grid grid-cols-2 gap-2 mb-2">
+<div><p class="label">Duration</p><input id="tlDur" type="number" value="5" min="1" max="60" class="field"/></div>
+<div><p class="label">Aspect</p><select id="tlAspect" class="field"><option value="source">Source</option><option value="9:16">9:16</option><option value="16:9">16:9</option><option value="1:1">1:1</option></select></div>
 </div>
+<div class="mb-4" id="productNameBlock"><p class="label">Product (UGC)</p><input id="tlProduct" class="field" placeholder="pink lipstick, gold cap"/></div>
 
-<button id="rvGenerate" class="w-full py-3.5 rounded-xl text-sm font-bold bg-gradient-to-r from-pink-600 via-rose-600 to-fuchsia-600 flex items-center justify-center gap-2 active:scale-[0.98] min-h-[48px]">
-<i class="fas fa-bolt"></i> Generate COS-TA Package
-</button>
-<p id="rvStatus" class="text-[10px] text-white/40 text-center mt-2 hidden"></p>
+<button id="btnGen" class="w-full py-3.5 rounded-xl text-sm font-bold bg-gradient-to-r from-pink-600 via-rose-600 to-fuchsia-600 flex items-center justify-center gap-2 min-h-[48px]"><i class="fas fa-bolt"></i> Generate Full Package</button>
+<p id="status" class="text-[10px] text-white/40 text-center mt-2 hidden"></p>
 
-<div id="rvResults" class="hidden mt-5 space-y-4">
-<div class="rounded-xl border border-white/15 bg-black/30 p-3">
-<div class="flex justify-between mb-1"><p class="text-[10px] font-semibold text-white/70">CHANGE / PRESERVE CONTRACT</p>
-<button data-copy="outContract" class="copy-btn text-[10px] text-pink-300 underline">Copy</button></div>
-<div id="outContract" class="prompt-box max-h-32 text-[11px]"></div>
-</div>
-<div class="rounded-xl border border-cyan-400/30 bg-cyan-950/15 p-3">
-<div class="flex justify-between mb-1 items-center gap-2">
-<p class="text-xs font-semibold text-cyan-200">1 · FIRST-FRAME / ANCHOR IMAGE</p>
-<button data-copy="outAnchor" class="copy-btn text-[10px] px-2 py-1 rounded-lg bg-cyan-500/20 text-cyan-200 border border-cyan-400/30">Copy</button>
-</div>
-<div id="outAnchor" class="prompt-box"></div>
-</div>
-<div class="rounded-xl border border-violet-400/30 bg-violet-950/15 p-3">
-<div class="flex justify-between mb-1 items-center gap-2">
-<p class="text-xs font-semibold text-violet-200">2 · COS-TA SHOT PROMPT (I2V)</p>
-<button data-copy="outCosta" class="copy-btn text-[10px] px-2 py-1 rounded-lg bg-violet-500/20 text-violet-200 border border-violet-400/30">Copy</button>
-</div>
-<div id="outCosta" class="prompt-box"></div>
-</div>
-<div class="rounded-xl border border-rose-400/25 bg-rose-950/15 p-3">
-<div class="flex justify-between mb-1"><p class="text-[10px] font-semibold text-rose-200/90">NEGATIVE</p>
-<button data-copy="outNeg" class="copy-btn text-[10px] text-rose-300 underline">Copy</button></div>
-<div id="outNeg" class="prompt-box max-h-24 text-[11px]"></div>
-</div>
-<p class="text-[10px] text-white/35">Anchor image → I2V with COS-TA · Mode locks identity/product · Source motion preserved</p>
+<div id="results" class="hidden mt-5 space-y-3">
+<div class="rounded-xl border border-white/12 bg-black/35 p-3"><div class="flex justify-between mb-1"><span class="text-[10px] font-semibold text-white/60">CONTRACT</span><button data-copy="outContract" class="copy-btn text-[10px] text-pink-300 underline">Copy</button></div><div id="outContract" class="prompt-box max-h-28 text-[11px]"></div></div>
+<div class="rounded-xl border border-amber-400/30 bg-amber-950/15 p-3"><div class="flex justify-between mb-1"><span class="text-xs font-semibold text-amber-200">STARTING FRAME GUIDE</span><button data-copy="outStartGuide" class="copy-btn text-[10px] px-2 py-1 rounded-lg bg-amber-500/20 text-amber-200 border border-amber-400/30">Copy</button></div><p class="text-[10px] text-white/40 mb-1">Model image = video first frame jaisa</p><div id="outStartGuide" class="prompt-box"></div></div>
+<div class="rounded-xl border border-cyan-400/30 bg-cyan-950/15 p-3"><div class="flex justify-between mb-1"><span class="text-xs font-semibold text-cyan-200">1 · ANCHOR IMAGE PROMPT</span><button data-copy="outAnchor" class="copy-btn text-[10px] px-2 py-1 rounded-lg bg-cyan-500/20 text-cyan-200 border border-cyan-400/30">Copy</button></div><div id="outAnchor" class="prompt-box"></div></div>
+<div class="rounded-xl border border-violet-400/30 bg-violet-950/15 p-3"><div class="flex justify-between mb-1"><span class="text-xs font-semibold text-violet-200">2 · FULL VIDEO PROMPT</span><button data-copy="outFull" class="copy-btn text-[10px] px-2 py-1 rounded-lg bg-violet-500/20 text-violet-200 border border-violet-400/30">Copy</button></div><div id="outFull" class="prompt-box" style="max-height:320px"></div></div>
+<div class="rounded-xl border border-rose-400/25 bg-rose-950/15 p-3"><div class="flex justify-between mb-1"><span class="text-[10px] font-semibold text-rose-200/90">NEGATIVE</span><button data-copy="outNeg" class="copy-btn text-[10px] text-rose-300 underline">Copy</button></div><div id="outNeg" class="prompt-box max-h-24 text-[11px]"></div></div>
+<p class="text-[10px] text-white/35">Guide → Anchor still → Full prompt + negative → I2V</p>
 </div>
 </section>
-
-<p class="text-[10px] text-white/25 text-center">Recreate Video Pro · Evidence-grounded · FACE / PRODUCT locks</p>
 </main>
 
-<div id="mobileInstallBar" class="fixed bottom-0 left-0 right-0 z-50 p-3 bg-gradient-to-t from-black via-black/95 to-transparent sm:hidden">
-<button id="installAppBtnMobile" class="w-full py-3.5 rounded-2xl text-sm font-bold bg-gradient-to-r from-pink-600 to-rose-600 border border-pink-400/30 flex items-center justify-center gap-2">
-<i class="fas fa-download"></i> Install App on Phone
-</button>
+<div class="fixed bottom-0 left-0 right-0 z-50 p-3 bg-gradient-to-t from-black via-black/95 to-transparent sm:hidden">
+<button id="installBtn" class="w-full py-3.5 rounded-2xl text-sm font-bold bg-gradient-to-r from-pink-600 to-rose-600 border border-pink-400/30"><i class="fas fa-download"></i> Install App</button>
 </div>
-
-<canvas id="mouseCanvas" style="position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:9999;mix-blend-mode:screen"></canvas>
-
+<canvas id="mouseCanvas" style="position:fixed;inset:0;width:100vw;height:100vh;pointer-events:none;z-index:9999;mix-blend-mode:screen"></canvas>
 <script>
 let faces=JSON.parse(localStorage.getItem('wasu09_faces')||'[]');
 let identity=JSON.parse(localStorage.getItem('wasu09_identity')||'null');
-let targetImageData=null;
-let refVideoMeta={name:'',duration:0,width:0,height:0};
-let firstFrameDataUrl=null;
-let mode='face';
+let targetImageData=null,refVideoMeta={name:'',duration:0},contentType='ugc';
 window.deferredPrompt=null;
 const $=id=>document.getElementById(id);
-function fileToDataURL(file){return new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(r.result);r.onerror=rej;r.readAsDataURL(file)})}
-function renderFaces(){const box=$('facePreviews');box.innerHTML='';faces.forEach((src,i)=>{const w=document.createElement('div');w.className='relative';w.innerHTML='<img src="'+src+'" class="w-10 h-10 rounded-lg object-cover border border-white/25"/><button data-i="'+i+'" class="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-red-500 text-[10px] flex items-center justify-center rm">×</button>';box.appendChild(w)});box.querySelectorAll('.rm').forEach(btn=>{btn.onclick=()=>{faces.splice(+btn.dataset.i,1);localStorage.setItem('wasu09_faces',JSON.stringify(faces));renderFaces();updateBadge()}})}
-function updateBadge(){const has=faces.length||targetImageData||identity?.desc;if(has){$('lockBadge').textContent='READY';$('lockBadge').className='text-[10px] px-2 py-0.5 rounded-full border bg-emerald-500/20 text-emerald-300 border-emerald-400/40'}else{$('lockBadge').textContent='NOT SET';$('lockBadge').className='text-[10px] px-2 py-0.5 rounded-full border bg-white/5 text-white/40 border-white/20'}}
-renderFaces();updateBadge();if(identity?.desc)$('identityDesc').value=identity.desc;
-$('faceUpload').onchange=async e=>{const files=Array.from(e.target.files||[]).slice(0,4-faces.length);for(const f of files)faces.push(await fileToDataURL(f));localStorage.setItem('wasu09_faces',JSON.stringify(faces));renderFaces();updateBadge();e.target.value=''};
-$('lockBtn').onclick=()=>{identity={locked:true,desc:($('identityDesc').value||'').trim(),at:Date.now()};localStorage.setItem('wasu09_identity',JSON.stringify(identity));localStorage.setItem('wasu09_faces',JSON.stringify(faces));updateBadge()};
-document.querySelectorAll('.mode-btn').forEach(b=>{b.onclick=()=>{document.querySelectorAll('.mode-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');mode=b.dataset.mode}});
-$('refImage').onchange=async e=>{const f=e.target.files?.[0];if(!f)return;targetImageData=await fileToDataURL(f);$('targetImgPreview').src=targetImageData;$('imagePreviewWrap').classList.remove('hidden');$('imageUploadHint').classList.add('hidden');updateBadge()};
-$('refVideo').onchange=e=>{const f=e.target.files?.[0];if(!f)return;const url=URL.createObjectURL(f);const vid=$('videoPreview');vid.src=url;$('videoPreviewWrap').classList.remove('hidden');$('videoUploadHint').classList.add('hidden');refVideoMeta.name=f.name;vid.onloadedmetadata=()=>{refVideoMeta.duration=vid.duration||0;refVideoMeta.width=vid.videoWidth||0;refVideoMeta.height=vid.videoHeight||0;if(refVideoMeta.duration)$('rvDuration').value=Math.min(30,Math.max(1,Math.round(refVideoMeta.duration)));vid.currentTime=0.05};vid.onseeked=()=>{try{const c=$('firstFrameCanvas');c.width=vid.videoWidth;c.height=vid.videoHeight;c.getContext('2d').drawImage(vid,0,0);firstFrameDataUrl=c.toDataURL('image/jpeg',0.85);const t=$('firstFrameThumb');t.src=firstFrameDataUrl;t.classList.remove('hidden')}catch(err){}}};
-function idText(){if(identity?.desc)return identity.desc;if(faces.length||targetImageData)return'exact person from uploaded face/target reference (I1) — same face structure, eyes, nose, lips, jaw, skin, hair';return'target person from I1 reference image'}
-function buildContract(){const product=($('rvProduct').value||'').trim();const lines=[];lines.push('MODE: '+mode.toUpperCase().replace('_',' + '));lines.push('V1 = reference video (motion, camera, timing, set, performance)');lines.push('I1 = target face/identity reference');if(mode.includes('product')||mode==='full')lines.push('P1 = product reference'+(product?': '+product:''));lines.push('');if(mode==='face'){lines.push('CHANGE: facial identity only (I1)');lines.push('PRESERVE: body, outfit, hair/headwear, pose, performance, camera, set, lighting, audio structure, timing')}else if(mode==='product'){lines.push('CHANGE: nominated product only (P1)');lines.push('PRESERVE: face, body, outfit (non-product), camera, set, motion, audio')}else if(mode==='face_product'){lines.push('CHANGE: face (I1) + product (P1)');lines.push('PRESERVE: body proportions, non-product clothes, camera, set, timing, performance energy')}else{lines.push('CHANGE: full character as specified');lines.push('PRESERVE: camera path, set layout, shot timing, audio structure unless noted')}lines.push('ADAPT ONLY AS NECESSARY: shadows, grip, fabric response, skin junctions');return lines.join('\n')}
-function buildAnchor(){const notes=($('rvNotes').value||'').trim();const aspect=$('rvAspect').value;const id=idText();const product=($('rvProduct').value||'').trim();let change='Replace only facial identity using I1. Preserve source body, outfit, hair, pose, framing.';if(mode==='product')change='Replace only the product using P1'+(product?' ('+product+')':'')+'. Preserve face and body.';if(mode==='face_product')change='Replace face (I1) and product (P1'+(product?': '+product:'')+'). Preserve body and non-product outfit.';if(mode==='full')change='Apply full character translation per notes while matching source composition.';return'ANCHOR / FIRST-FRAME IMAGE PROMPT\n\nCreate Shot 1 opening frame. Match the reference video first-frame composition, perspective, screen placement, pose, grip, occlusion, set and lighting.\n\nSTRICT MODEL IDENTITY LOCK — PRIORITY 100\n'+id+'\nUse I1 only for facial identity. Preserve source head pose, expression, gaze. Same face after any occlusion. No identity drift.\n\n'+(mode.includes('product')||mode==='full'?'STRICT PRODUCT/OUTFIT LOCK — PRIORITY 100\n'+(product||'P1 product reference')+'\nReplace only the nominated item. No source-product design leakage.\n\n':'')+'CHANGE: '+change+'\nPRESERVE: source framing, camera height/angle, set, lighting direction, depth of field, rendering style.\nAspect: '+(aspect==='source'?'match source video':aspect)+'\n'+(notes?'Notes: '+notes:'')+'\nPhotorealistic, sharp, correct hands, no collage, no extra captions.'}
-function buildCosta(){const notes=($('rvNotes').value||'').trim();const dur=($('rvDuration').value||'5').trim();const aspect=$('rvAspect').value;const id=idText();const product=($('rvProduct').value||'').trim();const meta=refVideoMeta.name?('V1 file: '+refVideoMeta.name+(refVideoMeta.duration?' ~'+refVideoMeta.duration.toFixed(1)+'s':'')):'V1 = uploaded/described reference';let idLock='STRICT MODEL IDENTITY LOCK — PRIORITY 100\n'+id+'\nI1 controls facial identity only. Preserve source head pose, expression, gaze and speech performance. Same face after turns/occlusion. No identity drift or blend with original face.';let prodLock='';if(mode==='product'||mode==='face_product'||mode==='full'){prodLock='STRICT OUTFIT/PRODUCT LOCK — PRIORITY 100\n'+(product||'P1 product from reference image')+'\nReplace only nominated product. Preserve non-target objects. Coherent grip, weight, shadows. No product duplication or label geometry drift.'}if(mode==='product'){idLock='PRESERVE source face and body identity. Do not change facial identity.'}return'SHOT 1 — source 0–'+dur+'s; generation target ~'+dur+'s\nAttachments: V1=reference video · I1=face/identity · '+(mode.includes('product')||mode==='full'?'P1=product':'')+'\n'+meta+'\n\nC — CONTEXT\nRecreate the observed source shot from V1. '+(mode==='face'?'Use I1 only for facial identity.':mode==='product'?'Use P1 only for product.':mode==='face_product'?'Use I1 for face and P1 for product.':'Full character per notes.')+'\nPreserve source body/outfit/set/camera/style/audio structure except selected replacement fields.\n\n'+idLock+'\n\n'+prodLock+'\n\nO — OBJECTIVE\nOpening: match first-frame pose, framing, grip, camera position.\nLocal motion: '+(notes||'Replicate body motion, hand paths, head turns and timing from V1. No invented gestures.')+'\nCamera: match V1 camera behavior (static/pan/tilt/push-in). Preserve subject screen position.\nEnvironment: keep set anchors and depth order from V1.\nEnding: natural end pose consistent with V1 timeline.\nAspect: '+(aspect==='source'?'preserve source':aspect)+'\n\nS — STYLE\nPhotorealistic. Preserve source lighting, textures, depth of field, motion blur character.\n\nT — TONE\nSource-supported performance energy — do not invent new acting style.\n\nA — AUDIENCE\nPreserve source presentation; no invented demographics or CTAs.\n\nSTART FRAME LOCK\nBegin exactly from the supplied anchor/first-frame image. No pose/crop/camera change at frame 0.'}
-function buildNeg(){return'identity drift, face morphing, different person, blending with original face, extra fingers, missing fingers, deformed hands, product duplication, source-product design leakage, clothing mutation, background morphing, camera jitter, unwanted cuts, invented gestures, sudden pose changes, rubber limbs, text artifacts, watermark'}
-$('rvGenerate').onclick=()=>{const hasTarget=targetImageData||faces.length||identity?.desc||mode==='product';if(!hasTarget&&mode!=='product'){alert('Pehle face/target image set karo');return}if(!refVideoMeta.name&&!($('rvNotes').value||'').trim()){if(!confirm('Video nahi hai. Notes se package banayein?'))return}$('rvStatus').classList.remove('hidden');$('rvStatus').textContent='Building...';$('outContract').textContent=buildContract();$('outAnchor').textContent=buildAnchor();$('outCosta').textContent=buildCosta();$('outNeg').textContent=buildNeg();$('rvResults').classList.remove('hidden');$('rvStatus').textContent='Ready';$('rvResults').scrollIntoView({behavior:'smooth',block:'nearest'})};
-document.querySelectorAll('.copy-btn').forEach(btn=>{btn.onclick=()=>{navigator.clipboard.writeText($(btn.dataset.copy).textContent).then(()=>{const t=btn.textContent;btn.textContent='Copied!';setTimeout(()=>btn.textContent=t,1500)})}});
-if('serviceWorker' in navigator){window.addEventListener('load',()=>{navigator.serviceWorker.register('./sw.js').catch(()=>{})})}
+function fileToDataURL(f){return new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(r.result);r.onerror=rej;r.readAsDataURL(f)})}
+function renderFaces(){const box=$('facePreviews');box.innerHTML='';faces.forEach((src,i)=>{const d=document.createElement('div');d.className='relative';d.innerHTML='<img src="'+src+'" class="w-10 h-10 rounded-lg object-cover border border-white/25"/><button data-i="'+i+'" class="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-red-500 text-[10px] flex items-center justify-center rm">×</button>';box.appendChild(d)});box.querySelectorAll('.rm').forEach(b=>b.onclick=()=>{faces.splice(+b.dataset.i,1);localStorage.setItem('wasu09_faces',JSON.stringify(faces));renderFaces();badge()})}
+function badge(){const ok=faces.length||targetImageData||identity?.desc;$('lockBadge').textContent=ok?'READY':'NOT SET';$('lockBadge').className='text-[10px] px-2 py-0.5 rounded-full border '+(ok?'bg-emerald-500/20 text-emerald-300 border-emerald-400/40':'border-white/20 text-white/40')}
+renderFaces();badge();if(identity?.desc)$('identityDesc').value=identity.desc;
+$('faceUpload').onchange=async e=>{for(const f of [...e.target.files].slice(0,4-faces.length))faces.push(await fileToDataURL(f));localStorage.setItem('wasu09_faces',JSON.stringify(faces));renderFaces();badge();e.target.value=''};
+$('lockBtn').onclick=()=>{identity={locked:true,desc:($('identityDesc').value||'').trim()};localStorage.setItem('wasu09_identity',JSON.stringify(identity));localStorage.setItem('wasu09_faces',JSON.stringify(faces));badge()};
+document.querySelectorAll('#typeRow .chip').forEach(b=>{b.onclick=()=>{document.querySelectorAll('#typeRow .chip').forEach(x=>x.classList.remove('active'));b.classList.add('active');contentType=b.dataset.type;const u=contentType==='ugc';$('productBlock').style.display=u?'':'none';$('productNameBlock').style.display=u?'':'none'}});
+$('refImage').onchange=async e=>{const f=e.target.files?.[0];if(!f)return;targetImageData=await fileToDataURL(f);$('targetImgPreview').src=targetImageData;$('imagePreviewWrap').classList.remove('hidden');$('imageUploadHint').classList.add('hidden');badge()};
+$('refVideo').onchange=e=>{const f=e.target.files?.[0];if(!f)return;const vid=$('videoPreview');vid.src=URL.createObjectURL(f);$('videoPreviewWrap').classList.remove('hidden');$('videoUploadHint').classList.add('hidden');refVideoMeta.name=f.name;vid.onloadedmetadata=()=>{refVideoMeta.duration=vid.duration||0;if(refVideoMeta.duration)$('tlDur').value=Math.min(30,Math.round(refVideoMeta.duration));$('videoMeta').classList.remove('hidden');$('videoMeta').textContent=refVideoMeta.duration.toFixed(1)+'s';vid.currentTime=0.05};vid.onseeked=()=>{try{const c=$('firstFrameCanvas');c.width=vid.videoWidth;c.height=vid.videoHeight;c.getContext('2d').drawImage(vid,0,0);const t=$('firstFrameThumb');t.src=c.toDataURL('image/jpeg',0.85);t.classList.remove('hidden')}catch(err){}}};
+function idText(){if(identity?.desc)return identity.desc;if(faces.length||targetImageData)return'exact person from I1 — same face structure, eyes, nose, lips, jaw, skin, hair';return'target from I1'}
+function buildContract(){const p=($('tlProduct').value||'').trim();let L=['CONTENT TYPE: '+contentType.toUpperCase(),'V1=video · I1=face'+(contentType==='ugc'?' · P1=product'+(p?': '+p:''):''),'',contentType==='ugc'?'CHANGE: face+product | PRESERVE: body,set,camera,timing':contentType==='dance'?'CHANGE: face only | PRESERVE: choreography,camera energy,outfit,set':'CHANGE: face | PRESERVE: camera,set,timing','ADAPT: shadows, grip, face boundary only'];return L.join('\n')}
+function buildStartGuide(){const cam=($('tlCamera').value||'match source').trim();const fr=($('tlFrame').value||'match source').trim();const face=($('tlFace').value||'opening expression').trim();const act=($('tlActions').value||'').trim();const first=act.split('\n')[0]||act||'opening pose from V1 frame 0';const hands=($('tlHands').value||'match V1').trim();const light=($('tlLight').value||'match V1').trim();return'STARTING FRAME GUIDE\n\nGOAL: I1 model = V1 first frame pose + crop.\n\nIDENTITY: '+idText()+'\nExpression t=0: '+face.split('.')[0]+'\n\nPOSE: '+first+'\nHands: '+hands+'\n\nCAMERA: '+fr+' | '+cam+'\nLIGHT: '+light+'\n\nCHECK: same face · pose match · crop match · hands OK'}
+function buildAnchor(){const act=($('tlActions').value||'').trim();const open=act.split('\n')[0]||act||'V1 opening pose';const product=($('tlProduct').value||'').trim();const aspect=$('tlAspect').value;let extra=contentType==='ugc'&&product?'\nPRODUCT LOCK: '+product:contentType==='dance'?'\nFull-body dance stance from V1; face only.':'';return'ANCHOR IMAGE PROMPT\n\nFrame 0 still only.\n\nIDENTITY LOCK: '+idText()+'\n\nPOSE: '+open+'\nExpression: '+(($('tlFace').value||'match V1').trim())+'\nHands: '+(($('tlHands').value||'match V1').trim())+'\n\nFraming: '+(($('tlFrame').value||'match V1').trim())+'\nCamera: '+(($('tlCamera').value||'match V1').trim())+'\nAspect: '+(aspect==='source'?'source':aspect)+'\nLight: '+(($('tlLight').value||'match V1').trim())+extra+'\n\nPhotoreal, correct hands, no collage. STATIC.'}
+function buildFull(){const dur=($('tlDur').value||'5').trim();const aspect=$('tlAspect').value;const product=($('tlProduct').value||'').trim();const typeB=contentType==='ugc'?'TYPE=UGC/AD · face+product · no random dance':contentType==='dance'?'TYPE=DANCE/REEL · face only · full choreography timing':'TYPE=GENERAL · face · preserve camera+performance';return'FULL RECREATION — point by point\n~'+dur+'s | '+(aspect==='source'?'source':aspect)+'\n'+(refVideoMeta.name?'V1: '+refVideoMeta.name:'')+'\n\n'+typeB+'\n\nIDENTITY LOCK: '+idText()+'\n'+(contentType==='ugc'&&product?'PRODUCT LOCK: '+product+'\n':'')+'\nSTART FRAME: exact anchor. No change at frame 0.\n\nFACE / EXPRESSION:\n'+(($('tlFace').value||'Match V1 expressions').trim())+'\n\nBODY / ACTIONS:\n'+(($('tlActions').value||'Match V1 motion timeline').trim())+'\n\nCAMERA:\n'+(($('tlCamera').value||'Match V1').trim())+' | '+(($('tlFrame').value||'').trim())+'\n\nLIGHT: '+(($('tlLight').value||'stable').trim())+'\nAUDIO: '+(($('tlAudio').value||'source-like').trim())+'\n\nPHYSICS: natural joints, correct fingers.\nEND: final timeline pose.'}
+function buildNeg(){return contentType==='dance'?'identity drift, simplified dance, skipped steps, extra limbs, warped hands, wrong camera cuts, rubber limbs':contentType==='ugc'?'identity drift, wrong product, product duplicate, label gibberish, extra fingers, invented dance, text artifacts':'identity drift, extra fingers, invented gestures, unwanted camera, background morph, flicker'}
+$('btnGen').onclick=()=>{if(!(faces.length||targetImageData||identity?.desc)){alert('Pehle face lock karo');return}$('status').classList.remove('hidden');$('outContract').textContent=buildContract();$('outStartGuide').textContent=buildStartGuide();$('outAnchor').textContent=buildAnchor();$('outFull').textContent=buildFull();$('outNeg').textContent=buildNeg();$('results').classList.remove('hidden');$('status').textContent='Ready';$('results').scrollIntoView({behavior:'smooth',block:'nearest'})};
+document.querySelectorAll('.copy-btn').forEach(btn=>{btn.onclick=()=>navigator.clipboard.writeText($(btn.dataset.copy).textContent).then(()=>{const t=btn.textContent;btn.textContent='Copied!';setTimeout(()=>btn.textContent=t,1200)})});
+if('serviceWorker' in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
 window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();window.deferredPrompt=e});
-$('installAppBtnMobile').onclick=async()=>{if(window.deferredPrompt){window.deferredPrompt.prompt();await window.deferredPrompt.userChoice;window.deferredPrompt=null;$('mobileInstallBar').classList.add('hidden')}else{alert(/iPhone|iPad|iPod/.test(navigator.userAgent)?'Safari → Share → Add to Home Screen':'Chrome ⋮ → Install app')}};
-const canvas=$('mouseCanvas');const ctx=canvas.getContext('2d');let W,H,mx=-99,my=-99,gx=0,gy=0;function resize(){W=canvas.width=innerWidth;H=canvas.height=innerHeight}addEventListener('resize',resize);resize();addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY});addEventListener('touchmove',e=>{if(e.touches[0]){mx=e.touches[0].clientX;my=e.touches[0].clientY}},{passive:true});(function loop(){ctx.clearRect(0,0,W,H);gx+=(mx-gx)*0.12;gy+=(my-gy)*0.12;const g=ctx.createRadialGradient(gx,gy,0,gx,gy,80);g.addColorStop(0,'rgba(236,72,153,0.12)');g.addColorStop(1,'transparent');ctx.beginPath();ctx.arc(gx,gy,80,0,Math.PI*2);ctx.fillStyle=g;ctx.fill();requestAnimationFrame(loop)})();
+$('installBtn').onclick=async()=>{if(window.deferredPrompt){window.deferredPrompt.prompt();await window.deferredPrompt.userChoice}else alert('Browser menu → Add to Home Screen')};
+const c=$('mouseCanvas'),x=c.getContext('2d');let W,H,mx=-9,my=-9,gx=0,gy=0;function rs(){W=c.width=innerWidth;H=c.height=innerHeight}addEventListener('resize',rs);rs();
+addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY});
+(function loop(){x.clearRect(0,0,W,H);gx+=(mx-gx)*0.12;gy+=(my-gy)*0.12;const g=x.createRadialGradient(gx,gy,0,gx,gy,70);g.addColorStop(0,'rgba(236,72,153,0.1)');g.addColorStop(1,'transparent');x.beginPath();x.arc(gx,gy,70,0,Math.PI*2);x.fillStyle=g;x.fill();requestAnimationFrame(loop)})();
 </script>
 </body>
 </html>
